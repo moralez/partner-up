@@ -6,6 +6,9 @@
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
+// TestFlight recommendation
+#define TESTING 1
+
 #import "AppDelegate.h"
 
 #import "MainMenuViewController.h"
@@ -16,6 +19,13 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
+    // TestFlight
+    #ifdef TESTING
+        // WATK - question for JMO, is there a replacement for this?
+        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+    #endif
+    [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

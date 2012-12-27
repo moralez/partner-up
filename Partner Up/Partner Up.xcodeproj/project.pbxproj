@@ -25,6 +25,10 @@
 		2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B74168C263500D7C8B1 /* PersonEntity.m */; };
 		2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */; };
 		2CEB6B7D168C284E00D7C8B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */; };
+		2CEB6B83168C2E1D00D7C8B1 /* libTestFlight.a in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB6B7F168C2E1D00D7C8B1 /* libTestFlight.a */; };
+		2CEB6B84168C2E1D00D7C8B1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CEB6B80168C2E1D00D7C8B1 /* README.md */; };
+		2CEB6B85168C2E1D00D7C8B1 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CEB6B81168C2E1D00D7C8B1 /* release_notes.md */; };
+		2CEB6B87168C2E4E00D7C8B1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB6B86168C2E4E00D7C8B1 /* libz.dylib */; };
 		B05C960C168BF7B0000FDB9D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C960B168BF7B0000FDB9D /* MainMenuViewController.m */; };
 		B0A37B0F168BF54D00D35B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B0E168BF54D00D35B81 /* UIKit.framework */; };
 		B0A37B11168BF54D00D35B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B10168BF54D00D35B81 /* Foundation.framework */; };
@@ -60,6 +64,11 @@
 		2CEB6B76168C263500D7C8B1 /* _PersonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PersonEntity.h; sourceTree = "<group>"; };
 		2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PersonEntity.m; sourceTree = "<group>"; };
 		2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
+		2CEB6B7F168C2E1D00D7C8B1 /* libTestFlight.a */ = {isa = PBXFileReference; lastKnownFileType = archive.ar; path = libTestFlight.a; sourceTree = "<group>"; };
+		2CEB6B80168C2E1D00D7C8B1 /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
+		2CEB6B81168C2E1D00D7C8B1 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
+		2CEB6B82168C2E1D00D7C8B1 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
+		2CEB6B86168C2E4E00D7C8B1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
 		B05C960A168BF7B0000FDB9D /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		B05C960B168BF7B0000FDB9D /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		B0A37B0A168BF54D00D35B81 /* Partner Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Partner Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -89,10 +98,12 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CEB6B87168C2E4E00D7C8B1 /* libz.dylib in Frameworks */,
 				B0A37B0F168BF54D00D35B81 /* UIKit.framework in Frameworks */,
 				B0A37B11168BF54D00D35B81 /* Foundation.framework in Frameworks */,
 				B0A37B13168BF54D00D35B81 /* CoreGraphics.framework in Frameworks */,
 				B0A37B15168BF54D00D35B81 /* CoreData.framework in Frameworks */,
+				2CEB6B83168C2E1D00D7C8B1 /* libTestFlight.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -126,9 +137,21 @@
 			path = MachineFiles;
 			sourceTree = "<group>";
 		};
+		2CEB6B7E168C2E1C00D7C8B1 /* TestFlightSDK1.2 */ = {
+			isa = PBXGroup;
+			children = (
+				2CEB6B7F168C2E1D00D7C8B1 /* libTestFlight.a */,
+				2CEB6B80168C2E1D00D7C8B1 /* README.md */,
+				2CEB6B81168C2E1D00D7C8B1 /* release_notes.md */,
+				2CEB6B82168C2E1D00D7C8B1 /* TestFlight.h */,
+			);
+			path = TestFlightSDK1.2;
+			sourceTree = "<group>";
+		};
 		B0A37AFF168BF54D00D35B81 = {
 			isa = PBXGroup;
 			children = (
+				2CEB6B86168C2E4E00D7C8B1 /* libz.dylib */,
 				B0A37B16168BF54D00D35B81 /* Partner Up */,
 				B0A37B0D168BF54D00D35B81 /* Frameworks */,
 				B0A37B0B168BF54D00D35B81 /* Products */,
@@ -157,6 +180,7 @@
 		B0A37B16168BF54D00D35B81 /* Partner Up */ = {
 			isa = PBXGroup;
 			children = (
+				2CEB6B7E168C2E1C00D7C8B1 /* TestFlightSDK1.2 */,
 				2CEB6B71168C263500D7C8B1 /* CoreData */,
 				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
 				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
@@ -249,6 +273,8 @@
 				B0A37B27168BF54E00D35B81 /* Default-568h@2x.png in Resources */,
 				B0A37B2A168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard in Resources */,
 				B0A37B2D168BF54E00D35B81 /* MainStoryboard_iPad.storyboard in Resources */,
+				2CEB6B84168C2E1D00D7C8B1 /* README.md in Resources */,
+				2CEB6B85168C2E1D00D7C8B1 /* release_notes.md in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -397,6 +423,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Partner Up/Partner Up-Prefix.pch";
 				INFOPLIST_FILE = "Partner Up/Partner Up-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Partner Up/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};
@@ -408,6 +438,10 @@
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "Partner Up/Partner Up-Prefix.pch";
 				INFOPLIST_FILE = "Partner Up/Partner Up-Info.plist";
+				LIBRARY_SEARCH_PATHS = (
+					"$(inherited)",
+					"\"$(SRCROOT)/Partner Up/TestFlightSDK1.2\"",
+				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				WRAPPER_EXTENSION = app;
 			};

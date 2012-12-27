@@ -12,7 +12,13 @@
     #import <UIKit/UIKit.h>
     #import <Foundation/Foundation.h>
     #import <CoreData/CoreData.h>
+
+    // TestFlight
+    #import "TestFlightSDK1.2/TestFlight.h"
 #endif
+
+
 
 // CoreData stuff
 #import "SingleCDStack.h"
+
