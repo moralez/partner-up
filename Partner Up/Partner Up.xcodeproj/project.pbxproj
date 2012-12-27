@@ -6,7 +6,25 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		2CEB6B59168C025500D7C8B1 /* Mogenerator */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = 2CEB6B5A168C025500D7C8B1 /* Build configuration list for PBXAggregateTarget "Mogenerator" */;
+			buildPhases = (
+				2CEB6B5D168C027900D7C8B1 /* ShellScript */,
+			);
+			dependencies = (
+			);
+			name = Mogenerator;
+			productName = Mogenerator;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
+		2CEB6B57168C015800D7C8B1 /* SingleCDStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */; };
+		2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B74168C263500D7C8B1 /* PersonEntity.m */; };
+		2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */; };
+		2CEB6B7D168C284E00D7C8B1 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */; };
 		B05C960C168BF7B0000FDB9D /* MainMenuViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B05C960B168BF7B0000FDB9D /* MainMenuViewController.m */; };
 		B0A37B0F168BF54D00D35B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B0E168BF54D00D35B81 /* UIKit.framework */; };
 		B0A37B11168BF54D00D35B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B10168BF54D00D35B81 /* Foundation.framework */; };
@@ -14,7 +32,6 @@
 		B0A37B15168BF54D00D35B81 /* CoreData.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B14168BF54D00D35B81 /* CoreData.framework */; };
 		B0A37B1B168BF54D00D35B81 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B19168BF54D00D35B81 /* InfoPlist.strings */; };
 		B0A37B1D168BF54D00D35B81 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B1C168BF54D00D35B81 /* main.m */; };
-		B0A37B21168BF54D00D35B81 /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B20168BF54D00D35B81 /* AppDelegate.m */; };
 		B0A37B23168BF54D00D35B81 /* Default.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B22168BF54D00D35B81 /* Default.png */; };
 		B0A37B25168BF54E00D35B81 /* Default@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B24168BF54D00D35B81 /* Default@2x.png */; };
 		B0A37B27168BF54E00D35B81 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B26168BF54E00D35B81 /* Default-568h@2x.png */; };
@@ -25,7 +42,24 @@
 		B0A37B36168BF54E00D35B81 /* DetailViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B35168BF54E00D35B81 /* DetailViewController.m */; };
 /* End PBXBuildFile section */
 
+/* Begin PBXContainerItemProxy section */
+		2CEB6B67168C035900D7C8B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = B0A37B01168BF54D00D35B81 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 2CEB6B59168C025500D7C8B1;
+			remoteInfo = Mogenerator;
+		};
+/* End PBXContainerItemProxy section */
+
 /* Begin PBXFileReference section */
+		2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleCDStack.h; sourceTree = "<group>"; };
+		2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCDStack.m; sourceTree = "<group>"; };
+		2CEB6B73168C263500D7C8B1 /* PersonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonEntity.h; sourceTree = "<group>"; };
+		2CEB6B74168C263500D7C8B1 /* PersonEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = PersonEntity.m; sourceTree = "<group>"; };
+		2CEB6B76168C263500D7C8B1 /* _PersonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _PersonEntity.h; sourceTree = "<group>"; };
+		2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _PersonEntity.m; sourceTree = "<group>"; };
+		2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B05C960A168BF7B0000FDB9D /* MainMenuViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainMenuViewController.h; sourceTree = "<group>"; };
 		B05C960B168BF7B0000FDB9D /* MainMenuViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainMenuViewController.m; sourceTree = "<group>"; };
 		B0A37B0A168BF54D00D35B81 /* Partner Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Partner Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -38,7 +72,6 @@
 		B0A37B1C168BF54D00D35B81 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		B0A37B1E168BF54D00D35B81 /* Partner Up-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "Partner Up-Prefix.pch"; sourceTree = "<group>"; };
 		B0A37B1F168BF54D00D35B81 /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
-		B0A37B20168BF54D00D35B81 /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		B0A37B22168BF54D00D35B81 /* Default.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Default.png; sourceTree = "<group>"; };
 		B0A37B24168BF54D00D35B81 /* Default@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default@2x.png"; sourceTree = "<group>"; };
 		B0A37B26168BF54E00D35B81 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
@@ -66,6 +99,33 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		2CEB6B71168C263500D7C8B1 /* CoreData */ = {
+			isa = PBXGroup;
+			children = (
+				2CEB6B72168C263500D7C8B1 /* HumanFiles */,
+				2CEB6B75168C263500D7C8B1 /* MachineFiles */,
+			);
+			path = CoreData;
+			sourceTree = "<group>";
+		};
+		2CEB6B72168C263500D7C8B1 /* HumanFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2CEB6B73168C263500D7C8B1 /* PersonEntity.h */,
+				2CEB6B74168C263500D7C8B1 /* PersonEntity.m */,
+			);
+			path = HumanFiles;
+			sourceTree = "<group>";
+		};
+		2CEB6B75168C263500D7C8B1 /* MachineFiles */ = {
+			isa = PBXGroup;
+			children = (
+				2CEB6B76168C263500D7C8B1 /* _PersonEntity.h */,
+				2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */,
+			);
+			path = MachineFiles;
+			sourceTree = "<group>";
+		};
 		B0A37AFF168BF54D00D35B81 = {
 			isa = PBXGroup;
 			children = (
@@ -97,8 +157,11 @@
 		B0A37B16168BF54D00D35B81 /* Partner Up */ = {
 			isa = PBXGroup;
 			children = (
+				2CEB6B71168C263500D7C8B1 /* CoreData */,
+				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
+				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
 				B0A37B1F168BF54D00D35B81 /* AppDelegate.h */,
-				B0A37B20168BF54D00D35B81 /* AppDelegate.m */,
+				2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */,
 				B0A37B28168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard */,
 				B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */,
 				B05C960A168BF7B0000FDB9D /* MainMenuViewController.h */,
@@ -141,6 +204,7 @@
 			buildRules = (
 			);
 			dependencies = (
+				2CEB6B68168C035900D7C8B1 /* PBXTargetDependency */,
 			);
 			name = "Partner Up";
 			productName = "Partner Up";
@@ -169,6 +233,7 @@
 			projectRoot = "";
 			targets = (
 				B0A37B09168BF54D00D35B81 /* Partner Up */,
+				2CEB6B59168C025500D7C8B1 /* Mogenerator */,
 			);
 		};
 /* End PBXProject section */
@@ -189,21 +254,48 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		2CEB6B5D168C027900D7C8B1 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "cd Partner\\ Up\nmogenerator\t-m Partner_Up.xcdatamodeld -M CoreData/MachineFiles/ -H CoreData/HumanFiles/ --template-var arc=true";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		B0A37B06168BF54D00D35B81 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
 				B0A37B1D168BF54D00D35B81 /* main.m in Sources */,
-				B0A37B21168BF54D00D35B81 /* AppDelegate.m in Sources */,
 				B0A37B30168BF54E00D35B81 /* Partner_Up.xcdatamodeld in Sources */,
 				B0A37B33168BF54E00D35B81 /* MasterViewController.m in Sources */,
 				B0A37B36168BF54E00D35B81 /* DetailViewController.m in Sources */,
 				B05C960C168BF7B0000FDB9D /* MainMenuViewController.m in Sources */,
+				2CEB6B57168C015800D7C8B1 /* SingleCDStack.m in Sources */,
+				2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */,
+				2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */,
+				2CEB6B7D168C284E00D7C8B1 /* AppDelegate.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		2CEB6B68168C035900D7C8B1 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 2CEB6B59168C025500D7C8B1 /* Mogenerator */;
+			targetProxy = 2CEB6B67168C035900D7C8B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		B0A37B19168BF54D00D35B81 /* InfoPlist.strings */ = {
@@ -233,6 +325,20 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		2CEB6B5B168C025500D7C8B1 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		2CEB6B5C168C025500D7C8B1 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		B0A37B37168BF54E00D35B81 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -310,6 +416,14 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		2CEB6B5A168C025500D7C8B1 /* Build configuration list for PBXAggregateTarget "Mogenerator" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				2CEB6B5B168C025500D7C8B1 /* Debug */,
+				2CEB6B5C168C025500D7C8B1 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
 		B0A37B04168BF54D00D35B81 /* Build configuration list for PBXProject "Partner Up" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

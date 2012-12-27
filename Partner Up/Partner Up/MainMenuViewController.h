@@ -9,5 +9,10 @@
 #import <UIKit/UIKit.h>
 
 @interface MainMenuViewController : UIViewController
+{
+    NSManagedObjectContext *singleContext;
+}
+
+
 
 @end
