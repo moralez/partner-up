@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="12C60" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="2.0" toolsVersion="2844" systemVersion="11G63" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" initialViewController="3">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="1930"/>
     </dependencies>
@@ -12,51 +12,17 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="DRh-zc-Gag" kind="relationship" relationship="rootViewController" id="fn0-WZ-CDh"/>
+                        <segue destination="12" kind="relationship" relationship="rootViewController" id="sVW-1r-zx3"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="10" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="-537" y="54"/>
         </scene>
-        <!--View Controller - Partner Up-->
-        <scene sceneID="yjf-lr-5Vo">
-            <objects>
-                <viewController storyboardIdentifier="MainMenuViewController" id="DRh-zc-Gag" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="Yns-8f-OmQ">
-                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <subviews>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="yjQ-LA-9Ny">
-                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Existing Groups">
-                                    <color key="titleColor" red="0.19607843459999999" green="0.30980393290000002" blue="0.52156865600000002" alpha="1" colorSpace="calibratedRGB"/>
-                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <state key="highlighted">
-                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
-                                </state>
-                                <connections>
-                                    <segue destination="12" kind="push" id="ypf-F3-1yV"/>
-                                </connections>
-                            </button>
-                        </subviews>
-                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
-                        <constraints>
-                            <constraint firstItem="yjQ-LA-9Ny" firstAttribute="centerX" secondItem="Yns-8f-OmQ" secondAttribute="centerX" type="default" id="2A3-Xz-3L8"/>
-                            <constraint firstItem="yjQ-LA-9Ny" firstAttribute="top" secondItem="Yns-8f-OmQ" secondAttribute="top" constant="230" id="oDK-aW-iLF"/>
-                        </constraints>
-                    </view>
-                    <navigationItem key="navigationItem" title="Partner Up" id="dlb-9Y-6fs"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="PDW-DF-Rt1" userLabel="First Responder" sceneMemberID="firstResponder"/>
-            </objects>
-            <point key="canvasLocation" x="-20" y="54"/>
-        </scene>
-        <!--Master View Controller - Master-->
+        <!--Classes View Controller - Master-->
         <scene sceneID="18">
             <objects>
-                <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="MasterViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="" title="Master" id="12" customClass="ClassesViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="13">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -91,16 +57,65 @@
                             <outlet property="delegate" destination="12" id="15"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" title="Master" id="36"/>
+                    <navigationItem key="navigationItem" title="Partner Up" id="36">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="cja-oq-QBp">
+                            <connections>
+                                <segue destination="hVs-kK-stQ" kind="push" identifier="classDetails" id="0pF-29-DEj"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="17" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="459" y="64"/>
+            <point key="canvasLocation" x="-85" y="54"/>
         </scene>
-        <!--Detail View Controller - Detail-->
+        <!--Class Details View Controller-->
+        <scene sceneID="ETx-hG-E60">
+            <objects>
+                <viewController id="hVs-kK-stQ" customClass="ClassDetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="cRY-PQ-FWZ">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Class Name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Iy7-nO-d1n">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="n8Q-xN-XlA">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstAttribute="trailing" secondItem="n8Q-xN-XlA" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="5WJ-vM-YXH"/>
+                            <constraint firstItem="Iy7-nO-d1n" firstAttribute="top" secondItem="cRY-PQ-FWZ" secondAttribute="top" constant="20" symbolic="YES" type="default" id="9km-as-Uz6"/>
+                            <constraint firstItem="n8Q-xN-XlA" firstAttribute="leading" secondItem="cRY-PQ-FWZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="ak3-Gm-YeS"/>
+                            <constraint firstItem="Iy7-nO-d1n" firstAttribute="leading" secondItem="cRY-PQ-FWZ" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="qOY-aq-bb8"/>
+                            <constraint firstItem="n8Q-xN-XlA" firstAttribute="top" secondItem="cRY-PQ-FWZ" secondAttribute="top" constant="44" id="sfn-TG-HLp"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="UHX-fX-Pd9">
+                        <barButtonItem key="backBarButtonItem" title="Cancel" id="DXn-hT-ghN"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="TfX-Qi-ECt">
+                            <connections>
+                                <action selector="saveButton:" destination="hVs-kK-stQ" id="97j-3y-dkD"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="classNameField" destination="n8Q-xN-XlA" id="fpD-bG-Dia"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="vvS-un-ywo" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="358" y="-623"/>
+        </scene>
+        <!--Groups View Controller - Detail-->
         <scene sceneID="24">
             <objects>
-                <viewController storyboardIdentifier="" title="Detail" id="21" customClass="DetailViewController" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="" title="Detail" id="21" customClass="GroupsViewController" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="22">
                         <rect key="frame" x="0.0" y="64" width="320" height="504"/>
                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
@@ -126,18 +141,26 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="23" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="902" y="64"/>
+            <point key="canvasLocation" x="358" y="54"/>
         </scene>
     </scenes>
     <classes>
-        <class className="DetailViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/DetailViewController.h"/>
+        <class className="ClassDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassDetailsViewController.h"/>
             <relationships>
-                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="classNameField" candidateClass="UITextField"/>
             </relationships>
         </class>
-        <class className="MasterViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/MasterViewController.h"/>
+        <class className="ClassesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassesViewController.h"/>
+        </class>
+        <class className="GroupsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupsViewController.h"/>
+            <relationships>
+                <relationship kind="outlet" name="detailDescriptionLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groupNameField" candidateClass="UITextField"/>
+            </relationships>
         </class>
         <class className="NSLayoutConstraint" superclassName="NSObject">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>

@@ -1,19 +1,21 @@
 //
-//  DetailViewController.m
+//  GroupsViewController.m
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "DetailViewController.h"
+#import "GroupsViewController.h"
 
-@interface DetailViewController ()
+@interface GroupsViewController ()
 @property (strong, nonatomic) UIPopoverController *masterPopoverController;
 - (void)configureView;
 @end
 
-@implementation DetailViewController
+@implementation GroupsViewController
+
+@synthesize groupNameField;
 
 #pragma mark - Managing the detail item
 
@@ -37,6 +39,7 @@
 
     if (self.detailItem) {
         self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"name"] description];
+        self.groupNameField.text = [[self.detailItem valueForKey:@"name"] description];
     }
 }
 

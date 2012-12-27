@@ -1,5 +1,5 @@
 //
-//  MasterViewController.h
+//  ClassesViewController.h
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
@@ -8,16 +8,16 @@
 
 #import <UIKit/UIKit.h>
 
-@class DetailViewController;
+@class GroupsViewController;
 
 #import <CoreData/CoreData.h>
 
-@interface MasterViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ClassesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
 }
 
-@property (strong, nonatomic) DetailViewController *detailViewController;
+@property (strong, nonatomic) GroupsViewController *GroupsViewController;
 
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 

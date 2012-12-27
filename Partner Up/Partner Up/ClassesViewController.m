@@ -1,22 +1,22 @@
 //
-//  MasterViewController.m
+//  ClassesViewController.m
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "MasterViewController.h"
-
-#import "DetailViewController.h"
+#import "ClassesViewController.h"
+#import "ClassDetailsViewController.h"	
+#import "GroupsViewController.h"
 
 #import "AppDelegate.h"
 
-@interface MasterViewController ()
+@interface ClassesViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation MasterViewController
+@implementation ClassesViewController
 
 - (void)awakeFromNib
 {
@@ -26,19 +26,29 @@
     }
     [super awakeFromNib];
 }
+- (void)viewWillAppear:(BOOL)animated
+{
+     [super viewWillAppear:animated];
+
+     // Remove Back Button
+     [[self navigationItem] setHidesBackButton:YES];
+     
+     // WATK -- come back
+     self.navigationItem.title = @"Partner Up";
+}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-    // Get context
-    singleContext = [SingleCDStack getContext];
-    
-    self.navigationItem.leftBarButtonItem = self.editButtonItem;
 
-    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-    self.navigationItem.rightBarButtonItem = addButton;
-    self.detailViewController = (DetailViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+     // Get context
+     singleContext = [SingleCDStack getContext];
+     
+    // Creating new Classes
+//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
+//    self.navigationItem.rightBarButtonItem = addButton;
+    self.GroupsViewController = (GroupsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,7 +113,7 @@
 {
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.detailViewController.detailItem = object;
+        self.GroupsViewController.detailItem = object;
     }
 }
 
@@ -113,6 +123,9 @@
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
+    } else if ([[segue identifier] isEqualToString:@"classDetails"]) {
+         // WATK -- come back
+         self.navigationItem.title = @"Cancel";
     }
 }
 
@@ -126,7 +139,7 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"PersonEntity" inManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassEntity" inManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.

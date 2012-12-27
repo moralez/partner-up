@@ -1,6 +1,7 @@
-#import "_PersonEntity.h"
+#import "_ClassEntity.h"
 
-@interface PersonEntity : _PersonEntity {}
+@interface ClassEntity : _ClassEntity {}
+
 
 // Helpers
 + (NSManagedObject *) returnFirstFromArray:(NSArray *)objectArray;

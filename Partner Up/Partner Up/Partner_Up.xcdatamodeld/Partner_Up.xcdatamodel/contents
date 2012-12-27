@@ -1,5 +1,11 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+    <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
+    <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
+        <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+    </entity>
     <entity name="PersonEntity" representedClassName="PersonEntity">
         <attribute name="gender" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String">
@@ -9,5 +15,7 @@
     </entity>
     <elements>
         <element name="PersonEntity" positionX="261" positionY="189" width="128" height="75"/>
+        <element name="ClassEntity" positionX="160" positionY="192" width="128" height="60"/>
+        <element name="GroupEntity" positionX="160" positionY="192" width="128" height="60"/>
     </elements>
 </model>
