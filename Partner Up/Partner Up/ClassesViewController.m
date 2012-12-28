@@ -32,9 +32,6 @@
 
      // Remove Back Button
      [[self navigationItem] setHidesBackButton:YES];
-     
-     // WATK -- come back
-     self.navigationItem.title = @"Partner Up";
 }
 
 - (void)viewDidLoad
@@ -124,8 +121,9 @@
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
     } else if ([[segue identifier] isEqualToString:@"classDetails"]) {
-         // WATK -- come back
-         self.navigationItem.title = @"Cancel";
+         // Rename back button for child
+         UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back2" style:UIBarButtonItemStyleBordered target:nil action:nil];
+         [[self navigationItem] setBackBarButtonItem:newBackButton];
     }
 }
 

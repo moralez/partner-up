@@ -69,7 +69,7 @@
             </objects>
             <point key="canvasLocation" x="-85" y="54"/>
         </scene>
-        <!--Class Details View Controller-->
+        <!--Class Details View Controller - New Class-->
         <scene sceneID="ETx-hG-E60">
             <objects>
                 <viewController id="hVs-kK-stQ" customClass="ClassDetailsViewController" sceneMemberID="viewController">
@@ -96,7 +96,7 @@
                             <constraint firstItem="n8Q-xN-XlA" firstAttribute="top" secondItem="cRY-PQ-FWZ" secondAttribute="top" constant="44" id="sfn-TG-HLp"/>
                         </constraints>
                     </view>
-                    <navigationItem key="navigationItem" id="UHX-fX-Pd9">
+                    <navigationItem key="navigationItem" title="New Class" id="UHX-fX-Pd9">
                         <barButtonItem key="backBarButtonItem" title="Cancel" id="DXn-hT-ghN"/>
                         <barButtonItem key="rightBarButtonItem" systemItem="save" id="TfX-Qi-ECt">
                             <connections>

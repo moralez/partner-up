@@ -59,5 +59,6 @@
     [SingleCDStack saveChanges];
     
     // Pop to previous view
+    [self.navigationController popViewControllerAnimated: YES];
 }
 @end
