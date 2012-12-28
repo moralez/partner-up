@@ -8,6 +8,8 @@ const struct GroupEntityAttributes GroupEntityAttributes = {
 };
 
 const struct GroupEntityRelationships GroupEntityRelationships = {
+	.childSets = @"childSets",
+	.parentClass = @"parentClass",
 };
 
 const struct GroupEntityFetchedProperties GroupEntityFetchedProperties = {
@@ -52,6 +54,14 @@ const struct GroupEntityFetchedProperties GroupEntityFetchedProperties = {
 
 
 
+
+@dynamic childSets;
+
+	
+
+@dynamic parentClass;
+
+	
 
 
 

@@ -4,11 +4,11 @@
 #import "_PersonEntity.h"
 
 const struct PersonEntityAttributes PersonEntityAttributes = {
-	.gender = @"gender",
-	.name = @"name",
+	.number = @"number",
 };
 
 const struct PersonEntityRelationships PersonEntityRelationships = {
+	.parentSet = @"parentSet",
 };
 
 const struct PersonEntityFetchedProperties PersonEntityFetchedProperties = {
@@ -40,8 +40,8 @@ const struct PersonEntityFetchedProperties PersonEntityFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
-	if ([key isEqualToString:@"genderValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"gender"];
+	if ([key isEqualToString:@"numberValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"number"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -52,38 +52,35 @@ const struct PersonEntityFetchedProperties PersonEntityFetchedProperties = {
 
 
 
-@dynamic gender;
+@dynamic number;
 
 
 
-- (BOOL)genderValue {
-	NSNumber *result = [self gender];
-	return [result boolValue];
+- (int32_t)numberValue {
+	NSNumber *result = [self number];
+	return [result intValue];
 }
 
-- (void)setGenderValue:(BOOL)value_ {
-	[self setGender:[NSNumber numberWithBool:value_]];
+- (void)setNumberValue:(int32_t)value_ {
+	[self setNumber:[NSNumber numberWithInt:value_]];
 }
 
-- (BOOL)primitiveGenderValue {
-	NSNumber *result = [self primitiveGender];
-	return [result boolValue];
+- (int32_t)primitiveNumberValue {
+	NSNumber *result = [self primitiveNumber];
+	return [result intValue];
 }
 
-- (void)setPrimitiveGenderValue:(BOOL)value_ {
-	[self setPrimitiveGender:[NSNumber numberWithBool:value_]];
+- (void)setPrimitiveNumberValue:(int32_t)value_ {
+	[self setPrimitiveNumber:[NSNumber numberWithInt:value_]];
 }
 
 
 
 
 
-@dynamic name;
+@dynamic parentSet;
 
-
-
-
-
+	
 
 
 

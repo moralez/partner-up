@@ -12,8 +12,12 @@
 
 
 - (IBAction)saveButton:(id)sender;
+- (IBAction)classSizeStepperAction:(id)sender;
 
 @property (weak, nonatomic) IBOutlet UITextField *classNameField;
+@property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;
+
 
 
 @end

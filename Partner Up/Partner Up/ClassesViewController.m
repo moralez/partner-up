@@ -122,7 +122,10 @@
         [[segue destinationViewController] setDetailItem:object];
     } else if ([[segue identifier] isEqualToString:@"classDetails"]) {
          // Rename back button for child
-         UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Back2" style:UIBarButtonItemStyleBordered target:nil action:nil];
+         UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                           style:UIBarButtonItemStyleBordered
+                                                                          target:nil
+                                                                          action:nil];
          [[self navigationItem] setBackBarButtonItem:newBackButton];
     }
 }

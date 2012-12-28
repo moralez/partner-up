@@ -9,11 +9,15 @@ extern const struct GroupEntityAttributes {
 } GroupEntityAttributes;
 
 extern const struct GroupEntityRelationships {
+	__unsafe_unretained NSString *childSets;
+	__unsafe_unretained NSString *parentClass;
 } GroupEntityRelationships;
 
 extern const struct GroupEntityFetchedProperties {
 } GroupEntityFetchedProperties;
 
+@class SetEntity;
+@class ClassEntity;
 
 
 
@@ -40,6 +44,20 @@ extern const struct GroupEntityFetchedProperties {
 
 
 
+@property (nonatomic, strong) SetEntity *childSets;
+
+//- (BOOL)validateChildSets:(id*)value_ error:(NSError**)error_;
+
+
+
+
+@property (nonatomic, strong) ClassEntity *parentClass;
+
+//- (BOOL)validateParentClass:(id*)value_ error:(NSError**)error_;
+
+
+
+
 
 @end
 
@@ -54,6 +72,16 @@ extern const struct GroupEntityFetchedProperties {
 - (void)setPrimitiveName:(NSString*)value;
 
 
+
+
+
+- (SetEntity*)primitiveChildSets;
+- (void)setPrimitiveChildSets:(SetEntity*)value;
+
+
+
+- (ClassEntity*)primitiveParentClass;
+- (void)setPrimitiveParentClass:(ClassEntity*)value;
 
 
 @end

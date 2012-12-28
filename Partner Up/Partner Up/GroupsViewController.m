@@ -15,7 +15,8 @@
 
 @implementation GroupsViewController
 
-@synthesize groupNameField;
+@synthesize classNameLabel;
+@synthesize classSizeLabel;
 
 #pragma mark - Managing the detail item
 
@@ -38,8 +39,8 @@
     // Update the user interface for the detail item.
 
     if (self.detailItem) {
-        self.detailDescriptionLabel.text = [[self.detailItem valueForKey:@"name"] description];
-        self.groupNameField.text = [[self.detailItem valueForKey:@"name"] description];
+        self.classNameLabel.text = [[self.detailItem valueForKey:@"name"] description];
+        self.classSizeLabel.text = [[self.detailItem valueForKey:@"size"] description];
     }
 }
 

@@ -1,14 +1,14 @@
-#import "ClassEntity.h"
+#import "SetEntity.h"
 
 
-@interface ClassEntity ()
+@interface SetEntity ()
 
 // Private interface goes here.
 
 @end
 
 
-@implementation ClassEntity
+@implementation SetEntity
 
 // Helpers
 

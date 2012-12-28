@@ -11,8 +11,7 @@
 @interface GroupsViewController : UIViewController <UISplitViewControllerDelegate>
 
 @property (strong, nonatomic) id detailItem;
+@property (weak, nonatomic) IBOutlet UILabel *classNameLabel;
+@property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
 
-
-@property (weak, nonatomic) IBOutlet UITextField *groupNameField;
-@property (weak, nonatomic) IBOutlet UILabel *detailDescriptionLabel;
 @end

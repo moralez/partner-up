@@ -16,6 +16,13 @@
 @implementation ClassDetailsViewController
 
 @synthesize classNameField;
+@synthesize classSizeStepper;
+@synthesize classSizeLabel;
+
+- (void) updateClassSizeLabel
+{
+    classSizeLabel.text = [NSString stringWithFormat:@"%d", (int)classSizeStepper.value];
+}
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -30,11 +37,11 @@
 {
     [super viewWillAppear:animated];
     
-    // Change Back button to "Cancel"
-    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel" style:UIBarButtonItemStyleBordered target:nil action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
-    
+    // Set defaults -- this will be temporary, as eventually I think we'd populate with entity values
+    classSizeStepper.value = 10;
+    [self updateClassSizeLabel];
 }
+
 - (void)viewDidLoad
 {
     [super viewDidLoad];
@@ -49,16 +56,21 @@
 }
 
 - (IBAction)saveButton:(id)sender {
-    // Load CoreData
+    // Create, load data into entity
     ClassEntity *newClass = (ClassEntity *)[ClassEntity create];
     newClass.name = classNameField.text;
+    newClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
     
-    NSLog(@"Class name: %@", newClass.name);
-    
-    // Save CoreData
+    // Save entity
+    NSLog(@"Saving new Class, name: %@, size: %@", newClass.name, newClass.size);
     [SingleCDStack saveChanges];
     
     // Pop to previous view
     [self.navigationController popViewControllerAnimated: YES];
 }
+
+- (IBAction)classSizeStepperAction:(id)sender {
+    [self updateClassSizeLabel];
+}
+
 @end

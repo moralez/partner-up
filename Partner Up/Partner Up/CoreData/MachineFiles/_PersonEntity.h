@@ -5,17 +5,17 @@
 
 
 extern const struct PersonEntityAttributes {
-	__unsafe_unretained NSString *gender;
-	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *number;
 } PersonEntityAttributes;
 
 extern const struct PersonEntityRelationships {
+	__unsafe_unretained NSString *parentSet;
 } PersonEntityRelationships;
 
 extern const struct PersonEntityFetchedProperties {
 } PersonEntityFetchedProperties;
 
-
+@class SetEntity;
 
 
 
@@ -32,26 +32,23 @@ extern const struct PersonEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* gender;
+@property (nonatomic, strong) NSNumber* number;
 
 
 
-@property BOOL genderValue;
-- (BOOL)genderValue;
-- (void)setGenderValue:(BOOL)value_;
+@property int32_t numberValue;
+- (int32_t)numberValue;
+- (void)setNumberValue:(int32_t)value_;
 
-//- (BOOL)validateGender:(id*)value_ error:(NSError**)error_;
-
-
+//- (BOOL)validateNumber:(id*)value_ error:(NSError**)error_;
 
 
 
-@property (nonatomic, strong) NSString* name;
 
 
+@property (nonatomic, strong) SetEntity *parentSet;
 
-//- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
-
+//- (BOOL)validateParentSet:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -66,19 +63,18 @@ extern const struct PersonEntityFetchedProperties {
 @interface _PersonEntity (CoreDataGeneratedPrimitiveAccessors)
 
 
-- (NSNumber*)primitiveGender;
-- (void)setPrimitiveGender:(NSNumber*)value;
+- (NSNumber*)primitiveNumber;
+- (void)setPrimitiveNumber:(NSNumber*)value;
 
-- (BOOL)primitiveGenderValue;
-- (void)setPrimitiveGenderValue:(BOOL)value_;
-
-
+- (int32_t)primitiveNumberValue;
+- (void)setPrimitiveNumberValue:(int32_t)value_;
 
 
-- (NSString*)primitiveName;
-- (void)setPrimitiveName:(NSString*)value;
 
 
+
+- (SetEntity*)primitiveParentSet;
+- (void)setPrimitiveParentSet:(SetEntity*)value;
 
 
 @end

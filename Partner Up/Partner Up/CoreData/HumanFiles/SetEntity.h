@@ -1,6 +1,6 @@
-#import "_ClassEntity.h"
+#import "_SetEntity.h"
 
-@interface ClassEntity : _ClassEntity {}
+@interface SetEntity : _SetEntity {}
 
 // Helpers
 + (NSManagedObject *) returnFirstFromArray:(NSArray *)objectArray;

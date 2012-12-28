@@ -21,6 +21,8 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2C897D00168D62AE00F66936 /* SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897CFF168D62AE00F66936 /* SetEntity.m */; };
+		2C897D03168D62B700F66936 /* _SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897D02168D62B700F66936 /* _SetEntity.m */; };
 		2C911524168CF6FC0089768D /* ClassDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911523168CF6FB0089768D /* ClassDetailsViewController.m */; };
 		2C911529168D084F0089768D /* ClassEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911526168D084F0089768D /* ClassEntity.m */; };
 		2C91152A168D084F0089768D /* GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911528168D084F0089768D /* GroupEntity.m */; };
@@ -62,6 +64,10 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C897CFE168D62AE00F66936 /* SetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetEntity.h; sourceTree = "<group>"; };
+		2C897CFF168D62AE00F66936 /* SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetEntity.m; sourceTree = "<group>"; };
+		2C897D01168D62B700F66936 /* _SetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SetEntity.h; sourceTree = "<group>"; };
+		2C897D02168D62B700F66936 /* _SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SetEntity.m; sourceTree = "<group>"; };
 		2C911522168CF6FB0089768D /* ClassDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsViewController.h; sourceTree = "<group>"; };
 		2C911523168CF6FB0089768D /* ClassDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailsViewController.m; sourceTree = "<group>"; };
 		2C911525168D084F0089768D /* ClassEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassEntity.h; sourceTree = "<group>"; };
@@ -137,6 +143,8 @@
 		2CEB6B72168C263500D7C8B1 /* HumanFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2C897CFE168D62AE00F66936 /* SetEntity.h */,
+				2C897CFF168D62AE00F66936 /* SetEntity.m */,
 				2C911525168D084F0089768D /* ClassEntity.h */,
 				2C911526168D084F0089768D /* ClassEntity.m */,
 				2C911527168D084F0089768D /* GroupEntity.h */,
@@ -150,6 +158,8 @@
 		2CEB6B75168C263500D7C8B1 /* MachineFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2C897D01168D62B700F66936 /* _SetEntity.h */,
+				2C897D02168D62B700F66936 /* _SetEntity.m */,
 				2C91152B168D08720089768D /* _ClassEntity.h */,
 				2C91152C168D08720089768D /* _ClassEntity.m */,
 				2C91152D168D08730089768D /* _GroupEntity.h */,
@@ -340,6 +350,8 @@
 				2C91152A168D084F0089768D /* GroupEntity.m in Sources */,
 				2C91152F168D08730089768D /* _ClassEntity.m in Sources */,
 				2C911530168D08730089768D /* _GroupEntity.m in Sources */,
+				2C897D00168D62AE00F66936 /* SetEntity.m in Sources */,
+				2C897D03168D62B700F66936 /* _SetEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

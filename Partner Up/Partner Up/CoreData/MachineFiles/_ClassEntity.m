@@ -5,9 +5,11 @@
 
 const struct ClassEntityAttributes ClassEntityAttributes = {
 	.name = @"name",
+	.size = @"size",
 };
 
 const struct ClassEntityRelationships ClassEntityRelationships = {
+	.childGroups = @"childGroups",
 };
 
 const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
@@ -39,6 +41,11 @@ const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"sizeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"size"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
@@ -52,6 +59,45 @@ const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
 
 
 
+
+@dynamic size;
+
+
+
+- (int32_t)sizeValue {
+	NSNumber *result = [self size];
+	return [result intValue];
+}
+
+- (void)setSizeValue:(int32_t)value_ {
+	[self setSize:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveSizeValue {
+	NSNumber *result = [self primitiveSize];
+	return [result intValue];
+}
+
+- (void)setPrimitiveSizeValue:(int32_t)value_ {
+	[self setPrimitiveSize:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic childGroups;
+
+	
+- (NSMutableSet*)childGroupsSet {
+	[self willAccessValueForKey:@"childGroups"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childGroups"];
+  
+	[self didAccessValueForKey:@"childGroups"];
+	return result;
+}
+	
 
 
 
