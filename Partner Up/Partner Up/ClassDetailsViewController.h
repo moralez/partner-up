@@ -8,7 +8,10 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ClassDetailsViewController : UIViewController
+@interface ClassDetailsViewController : UIViewController <UITextFieldDelegate>
+{
+
+}
 
 
 - (IBAction)saveButton:(id)sender;

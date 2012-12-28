@@ -40,6 +40,9 @@
     // Set defaults -- this will be temporary, as eventually I think we'd populate with entity values
     classSizeStepper.value = 10;
     [self updateClassSizeLabel];
+    
+    // Set the delegate so that keyboard hides correctly
+    [classNameField setDelegate:self];
 }
 
 - (void)viewDidLoad
@@ -56,6 +59,7 @@
 }
 
 - (IBAction)saveButton:(id)sender {
+    // WATK -- no error checking of any kind
     // Create, load data into entity
     ClassEntity *newClass = (ClassEntity *)[ClassEntity create];
     newClass.name = classNameField.text;
@@ -71,6 +75,13 @@
 
 - (IBAction)classSizeStepperAction:(id)sender {
     [self updateClassSizeLabel];
+}
+
+// When user presses "Done", hide the keyboard
+- (BOOL) textFieldShouldReturn:(UITextField *)textField
+{
+    [textField resignFirstResponder];
+    return YES;
 }
 
 @end

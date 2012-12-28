@@ -116,18 +116,25 @@
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
+    NSString *backButtonTitle;
+     
     if ([[segue identifier] isEqualToString:@"showDetail"]) {
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setDetailItem:object];
+         // Rename back button
+         backButtonTitle = @"Back";
     } else if ([[segue identifier] isEqualToString:@"classDetails"]) {
-         // Rename back button for child
-         UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                           style:UIBarButtonItemStyleBordered
-                                                                          target:nil
-                                                                          action:nil];
-         [[self navigationItem] setBackBarButtonItem:newBackButton];
+        // Rename back button
+        backButtonTitle = @"Cancel";
     }
+
+    // Add back button with custom title
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:nil
+                                                                     action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
 }
 
 #pragma mark - Fetched results controller
