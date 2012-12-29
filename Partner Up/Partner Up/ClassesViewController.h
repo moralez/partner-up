@@ -18,7 +18,6 @@
 }
 
 @property (strong, nonatomic) GroupsViewController *GroupsViewController;
-
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

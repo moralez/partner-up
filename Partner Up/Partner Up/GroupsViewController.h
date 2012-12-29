@@ -7,11 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClassEntity.h"
+#import "GroupEntity.h"
 
-@interface GroupsViewController : UIViewController <UISplitViewControllerDelegate>
+@interface GroupsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+{
+    NSManagedObjectContext *singleContext;    
+}
 
-@property (strong, nonatomic) id detailItem;
-@property (weak, nonatomic) IBOutlet UILabel *classNameLabel;
-@property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
+
+@property (strong, nonatomic) ClassEntity *parentClass;
+@property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

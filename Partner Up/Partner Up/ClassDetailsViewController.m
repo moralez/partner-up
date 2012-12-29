@@ -7,7 +7,6 @@
 //
 
 #import "ClassDetailsViewController.h"
-#import "ClassEntity.h"
 
 @interface ClassDetailsViewController ()
 
@@ -18,6 +17,14 @@
 @synthesize classNameField;
 @synthesize classSizeStepper;
 @synthesize classSizeLabel;
+@synthesize parentClass;
+
+- (void)setParentClass:(ClassEntity *)newParentClass
+{
+    if (parentClass != newParentClass) {
+        parentClass = newParentClass;
+    }
+}
 
 - (void) updateClassSizeLabel
 {
@@ -36,9 +43,19 @@
 - (void) viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // Set defaults -- this will be temporary, as eventually I think we'd populate with entity values
-    classSizeStepper.value = 10;
+
+    if (nil == parentClass)
+    {
+        // Not passed a class entity, use defaults
+        self.navigationItem.title = @"New Class";
+        classSizeStepper.value = 10;
+    } else {
+        // Passed a class entity, use it's information
+        self.navigationItem.title = parentClass.name;
+        classSizeStepper.value = [parentClass.size doubleValue];
+    }
+
+    // Update labels as appropriate
     [self updateClassSizeLabel];
     
     // Set the delegate so that keyboard hides correctly
@@ -60,13 +77,18 @@
 
 - (IBAction)saveButton:(id)sender {
     // WATK -- no error checking of any kind
-    // Create, load data into entity
-    ClassEntity *newClass = (ClassEntity *)[ClassEntity create];
-    newClass.name = classNameField.text;
-    newClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
+
+    // Load data into entity
+    // If an entity for this parentClass doesn't exist, create one
+    if (nil == parentClass) {
+        parentClass = (ClassEntity *)[ClassEntity create];
+    }
+
+    parentClass.name = classNameField.text;
+    parentClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
     
     // Save entity
-    NSLog(@"Saving new Class, name: %@, size: %@", newClass.name, newClass.size);
+    NSLog(@"Saving new Class, name: %@, size: %@", parentClass.name, parentClass.size);
     [SingleCDStack saveChanges];
     
     // Pop to previous view

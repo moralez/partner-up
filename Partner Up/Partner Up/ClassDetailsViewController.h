@@ -7,6 +7,7 @@
 //
 
 #import <UIKit/UIKit.h>
+#import "ClassEntity.h"
 
 @interface ClassDetailsViewController : UIViewController <UITextFieldDelegate>
 {
@@ -17,6 +18,7 @@
 - (IBAction)saveButton:(id)sender;
 - (IBAction)classSizeStepperAction:(id)sender;
 
+@property (strong, nonatomic) ClassEntity *parentClass;
 @property (weak, nonatomic) IBOutlet UITextField *classNameField;
 @property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;

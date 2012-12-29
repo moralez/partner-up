@@ -7,7 +7,7 @@
 //
 
 #import "ClassesViewController.h"
-#import "ClassDetailsViewController.h"	
+#import "ClassDetailsViewController.h"
 #import "GroupsViewController.h"
 
 #import "AppDelegate.h"
@@ -42,9 +42,7 @@
      // Get context
      singleContext = [SingleCDStack getContext];
      
-    // Creating new Classes
-//    UIBarButtonItem *addButton = [[UIBarButtonItem alloc] initWithBarButtonSystemItem:UIBarButtonSystemItemAdd target:self action:@selector(insertNewObject:)];
-//    self.navigationItem.rightBarButtonItem = addButton;
+    // WATK -- Jmo, what does this do? It doesn't seem to effect anything.
     self.GroupsViewController = (GroupsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
 }
 
@@ -108,24 +106,23 @@
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        self.GroupsViewController.detailItem = object;
-    }
+     // No special handling on selection (class entity passed through segue)
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSString *backButtonTitle;
-     
-    if ([[segue identifier] isEqualToString:@"showDetail"]) {
+    ClassEntity *parentClass;
+    if ([[segue identifier] isEqualToString:@"groupsTableView"]) {
+        // Get the selected class object and pass to next screen
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        NSManagedObject *object = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setDetailItem:object];
-         // Rename back button
-         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"classDetails"]) {
-        // Rename back button
+        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setParentClass:parentClass];
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Back";
+    } else if ([[segue identifier] isEqualToString:@"classDetailsView"]) {
+        // Rename back button for next screen
         backButtonTitle = @"Cancel";
     }
 

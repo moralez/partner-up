@@ -33,7 +33,7 @@
         splitViewController.delegate = (id)navigationController.topViewController;
         
         // WATK -- unused currently
-        //UINavigationController *masterNavigationController = splitViewController.viewControllers[0];
+        //UINavigationController *masterNavigationController = splitViewController.viewControllers[0];		
         //MainMenuViewController *controller = (MainMenuViewController *)masterNavigationController.topViewController;
         //controller.managedObjectContext = self.managedObjectContext;
     } else {
