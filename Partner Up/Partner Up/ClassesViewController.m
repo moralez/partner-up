@@ -52,6 +52,7 @@
     // Dispose of any resources that can be recreated.
 }
 
+// WATK -- double check, believe this can be removed
 - (void)insertNewObject:(id)sender
 {
     NSEntityDescription *entity = [[self.fetchedResultsController fetchRequest] entity];
@@ -113,7 +114,7 @@
 {
     NSString *backButtonTitle;
     ClassEntity *parentClass;
-    if ([[segue identifier] isEqualToString:@"groupsTableView"]) {
+    if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
         // Get the selected class object and pass to next screen
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
@@ -121,7 +122,7 @@
         
         // Rename back button for next screen
         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"classDetailsView"]) {
+    } else if ([[segue identifier] isEqualToString:@"ClassDetailsView"]) {
         // Rename back button for next screen
         backButtonTitle = @"Cancel";
     }
@@ -151,15 +152,15 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"Master"];
-    aFetchedResultsController.delegate = self;
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"ClassesView"];
+     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
 	NSError *error = nil;

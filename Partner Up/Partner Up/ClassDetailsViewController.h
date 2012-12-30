@@ -18,11 +18,10 @@
 - (IBAction)saveButton:(id)sender;
 - (IBAction)classSizeStepperAction:(id)sender;
 
-@property (strong, nonatomic) ClassEntity *parentClass;
+@property (strong, nonatomic) ClassEntity *thisClass;
 @property (weak, nonatomic) IBOutlet UITextField *classNameField;
 @property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;
-
 
 
 @end

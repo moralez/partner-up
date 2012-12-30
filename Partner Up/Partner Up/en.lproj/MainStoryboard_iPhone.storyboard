@@ -47,7 +47,7 @@
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 <connections>
-                                    <segue destination="Ktw-VC-8Xn" kind="push" identifier="groupsTableView" id="FBb-ja-GDU"/>
+                                    <segue destination="Ktw-VC-8Xn" kind="push" identifier="GroupsTableView" id="FBb-ja-GDU"/>
                                 </connections>
                             </tableViewCell>
                         </prototypes>
@@ -60,7 +60,7 @@
                     <navigationItem key="navigationItem" title="Partner Up" id="36">
                         <barButtonItem key="rightBarButtonItem" systemItem="add" id="cja-oq-QBp">
                             <connections>
-                                <segue destination="hVs-kK-stQ" kind="push" identifier="classDetailsView" id="0pF-29-DEj"/>
+                                <segue destination="hVs-kK-stQ" kind="push" identifier="ClassDetailsView" id="0pF-29-DEj"/>
                             </connections>
                         </barButtonItem>
                     </navigationItem>
@@ -94,6 +94,9 @@
                                     <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                 </view>
                                 <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                <connections>
+                                    <segue destination="rjO-4r-wRH" kind="push" identifier="SetsTableView" id="rZN-Zp-V0d"/>
+                                </connections>
                             </tableViewCell>
                         </prototypes>
                         <connections>
@@ -101,11 +104,137 @@
                             <outlet property="delegate" destination="Ktw-VC-8Xn" id="W8h-BV-4je"/>
                         </connections>
                     </tableView>
-                    <navigationItem key="navigationItem" id="8oa-O2-HdI"/>
+                    <toolbarItems/>
+                    <navigationItem key="navigationItem" id="8oa-O2-HdI">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="k8p-mh-9ir">
+                            <connections>
+                                <segue destination="Xkz-YE-Zu8" kind="push" identifier="GroupDetailsView" id="dCi-i3-BYO"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <nil key="simulatedBottomBarMetrics"/>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fpv-hw-fTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="367" y="54"/>
+            <point key="canvasLocation" x="439" y="406"/>
+        </scene>
+        <!--Table View Controller-->
+        <scene sceneID="yD1-l3-jb9">
+            <objects>
+                <tableViewController id="rjO-4r-wRH" sceneMemberID="viewController">
+                    <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="baH-jE-DAW">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                        <prototypes>
+                            <tableViewCell contentMode="scaleToFill" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="C" id="eU0-gk-Yr2">
+                                <rect key="frame" x="0.0" y="22" width="320" height="44"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <view key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center">
+                                    <rect key="frame" x="0.0" y="0.0" width="320" height="43"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
+                                </view>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="rjO-4r-wRH" id="HrR-jY-vE1"/>
+                            <outlet property="delegate" destination="rjO-4r-wRH" id="6j8-cg-AfB"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="lml-dj-suf"/>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cAo-NM-8dU" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="802"/>
+        </scene>
+        <!--Group Details View Controller-->
+        <scene sceneID="dFm-lp-eYU">
+            <objects>
+                <viewController id="Xkz-YE-Zu8" customClass="GroupDetailsViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="yWT-VQ-fZB">
+                        <rect key="frame" x="0.0" y="64" width="320" height="504"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <subviews>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Group name" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="rXE-nH-6d3">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Class size today..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="scK-hJ-AGG">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Break into groups of..." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="7xS-gx-Ap3">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" cocoaTouchSystemColor="darkTextColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <textField opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="59V-Ha-SQG">
+                                <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                <textInputTraits key="textInputTraits" returnKeyType="done"/>
+                            </textField>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="9hq-Ds-68B">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Label" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="gZe-Uk-6Vw">
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <color key="textColor" red="0.0" green="0.0" blue="1" alpha="1" colorSpace="calibratedRGB"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="Usi-7v-Olo">
+                                <connections>
+                                    <action selector="classSizeStepperAction:" destination="Xkz-YE-Zu8" eventType="valueChanged" id="Itz-rv-nKK"/>
+                                </connections>
+                            </stepper>
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RSQ-eU-ar2">
+                                <connections>
+                                    <action selector="groupSizeStepperAction:" destination="Xkz-YE-Zu8" eventType="valueChanged" id="aVy-an-Ydx"/>
+                                </connections>
+                            </stepper>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="calibratedWhite"/>
+                        <constraints>
+                            <constraint firstItem="9hq-Ds-68B" firstAttribute="centerX" secondItem="59V-Ha-SQG" secondAttribute="centerX" type="default" id="8Rg-nw-Cau"/>
+                            <constraint firstAttribute="trailing" secondItem="59V-Ha-SQG" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="HNn-VC-5aD"/>
+                            <constraint firstItem="rXE-nH-6d3" firstAttribute="top" secondItem="yWT-VQ-fZB" secondAttribute="top" constant="20" symbolic="YES" type="default" id="HQT-PB-wIN"/>
+                            <constraint firstItem="7xS-gx-Ap3" firstAttribute="top" secondItem="yWT-VQ-fZB" secondAttribute="top" constant="211" id="HwO-8l-bnz"/>
+                            <constraint firstItem="59V-Ha-SQG" firstAttribute="top" secondItem="rXE-nH-6d3" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="RzH-px-MI4"/>
+                            <constraint firstItem="Usi-7v-Olo" firstAttribute="top" secondItem="9hq-Ds-68B" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ST4-zu-VQD"/>
+                            <constraint firstItem="59V-Ha-SQG" firstAttribute="leading" secondItem="yWT-VQ-fZB" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="Ubu-RA-4CC"/>
+                            <constraint firstItem="RSQ-eU-ar2" firstAttribute="top" secondItem="gZe-Uk-6Vw" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="ZJW-37-LMo"/>
+                            <constraint firstItem="9hq-Ds-68B" firstAttribute="centerX" secondItem="Usi-7v-Olo" secondAttribute="centerX" type="default" id="amM-cA-ZgG"/>
+                            <constraint firstItem="7xS-gx-Ap3" firstAttribute="leading" secondItem="yWT-VQ-fZB" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="enk-Sr-BaN"/>
+                            <constraint firstItem="scK-hJ-AGG" firstAttribute="top" secondItem="yWT-VQ-fZB" secondAttribute="top" constant="98" id="etT-rz-hkc"/>
+                            <constraint firstItem="RSQ-eU-ar2" firstAttribute="leading" secondItem="Usi-7v-Olo" secondAttribute="leading" type="default" id="lm2-5Y-tnR"/>
+                            <constraint firstItem="scK-hJ-AGG" firstAttribute="leading" secondItem="yWT-VQ-fZB" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="lqX-Ih-9k4"/>
+                            <constraint firstItem="gZe-Uk-6Vw" firstAttribute="top" secondItem="yWT-VQ-fZB" secondAttribute="top" constant="241" id="lrw-dT-X2D"/>
+                            <constraint firstItem="9hq-Ds-68B" firstAttribute="top" secondItem="scK-hJ-AGG" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="qcL-7V-TOP"/>
+                            <constraint firstItem="gZe-Uk-6Vw" firstAttribute="leading" secondItem="9hq-Ds-68B" secondAttribute="leading" type="default" id="r66-RD-wbV"/>
+                            <constraint firstItem="rXE-nH-6d3" firstAttribute="leading" secondItem="yWT-VQ-fZB" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="rWD-Rc-gEm"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="IDO-FU-lva">
+                        <barButtonItem key="rightBarButtonItem" systemItem="save" id="lSy-Dv-Ac4">
+                            <connections>
+                                <action selector="saveButton:" destination="Xkz-YE-Zu8" id="7ec-3U-BWq"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="classSizeLabel" destination="9hq-Ds-68B" id="j4r-iA-iRR"/>
+                        <outlet property="classSizeStepper" destination="Usi-7v-Olo" id="UgK-YA-sZx"/>
+                        <outlet property="groupNameField" destination="59V-Ha-SQG" id="Uis-5e-Rgn"/>
+                        <outlet property="groupSizeLabel" destination="gZe-Uk-6Vw" id="a1H-Ft-4ic"/>
+                        <outlet property="groupSizeStepper" destination="RSQ-eU-ar2" id="V3K-9w-ubS"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="SQG-vX-Uxn" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="964" y="-2"/>
         </scene>
         <!--Class Details View Controller - New Class-->
         <scene sceneID="ETx-hG-E60">
@@ -175,9 +304,43 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vvS-un-ywo" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="367" y="-637"/>
+            <point key="canvasLocation" x="439" y="-333"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ClassDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="classSizeStepperAction:"/>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="classNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+        <class className="ClassesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassesViewController.h"/>
+        </class>
+        <class className="GroupDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="classSizeStepperAction:"/>
+                <relationship kind="action" name="groupSizeStepperAction:"/>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="groupNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="groupSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groupSizeStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+        <class className="GroupsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupsViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

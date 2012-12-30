@@ -4,6 +4,8 @@
 #import "_GroupEntity.h"
 
 const struct GroupEntityAttributes GroupEntityAttributes = {
+	.classSize = @"classSize",
+	.groupSize = @"groupSize",
 	.name = @"name",
 };
 
@@ -41,9 +43,71 @@ const struct GroupEntityFetchedProperties GroupEntityFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"classSizeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"classSize"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
+	if ([key isEqualToString:@"groupSizeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"groupSize"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic classSize;
+
+
+
+- (int32_t)classSizeValue {
+	NSNumber *result = [self classSize];
+	return [result intValue];
+}
+
+- (void)setClassSizeValue:(int32_t)value_ {
+	[self setClassSize:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveClassSizeValue {
+	NSNumber *result = [self primitiveClassSize];
+	return [result intValue];
+}
+
+- (void)setPrimitiveClassSizeValue:(int32_t)value_ {
+	[self setPrimitiveClassSize:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
+@dynamic groupSize;
+
+
+
+- (int32_t)groupSizeValue {
+	NSNumber *result = [self groupSize];
+	return [result intValue];
+}
+
+- (void)setGroupSizeValue:(int32_t)value_ {
+	[self setGroupSize:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveGroupSizeValue {
+	NSNumber *result = [self primitiveGroupSize];
+	return [result intValue];
+}
+
+- (void)setPrimitiveGroupSizeValue:(int32_t)value_ {
+	[self setPrimitiveGroupSize:[NSNumber numberWithInt:value_]];
+}
+
 
 
 

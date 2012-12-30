@@ -6,6 +6,8 @@
         <relationship name="childGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="parentClass" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
+        <attribute name="classSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="groupSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <relationship name="childSets" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="parentGroup" inverseEntity="SetEntity" syncable="YES"/>
         <relationship name="parentClass" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="childGroups" inverseEntity="ClassEntity" syncable="YES"/>
@@ -22,9 +24,9 @@
         <relationship name="parentGroup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="childSets" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ClassEntity" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="GroupEntity" positionX="160" positionY="192" width="128" height="90"/>
-        <element name="PersonEntity" positionX="261" positionY="189" width="128" height="75"/>
-        <element name="SetEntity" positionX="160" positionY="192" width="128" height="75"/>
+        <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="90"/>
+        <element name="GroupEntity" positionX="43" positionY="294" width="128" height="120"/>
+        <element name="PersonEntity" positionX="475" positionY="195" width="128" height="75"/>
+        <element name="SetEntity" positionX="223" positionY="375" width="128" height="75"/>
     </elements>
 </model>

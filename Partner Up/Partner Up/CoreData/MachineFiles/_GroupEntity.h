@@ -5,6 +5,8 @@
 
 
 extern const struct GroupEntityAttributes {
+	__unsafe_unretained NSString *classSize;
+	__unsafe_unretained NSString *groupSize;
 	__unsafe_unretained NSString *name;
 } GroupEntityAttributes;
 
@@ -21,6 +23,8 @@ extern const struct GroupEntityFetchedProperties {
 
 
 
+
+
 @interface GroupEntityID : NSManagedObjectID {}
 @end
 
@@ -29,6 +33,34 @@ extern const struct GroupEntityFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (GroupEntityID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* classSize;
+
+
+
+@property int32_t classSizeValue;
+- (int32_t)classSizeValue;
+- (void)setClassSizeValue:(int32_t)value_;
+
+//- (BOOL)validateClassSize:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* groupSize;
+
+
+
+@property int32_t groupSizeValue;
+- (int32_t)groupSizeValue;
+- (void)setGroupSizeValue:(int32_t)value_;
+
+//- (BOOL)validateGroupSize:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -66,6 +98,24 @@ extern const struct GroupEntityFetchedProperties {
 @end
 
 @interface _GroupEntity (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveClassSize;
+- (void)setPrimitiveClassSize:(NSNumber*)value;
+
+- (int32_t)primitiveClassSizeValue;
+- (void)setPrimitiveClassSizeValue:(int32_t)value_;
+
+
+
+
+- (NSNumber*)primitiveGroupSize;
+- (void)setPrimitiveGroupSize:(NSNumber*)value;
+
+- (int32_t)primitiveGroupSizeValue;
+- (void)setPrimitiveGroupSizeValue:(int32_t)value_;
+
+
 
 
 - (NSString*)primitiveName;

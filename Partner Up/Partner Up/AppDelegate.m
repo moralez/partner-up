@@ -11,7 +11,6 @@
 
 #import "AppDelegate.h"
 
-#import "MainMenuViewController.h"
 #import "PersonEntity.h"
 
 @implementation AppDelegate
@@ -33,14 +32,8 @@
         splitViewController.delegate = (id)navigationController.topViewController;
         
         // WATK -- unused currently
-        //UINavigationController *masterNavigationController = splitViewController.viewControllers[0];		
-        //MainMenuViewController *controller = (MainMenuViewController *)masterNavigationController.topViewController;
-        //controller.managedObjectContext = self.managedObjectContext;
     } else {
         // WATK -- unused currently
-        //UINavigationController *navigationController = (UINavigationController *)self.window.rootViewController;
-        //MainMenuViewController *controller = (MainMenuViewController *)navigationController.topViewController;
-        //controller.managedObjectContext = self.managedObjectContext;
     }
     
     return YES;

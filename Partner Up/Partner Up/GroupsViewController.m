@@ -26,10 +26,18 @@
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view, typically from a nib.
-
+    // Do any additional setup after loading the view, typically from a nib.
+    
+    // Get context
+    singleContext = [SingleCDStack getContext];
+    
     // Use class name as title for this view
     self.navigationItem.title = [parentClass.name description];
+}
+
+- (void)viewWillAppear:(BOOL)animated
+{
+    [super viewWillAppear:animated];
 }
 
 - (void)didReceiveMemoryWarning
@@ -37,6 +45,52 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
+
+#pragma mark - Table View
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
+{
+    return [[self.fetchedResultsController sections] count];
+}
+
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
+{
+    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+    return [sectionInfo numberOfObjects];
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+    [self configureCell:cell atIndexPath:indexPath];
+    return cell;
+}
+
+- (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // Return NO if you do not want the specified item to be editable.
+    return YES;
+}
+
+- (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    if (editingStyle == UITableViewCellEditingStyleDelete) {
+        [singleContext deleteObject:[self.fetchedResultsController objectAtIndexPath:indexPath]];
+        [SingleCDStack saveChanges];
+    }
+}
+
+- (BOOL)tableView:(UITableView *)tableView canMoveRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // The table view should not be re-orderable.
+    return NO;
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // No special handling on selection (class entity passed through segue)
+}
+
 
 #pragma mark - Fetched results controller
 
@@ -55,14 +109,19 @@
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:NO];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
+    // Filter results to only those groups aligned with this parentClass
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentClass == %@", [parentClass objectID]];
+    [fetchRequest setPredicate:predicate];
+    
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"Master"];
+    // Cache forced to 'nil' as the cache needs to be purged to modify the controller anyway (different parentClass)
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -143,5 +202,33 @@
     cell.textLabel.text = [[object valueForKey:@"name"] description];
 }
 
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *backButtonTitle;
+    if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
+        // WATK -- INCOMPLETE!!
+        NSLog(@"Error -- This section is incomplete!!");
+        // Get the selected group object and pass to next screen
+//        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+//        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        [[segue destinationViewController] setParentClass:parentClass];
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Back";
+    } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
+        // Pass the parentClass object to the next screen
+        [[segue destinationViewController] setParentClass:parentClass];
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Cancel";
+    }
+    
+    // Add back button with custom title
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:nil
+                                                                     action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
+}
 
 @end

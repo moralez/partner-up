@@ -17,12 +17,12 @@
 @synthesize classNameField;
 @synthesize classSizeStepper;
 @synthesize classSizeLabel;
-@synthesize parentClass;
+@synthesize thisClass;
 
-- (void)setParentClass:(ClassEntity *)newParentClass
+- (void)setThisClass:(ClassEntity *)newThisClass
 {
-    if (parentClass != newParentClass) {
-        parentClass = newParentClass;
+    if (thisClass != newThisClass) {
+        thisClass = newThisClass;
     }
 }
 
@@ -44,18 +44,20 @@
 {
     [super viewWillAppear:animated];
 
-    if (nil == parentClass)
+    if (nil == thisClass)
     {
         // Not passed a class entity, use defaults
         self.navigationItem.title = @"New Class";
+        classNameField.text = @"";
         classSizeStepper.value = 10;
     } else {
         // Passed a class entity, use it's information
-        self.navigationItem.title = parentClass.name;
-        classSizeStepper.value = [parentClass.size doubleValue];
+        self.navigationItem.title = thisClass.name;
+        classNameField.text = thisClass.name;
+        classSizeStepper.value = [thisClass.size doubleValue];
     }
 
-    // Update labels as appropriate
+    // Set all labels appropriately
     [self updateClassSizeLabel];
     
     // Set the delegate so that keyboard hides correctly
@@ -80,15 +82,16 @@
 
     // Load data into entity
     // If an entity for this parentClass doesn't exist, create one
-    if (nil == parentClass) {
-        parentClass = (ClassEntity *)[ClassEntity create];
+    if (nil == thisClass) {
+        thisClass = (ClassEntity *)[ClassEntity create];
     }
 
-    parentClass.name = classNameField.text;
-    parentClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
+    // Assign fields
+    thisClass.name = classNameField.text;
+    thisClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
     
     // Save entity
-    NSLog(@"Saving new Class, name: %@, size: %@", parentClass.name, parentClass.size);
+    NSLog(@"Saving new Class, name: %@, size: %@", thisClass.name, thisClass.size);
     [SingleCDStack saveChanges];
     
     // Pop to previous view
