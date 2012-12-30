@@ -59,9 +59,6 @@
 
     // Set all labels appropriately
     [self updateClassSizeLabel];
-    
-    // Set the delegate so that keyboard hides correctly
-    [classNameField setDelegate:self];
 }
 
 - (void)viewDidLoad
@@ -99,13 +96,16 @@
 }
 
 - (IBAction)classSizeStepperAction:(id)sender {
+    // Hide keyboard, update label
+    [self.view endEditing:NO];
     [self updateClassSizeLabel];
 }
 
 // When user presses "Done", hide the keyboard
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    // Hide keyboard
+    [self.view endEditing:NO];
     return YES;
 }
 

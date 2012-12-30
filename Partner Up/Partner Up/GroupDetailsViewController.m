@@ -48,9 +48,6 @@
 
     // Use class name as title for this view
     self.navigationItem.title = [thisGroup.name description];
-    
-    // Set the delegate so that keyboard hides correctly
-    [groupNameField setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -91,10 +88,14 @@
 }
 
 - (IBAction)classSizeStepperAction:(id)sender {
+    // Hide keyboard, update label
+    [self.view endEditing:NO];
     [self updateClassSizeLabel];
 }
 
 - (IBAction)groupSizeStepperAction:(id)sender {
+    // Hide keyboard, update label
+    [self.view endEditing:NO];
     [self updateGroupSizeLabel];
 }
 
@@ -124,7 +125,7 @@
 // When user presses "Done", hide the keyboard
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [textField resignFirstResponder];
+    [self.view endEditing:NO];
     return YES;
 }
 
