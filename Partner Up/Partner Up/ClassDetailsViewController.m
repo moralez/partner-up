@@ -66,6 +66,8 @@
     [super viewDidLoad];
 	// Do any additional setup after loading the view.
     
+    // Assign delegate to catch keypresses
+    [classNameField setDelegate:self];
 }
 
 - (void)didReceiveMemoryWarning

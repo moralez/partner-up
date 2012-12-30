@@ -48,6 +48,9 @@
 
     // Use class name as title for this view
     self.navigationItem.title = [thisGroup.name description];
+    
+    // Assign delegate to catch keypresses
+    [groupNameField setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
