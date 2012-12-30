@@ -24,6 +24,7 @@
 		2C897D00168D62AE00F66936 /* SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897CFF168D62AE00F66936 /* SetEntity.m */; };
 		2C897D03168D62B700F66936 /* _SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897D02168D62B700F66936 /* _SetEntity.m */; };
 		2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */; };
+		2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */; };
 		2C911524168CF6FC0089768D /* ClassDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911523168CF6FB0089768D /* ClassDetailsViewController.m */; };
 		2C911529168D084F0089768D /* ClassEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911526168D084F0089768D /* ClassEntity.m */; };
 		2C91152A168D084F0089768D /* GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911528168D084F0089768D /* GroupEntity.m */; };
@@ -70,6 +71,8 @@
 		2C897D02168D62B700F66936 /* _SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SetEntity.m; sourceTree = "<group>"; };
 		2C8F16FF168F72B200A5F5E1 /* GroupDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailsViewController.h; sourceTree = "<group>"; };
 		2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsViewController.m; sourceTree = "<group>"; };
+		2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+WATK_Extension.h"; sourceTree = "<group>"; };
+		2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+WATK_Extension.m"; sourceTree = "<group>"; };
 		2C911522168CF6FB0089768D /* ClassDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsViewController.h; sourceTree = "<group>"; };
 		2C911523168CF6FB0089768D /* ClassDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailsViewController.m; sourceTree = "<group>"; };
 		2C911525168D084F0089768D /* ClassEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassEntity.h; sourceTree = "<group>"; };
@@ -215,10 +218,12 @@
 			children = (
 				2CEB6B7E168C2E1C00D7C8B1 /* TestFlightSDK1.2 */,
 				2CEB6B71168C263500D7C8B1 /* CoreData */,
-				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
-				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
 				B0A37B1F168BF54D00D35B81 /* AppDelegate.h */,
 				2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */,
+				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
+				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
+				2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */,
+				2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */,
 				B0A37B28168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard */,
 				B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */,
 				B0A37B31168BF54E00D35B81 /* ClassesViewController.h */,
@@ -352,6 +357,7 @@
 				2C897D00168D62AE00F66936 /* SetEntity.m in Sources */,
 				2C897D03168D62B700F66936 /* _SetEntity.m in Sources */,
 				2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */,
+				2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

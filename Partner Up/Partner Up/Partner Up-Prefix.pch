@@ -22,4 +22,5 @@
 
 // CoreData stuff
 #import "SingleCDStack.h"
+#import "NSManagedObject+WATK_Extension.h"
 

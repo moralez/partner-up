@@ -24,7 +24,7 @@
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     #endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
-    
+
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

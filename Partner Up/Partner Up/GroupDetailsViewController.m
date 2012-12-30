@@ -108,7 +108,7 @@
     // Load data into entity
     // If an entity for this Group doesn't exist, create one
     if (nil == thisGroup) {
-        thisGroup = (GroupEntity *)[GroupEntity create];
+        thisGroup = [GroupEntity create];
         thisGroup.parentClass = parentClass;
     }
 

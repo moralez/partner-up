@@ -117,7 +117,7 @@
     if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
         // Get the selected class object and pass to next screen
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+        parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen
@@ -142,7 +142,7 @@
     if (_fetchedResultsController != nil) {
         return _fetchedResultsController;
     }
-    
+
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
     NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassEntity" inManagedObjectContext:singleContext];

@@ -210,7 +210,7 @@
         NSLog(@"Error -- This section is incomplete!!");
         // Get the selected group object and pass to next screen
 //        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-//        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+//        parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
 //        [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen

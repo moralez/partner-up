@@ -82,7 +82,7 @@
     // Load data into entity
     // If an entity for this parentClass doesn't exist, create one
     if (nil == thisClass) {
-        thisClass = (ClassEntity *)[ClassEntity create];
+        thisClass = [ClassEntity create];
     }
 
     // Assign fields
