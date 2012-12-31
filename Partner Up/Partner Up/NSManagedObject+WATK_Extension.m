@@ -79,7 +79,7 @@
 + (NSArray *) findByAttribute:(NSString *)attribute withValue:(id)value inContext:(NSManagedObjectContext *)context withLimit:(NSUInteger)fetchLimit
 {
     NSPredicate *predicate = [self createPredicateFromAttribute:attribute withValue:value];
-    return [self findWithPred:predicate inContext:context withLimit:NO_FETCH_LIMIT];
+    return [self findWithPred:predicate inContext:context withLimit:fetchLimit];
 }
 
 // Returns only first from findWithPred method
