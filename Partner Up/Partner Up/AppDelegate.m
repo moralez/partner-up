@@ -10,7 +10,7 @@
 #define TESTING 1
 
 #import "AppDelegate.h"
-
+#import "ClassEntity.h"
 #import "PersonEntity.h"
 
 @implementation AppDelegate
@@ -24,7 +24,18 @@
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     #endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
-
+    
+    // Create QuickGroups class
+    // WATK -- This should only happen once
+    ClassEntity *newClass;
+    newClass = [ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"];
+    if (nil == newClass) {
+        newClass = [ClassEntity create];
+        newClass.name = @"Quick Groups";
+        newClass.size = [NSNumber numberWithDouble:10];
+        [SingleCDStack saveChanges];
+    }
+    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

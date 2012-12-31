@@ -15,6 +15,7 @@
 @interface ClassesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
+    NSArray                *customOptions;
 }
 
 @property (strong, nonatomic) GroupsViewController *GroupsViewController;

@@ -103,7 +103,16 @@
 }
 
 - (IBAction)saveButton:(id)sender {
+    BOOL errorFound = FALSE;
+    
     // WATK -- no error checking of any kind
+    if ([[[self groupNameField] text] length] <= 0) {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
+                                                        message:@"Some information is missing."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+    }
     
     // Load data into entity
     // If an entity for this Group doesn't exist, create one
@@ -114,8 +123,8 @@
 
     // Assign fields
     thisGroup.name = groupNameField.text;
-    thisGroup.classSize = [NSNumber numberWithDouble:classSizeStepper.value];
-    thisGroup.groupSize = [NSNumber numberWithDouble:groupSizeStepper.value];
+    [thisGroup setClassSizeValue:classSizeStepper.value];
+    [thisGroup setGroupSizeValue:groupSizeStepper.value];
     
     // Save entity
     NSLog(@"Saving group entity, name: %@, classSize: %@, groupSize: %@", thisGroup.name, thisGroup.classSize, thisGroup.groupSize);

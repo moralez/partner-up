@@ -9,6 +9,7 @@
 #import "ClassesViewController.h"
 #import "ClassDetailsViewController.h"
 #import "GroupsViewController.h"
+#import "GroupDetailsViewController.h"
 
 #import "AppDelegate.h"
 
@@ -38,12 +39,14 @@
 {
     [super viewDidLoad];
 	// Do any additional setup after loading the view, typically from a nib.
-
-     // Get context
-     singleContext = [SingleCDStack getContext];
+    
+    // Get context
+    singleContext = [SingleCDStack getContext];
      
     // WATK -- Jmo, what does this do? It doesn't seem to effect anything.
+    // JMO -- I'm not sure. I think this is left over from generated code to set the managed context
     self.GroupsViewController = (GroupsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    customOptions = [NSArray arrayWithObjects:@"Generate Quick Group", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -69,11 +72,16 @@
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count];
+    return [[self.fetchedResultsController sections] count] + 1;
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    
+    if (section == 1) {
+        return [customOptions count];
+    }
+    
     id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
     return [sectionInfo numberOfObjects];
 }
@@ -81,6 +89,12 @@
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
+     
+    if ([indexPath section] == 1) {
+        [[cell textLabel] setText:[customOptions objectAtIndex:[indexPath row]]];
+        return cell;
+    }
+    
     [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
@@ -88,6 +102,10 @@
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
     // Return NO if you do not want the specified item to be editable.
+    if ([indexPath section] == 1) {
+         return NO;
+    }
+    
     return YES;
 }
 
@@ -105,19 +123,51 @@
     return NO;
 }
 
+- (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
+    NSLog(@"Will select row in section: %d", [indexPath row]);
+    if ([indexPath section] == 1) {
+        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+        GroupDetailsViewController *groupDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"GroupDetailsViewController"];
+        [groupDetailsVC setParentClass:[ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"]];
+        [[self navigationController] pushViewController:groupDetailsVC animated:YES];
+        return nil;
+    }
+    
+    return indexPath;
+}
+
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      // No special handling on selection (class entity passed through segue)
+    NSLog(@"Selected a row in section: %d", [indexPath row]);
+    
+    if ([indexPath section] == 1) {
+        switch ([indexPath row]) {
+            case 0:
+            {
+                NSLog(@"Generate Quick Group");
+            }
+                break;
+            default:
+                break;
+        }
+    }
 }
 
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSString *backButtonTitle;
     ClassEntity *parentClass;
+    
+    // Get the selected class object and pass to next screen
+    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+    
+    if ([indexPath section] == 1) {
+        return;
+    }
+    
     if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
-        // Get the selected class object and pass to next screen
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen
