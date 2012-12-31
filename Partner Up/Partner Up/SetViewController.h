@@ -14,6 +14,8 @@
 }
 
 @property (strong, nonatomic) GroupEntity *parentGroup;
+//@property (strong, nonatomic) NSNumber *removePreviousVC;
+@property BOOL removePreviousVC;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

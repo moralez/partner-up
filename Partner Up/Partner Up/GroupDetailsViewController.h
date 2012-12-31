@@ -12,7 +12,6 @@
 
 @interface GroupDetailsViewController : UIViewController <UITextFieldDelegate>
 
-- (IBAction)saveButton:(id)sender;
 - (IBAction)classSizeStepperAction:(id)sender;
 - (IBAction)groupSizeStepperAction:(id)sender;
 

@@ -8,6 +8,7 @@
 
 #import "GroupDetailsViewController.h"
 #import "SetGenerator.h"
+#import "SetViewController.h"
 
 @interface GroupDetailsViewController ()
 
@@ -103,7 +104,7 @@
     [self updateGroupSizeLabel];
 }
 
-- (IBAction)saveButton:(id)sender {
+- (void)createGroup {
     BOOL errorFound = NO;
     
     // WATK -- no error checking of any kind
@@ -137,8 +138,34 @@
     // Actually generate the sets
     [SetGenerator generateSetsForGroup:thisGroup];
     
-    // Pop to previous view
-    [self.navigationController popViewControllerAnimated: YES];
+    // Transition directly to screen...will segue work?
+//    [self.navigationController pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>
+//    [self.navigationController popViewControllerAnimated: YES];
+}
+
+// WATK is this the right method?????
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    // Create group and associated sets/persons
+    [self createGroup];
+    
+    // Begin work for transition
+    NSString *backButtonTitle;
+    if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
+        // Get the selected group object and pass to next screen
+        [[segue destinationViewController] setParentGroup:thisGroup];
+        [[segue destinationViewController] setRemovePreviousVC:YES];
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Back";
+    }
+    
+    // Add back button with custom title
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:nil
+                                                                     action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
 }
 
 // When user presses "Done", hide the keyboard

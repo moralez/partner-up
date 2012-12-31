@@ -17,6 +17,7 @@
 @implementation SetViewController
 
 @synthesize parentGroup;
+@synthesize removePreviousVC;
 
 - (void)setParentGroup:(GroupEntity *)newParentGroup
 {
@@ -25,16 +26,12 @@
     }
 }
 
-
-// WATK return
-//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
-//{
-//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
-//    if (self) {
-//        // Custom initialization
-//    }
-//    return self;
-//}
+- (void)removePreviousVC:(BOOL)newRemovePreviousVC
+{
+    if (removePreviousVC != newRemovePreviousVC) {
+        removePreviousVC = newRemovePreviousVC;
+    }
+}
 
 - (void)viewDidLoad
 {
@@ -51,6 +48,14 @@
     
     // Use class name as title for this view
     self.navigationItem.title = [parentGroup.name description];
+    
+    // WATK -- hacky, what's a better way?
+    // If removePreviousVC = YES, remove previous VC from stack (so that app doesn't return there)
+    if (YES == removePreviousVC) {
+        NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
+        [allViewControllers removeObjectAtIndex:[allViewControllers count] - 2];
+        self.navigationController.viewControllers = allViewControllers;
+    }
 }
 
 - (void)didReceiveMemoryWarning
@@ -135,7 +140,7 @@
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"SetView"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
