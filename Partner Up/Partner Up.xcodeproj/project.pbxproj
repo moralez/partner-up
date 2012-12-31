@@ -53,6 +53,8 @@
 		B0A37B2D168BF54E00D35B81 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */; };
 		B0A37B30168BF54E00D35B81 /* Partner_Up.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B2E168BF54E00D35B81 /* Partner_Up.xcdatamodeld */; };
 		B0A37B36168BF54E00D35B81 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B35168BF54E00D35B81 /* GroupsViewController.m */; };
+		B0B6204716914BA400536F0E /* SetGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204616914BA400536F0E /* SetGenerator.m */; };
+		B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -118,6 +120,10 @@
 		B0A37B31168BF54E00D35B81 /* ClassesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassesViewController.h; sourceTree = "<group>"; };
 		B0A37B34168BF54E00D35B81 /* GroupsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
 		B0A37B35168BF54E00D35B81 /* GroupsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		B0B6204516914BA400536F0E /* SetGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGenerator.h; sourceTree = "<group>"; };
+		B0B6204616914BA400536F0E /* SetGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGenerator.m; sourceTree = "<group>"; };
+		B0B6204A169155C900536F0E /* NSMutableArray+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helpers.h"; sourceTree = "<group>"; };
+		B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Helpers.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,6 +225,7 @@
 		B0A37B16168BF54D00D35B81 /* Partner Up */ = {
 			isa = PBXGroup;
 			children = (
+				B0B62049169155AC00536F0E /* Helpers */,
 				2CEB6B7E168C2E1C00D7C8B1 /* TestFlightSDK1.2 */,
 				2CEB6B71168C263500D7C8B1 /* CoreData */,
 				B0A37B1F168BF54D00D35B81 /* AppDelegate.h */,
@@ -240,6 +247,8 @@
 				2C964B731691499400896116 /* SetViewController.h */,
 				2C964B741691499400896116 /* SetViewController.m */,
 				B0A37B2E168BF54E00D35B81 /* Partner_Up.xcdatamodeld */,
+				B0B6204516914BA400536F0E /* SetGenerator.h */,
+				B0B6204616914BA400536F0E /* SetGenerator.m */,
 				B0A37B17168BF54D00D35B81 /* Supporting Files */,
 			);
 			path = "Partner Up";
@@ -257,6 +266,15 @@
 				B0A37B26168BF54E00D35B81 /* Default-568h@2x.png */,
 			);
 			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+		B0B62049169155AC00536F0E /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				B0B6204A169155C900536F0E /* NSMutableArray+Helpers.h */,
+				B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */,
+			);
+			name = Helpers;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -364,6 +382,8 @@
 				2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */,
 				B00A09481690164700614363 /* ClassesViewController.m in Sources */,
 				2C964B751691499400896116 /* SetViewController.m in Sources */,
+				B0B6204716914BA400536F0E /* SetGenerator.m in Sources */,
+				B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

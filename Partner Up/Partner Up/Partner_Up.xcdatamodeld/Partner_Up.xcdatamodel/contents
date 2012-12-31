@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
+<model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="12C60" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
@@ -7,8 +7,8 @@
     </entity>
     <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
         <attribute name="classSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <attribute name="groupSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="setSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="childSets" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="parentGroup" inverseEntity="SetEntity" syncable="YES"/>
         <relationship name="parentClass" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="childGroups" inverseEntity="ClassEntity" syncable="YES"/>
     </entity>

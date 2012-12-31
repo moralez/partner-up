@@ -7,6 +7,7 @@
 //
 
 #import "GroupDetailsViewController.h"
+#import "SetGenerator.h"
 
 @interface GroupDetailsViewController ()
 
@@ -76,7 +77,7 @@
         self.navigationItem.title = thisGroup.name;
         groupNameField.text = thisGroup.name;
         classSizeStepper.value = [thisGroup.classSize doubleValue];
-        groupSizeStepper.value = [thisGroup.groupSize doubleValue];
+        groupSizeStepper.value = [thisGroup.setSize doubleValue];
     }
     
     // Update all labels
@@ -103,15 +104,18 @@
 }
 
 - (IBAction)saveButton:(id)sender {
-    BOOL errorFound = FALSE;
+    BOOL errorFound = NO;
     
     // WATK -- no error checking of any kind
     if ([[[self groupNameField] text] length] <= 0) {
+        errorFound = YES;
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
+        [error show];
+        return;
     }
     
     // Load data into entity
@@ -123,12 +127,15 @@
 
     // Assign fields
     thisGroup.name = groupNameField.text;
-    [thisGroup setClassSizeValue:classSizeStepper.value];
-    [thisGroup setGroupSizeValue:groupSizeStepper.value];
+    thisGroup.classSize = [NSNumber numberWithDouble:classSizeStepper.value];
+    thisGroup.setSize = [NSNumber numberWithDouble:groupSizeStepper.value];
     
     // Save entity
-    NSLog(@"Saving group entity, name: %@, classSize: %@, groupSize: %@", thisGroup.name, thisGroup.classSize, thisGroup.groupSize);
+    NSLog(@"Saving group entity, name: %@, classSize: %@, groupSize: %@", thisGroup.name, thisGroup.classSize, thisGroup.setSize);
     [SingleCDStack saveChanges];
+    
+    // Actually generate the sets
+    [SetGenerator generateSetsForGroup:thisGroup];
     
     // Pop to previous view
     [self.navigationController popViewControllerAnimated: YES];
