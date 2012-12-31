@@ -42,10 +42,8 @@
     
     // Get context
     singleContext = [SingleCDStack getContext];
-     
-    // WATK -- Jmo, what does this do? It doesn't seem to effect anything.
-    // JMO -- I'm not sure. I think this is left over from generated code to set the managed context
-    self.GroupsViewController = (GroupsViewController *)[[self.splitViewController.viewControllers lastObject] topViewController];
+    
+    // For second tableview grouping
     customOptions = [NSArray arrayWithObjects:@"Generate Quick Group", nil];
 }
 
@@ -193,9 +191,9 @@
         return _fetchedResultsController;
     }
 
+    // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"ClassEntity" inManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [ClassEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -204,7 +202,6 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
-    
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.

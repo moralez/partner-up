@@ -314,6 +314,42 @@
             <point key="canvasLocation" x="439" y="-333"/>
         </scene>
     </scenes>
+    <classes>
+        <class className="ClassDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="classSizeStepperAction:"/>
+                <relationship kind="action" name="saveButton:"/>
+                <relationship kind="outlet" name="classNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+        <class className="ClassesViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassesViewController.h"/>
+        </class>
+        <class className="GroupDetailsViewController" superclassName="UIViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupDetailsViewController.h"/>
+            <relationships>
+                <relationship kind="action" name="classSizeStepperAction:"/>
+                <relationship kind="action" name="groupSizeStepperAction:"/>
+                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
+                <relationship kind="outlet" name="groupNameField" candidateClass="UITextField"/>
+                <relationship kind="outlet" name="groupSizeLabel" candidateClass="UILabel"/>
+                <relationship kind="outlet" name="groupSizeStepper" candidateClass="UIStepper"/>
+            </relationships>
+        </class>
+        <class className="GroupsViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/GroupsViewController.h"/>
+        </class>
+        <class className="NSLayoutConstraint" superclassName="NSObject">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/NSLayoutConstraint.h"/>
+        </class>
+        <class className="SetViewController" superclassName="UITableViewController">
+            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetViewController.h"/>
+        </class>
+    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

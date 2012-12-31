@@ -230,10 +230,6 @@
 				2CEB6B71168C263500D7C8B1 /* CoreData */,
 				B0A37B1F168BF54D00D35B81 /* AppDelegate.h */,
 				2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */,
-				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
-				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
-				2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */,
-				2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */,
 				B0A37B28168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard */,
 				B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */,
 				B0A37B31168BF54E00D35B81 /* ClassesViewController.h */,
@@ -273,6 +269,10 @@
 			children = (
 				B0B6204A169155C900536F0E /* NSMutableArray+Helpers.h */,
 				B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */,
+				2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */,
+				2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */,
+				2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */,
+				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
 			);
 			name = Helpers;
 			sourceTree = "<group>";

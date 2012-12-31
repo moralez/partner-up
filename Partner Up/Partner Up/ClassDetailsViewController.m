@@ -87,7 +87,7 @@
 
     // Assign fields
     thisClass.name = classNameField.text;
-    thisClass.size = [NSNumber numberWithDouble:classSizeStepper.value];
+    thisClass.sizeValue = classSizeStepper.value;
     
     // Save entity
     NSLog(@"Saving new Class, name: %@, size: %@", thisClass.name, thisClass.size);

@@ -25,14 +25,13 @@
     #endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
     
-    // Create QuickGroups class
-    // WATK -- This should only happen once
+    // Create QuickGroups class if it doesn't exist.
     ClassEntity *newClass;
     newClass = [ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"];
     if (nil == newClass) {
         newClass = [ClassEntity create];
         newClass.name = @"Quick Groups";
-        newClass.size = [NSNumber numberWithDouble:10];
+        newClass.sizeValue = 10;
         [SingleCDStack saveChanges];
     }
     

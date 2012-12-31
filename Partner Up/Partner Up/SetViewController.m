@@ -49,7 +49,7 @@
     // Use class name as title for this view
     self.navigationItem.title = [parentGroup.name description];
     
-    // WATK -- hacky, what's a better way?
+    // WATK -- JMO says this is better accomplished through previous view being modal
     // If removePreviousVC = YES, remove previous VC from stack (so that app doesn't return there)
     if (YES == removePreviousVC) {
         NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
@@ -118,11 +118,9 @@
         return _fetchedResultsController;
     }
     
+    // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-//watk examine extending helper here
-    //    NSEntityDescription *entity = [SetEntity entityInManagedObjectContext:singleContext];
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetEntity" inManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [SetEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.

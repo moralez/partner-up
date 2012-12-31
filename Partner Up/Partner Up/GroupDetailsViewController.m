@@ -104,19 +104,20 @@
     [self updateGroupSizeLabel];
 }
 
-- (void)createGroup {
-    BOOL errorFound = NO;
+// Returns YES if creation is successful
+- (BOOL)createGroup {
+    // Start with failure
+    BOOL noErrors = NO;
     
-    // WATK -- no error checking of any kind
+    // WATK -- Error checking goes here
     if ([[[self groupNameField] text] length] <= 0) {
-        errorFound = YES;
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
         [error show];
-        return;
+        return noErrors;
     }
     
     // Load data into entity
@@ -128,8 +129,8 @@
 
     // Assign fields
     thisGroup.name = groupNameField.text;
-    thisGroup.classSize = [NSNumber numberWithDouble:classSizeStepper.value];
-    thisGroup.setSize = [NSNumber numberWithDouble:groupSizeStepper.value];
+    thisGroup.classSizeValue = classSizeStepper.value;
+    thisGroup.setSizeValue = groupSizeStepper.value;
     
     // Save entity
     NSLog(@"Saving group entity, name: %@, classSize: %@, groupSize: %@", thisGroup.name, thisGroup.classSize, thisGroup.setSize);
@@ -138,17 +139,30 @@
     // Actually generate the sets
     [SetGenerator generateSetsForGroup:thisGroup];
     
-    // Transition directly to screen...will segue work?
-//    [self.navigationController pushViewController:<#(UIViewController *)#> animated:<#(BOOL)#>
-//    [self.navigationController popViewControllerAnimated: YES];
+    // Everything succeeded, return noErrors = YES
+    noErrors = YES;
+    return noErrors;
 }
 
-// WATK is this the right method?????
+// This method determines whether to let the segue proceed
+- (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
+{
+    // Ensure that a group is created successfully before performing segue
+    if ([identifier isEqualToString:@"SetsTableView"]) {
+        // Create group and associated sets/persons
+        BOOL groupCreated = [self createGroup];
+        if (NO == groupCreated) {
+            // Group creation failed. Do not leave view
+            return NO;
+        }
+    }
+    
+    // In all other cases, return success
+    return YES;
+}
+
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
-    // Create group and associated sets/persons
-    [self createGroup];
-    
     // Begin work for transition
     NSString *backButtonTitle;
     if ([[segue identifier] isEqualToString:@"SetsTableView"]) {

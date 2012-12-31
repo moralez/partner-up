@@ -101,9 +101,9 @@
         return _fetchedResultsController;
     }
     
+    // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"GroupEntity" inManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [GroupEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.

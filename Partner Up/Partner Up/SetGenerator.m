@@ -13,6 +13,8 @@
 
 @implementation SetGenerator
 
+
+
 + (void)generateSetsForGroup:(GroupEntity*)group {
     
     NSUInteger classSize = group.classSizeValue;
@@ -21,23 +23,33 @@
     
     NSLog(@"Splitting group size %d by %d, split is %s", classSize, setSize, (classSize % setSize) ? "NOT EVEN" : "EVEN");
     
-    NSUInteger currentNum = 0;
-    while ([numberClass count] >= group.setSizeValue) {
+    // WATK -- Uneven groups: Many ways to handle...for now, just create a group from leftovers
+    NSUInteger setNumber = 0;
+    NSUInteger currentSetSize;
+    while ([numberClass count] > 0) {
+        // Determine this Set's size
+        if ([numberClass count] > group.setSizeValue) {
+            currentSetSize = group.setSizeValue;
+        } else {
+            currentSetSize = [numberClass count];
+        }
+        // Create Set entity
         SetEntity *currentSet = [SetEntity create];
         currentSet.parentGroup = group;
-        currentSet.orderNumberValue = currentNum;
-        for (NSUInteger i = 0; i < group.setSizeValue; i++) {
+        currentSet.orderNumberValue = setNumber;
+        // Create all the Persons for this Set
+        for (NSUInteger i = 0; i < currentSetSize; i++) {
+            // Choose which Person to create next
             NSUInteger randomSpot = arc4random() % [numberClass count];
             PersonEntity *randomPerson = [PersonEntity create];
             randomPerson.number = [numberClass objectAtIndex:randomSpot];
             randomPerson.parentSet = currentSet;
+            // Remove object from array so that it isn't reused.
             [numberClass removeObjectAtIndex:randomSpot];
         }
-        currentNum++;
+        // Loop for next Set
+        setNumber++;
     }
-    
-    // Handle stragglers
-    // WATK -- TBD
     
     // Save all sets
     [SingleCDStack saveChanges];
