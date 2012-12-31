@@ -5,6 +5,7 @@
 
 
 extern const struct SetEntityAttributes {
+	__unsafe_unretained NSString *orderNumber;
 } SetEntityAttributes;
 
 extern const struct SetEntityRelationships {
@@ -19,6 +20,7 @@ extern const struct SetEntityFetchedProperties {
 @class GroupEntity;
 
 
+
 @interface SetEntityID : NSManagedObjectID {}
 @end
 
@@ -27,6 +29,20 @@ extern const struct SetEntityFetchedProperties {
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
 - (SetEntityID*)objectID;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* orderNumber;
+
+
+
+@property int32_t orderNumberValue;
+- (int32_t)orderNumberValue;
+- (void)setOrderNumberValue:(int32_t)value_;
+
+//- (BOOL)validateOrderNumber:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -54,6 +70,15 @@ extern const struct SetEntityFetchedProperties {
 @end
 
 @interface _SetEntity (CoreDataGeneratedPrimitiveAccessors)
+
+
+- (NSNumber*)primitiveOrderNumber;
+- (void)setPrimitiveOrderNumber:(NSNumber*)value;
+
+- (int32_t)primitiveOrderNumberValue;
+- (void)setPrimitiveOrderNumberValue:(int32_t)value_;
+
+
 
 
 

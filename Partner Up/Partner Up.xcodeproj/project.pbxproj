@@ -30,6 +30,7 @@
 		2C91152A168D084F0089768D /* GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911528168D084F0089768D /* GroupEntity.m */; };
 		2C91152F168D08730089768D /* _ClassEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C91152C168D08720089768D /* _ClassEntity.m */; };
 		2C911530168D08730089768D /* _GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C91152E168D08730089768D /* _GroupEntity.m */; };
+		2C964B751691499400896116 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C964B741691499400896116 /* SetViewController.m */; };
 		2CEB6B57168C015800D7C8B1 /* SingleCDStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */; };
 		2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B74168C263500D7C8B1 /* PersonEntity.m */; };
 		2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */; };
@@ -83,6 +84,8 @@
 		2C91152C168D08720089768D /* _ClassEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ClassEntity.m; sourceTree = "<group>"; };
 		2C91152D168D08730089768D /* _GroupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GroupEntity.h; sourceTree = "<group>"; };
 		2C91152E168D08730089768D /* _GroupEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GroupEntity.m; sourceTree = "<group>"; };
+		2C964B731691499400896116 /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
+		2C964B741691499400896116 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
 		2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleCDStack.h; sourceTree = "<group>"; };
 		2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCDStack.m; sourceTree = "<group>"; };
 		2CEB6B73168C263500D7C8B1 /* PersonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonEntity.h; sourceTree = "<group>"; };
@@ -234,6 +237,8 @@
 				B0A37B35168BF54E00D35B81 /* GroupsViewController.m */,
 				2C8F16FF168F72B200A5F5E1 /* GroupDetailsViewController.h */,
 				2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */,
+				2C964B731691499400896116 /* SetViewController.h */,
+				2C964B741691499400896116 /* SetViewController.m */,
 				B0A37B2E168BF54E00D35B81 /* Partner_Up.xcdatamodeld */,
 				B0A37B17168BF54D00D35B81 /* Supporting Files */,
 			);
@@ -358,6 +363,7 @@
 				2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */,
 				2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */,
 				B00A09481690164700614363 /* ClassesViewController.m in Sources */,
+				2C964B751691499400896116 /* SetViewController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

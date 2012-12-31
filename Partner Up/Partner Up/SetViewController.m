@@ -1,34 +1,45 @@
 //
-//  GroupsViewController.m
+//  SetViewController.m
 //  Partner Up
 //
-//  Created by Johnny Moralez on 12/26/12.
+//  Created by Logen Watkins on 12/30/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "GroupsViewController.h"
 #import "SetViewController.h"
+#import "SetEntity.h"
 
-@interface GroupsViewController ()
+@interface SetViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation GroupsViewController
+@implementation SetViewController
 
-@synthesize parentClass;
+@synthesize parentGroup;
 
-- (void)setParentClass:(ClassEntity *)newParentClass
+- (void)setParentGroup:(GroupEntity *)newParentGroup
 {
-    if (parentClass != newParentClass) {
-        parentClass = newParentClass;
+    if (parentGroup != newParentGroup) {
+        parentGroup = newParentGroup;
     }
 }
+
+
+// WATK return
+//- (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
+//{
+//    self = [super initWithNibName:nibNameOrNil bundle:nibBundleOrNil];
+//    if (self) {
+//        // Custom initialization
+//    }
+//    return self;
+//}
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-    // Do any additional setup after loading the view, typically from a nib.
-    
+	// Do any additional setup after loading the view.
+
     // Get context
     singleContext = [SingleCDStack getContext];
 }
@@ -38,7 +49,7 @@
     [super viewWillAppear:animated];
     
     // Use class name as title for this view
-    self.navigationItem.title = [parentClass.name description];
+    self.navigationItem.title = [parentGroup.name description];
 }
 
 - (void)didReceiveMemoryWarning
@@ -103,26 +114,27 @@
     
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
     // Edit the entity name as appropriate.
-    NSEntityDescription *entity = [NSEntityDescription entityForName:@"GroupEntity" inManagedObjectContext:singleContext];
+//watk examine extending helper here
+    //    NSEntityDescription *entity = [SetEntity entityInManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [NSEntityDescription entityForName:@"SetEntity" inManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderNumber" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Filter results to only those groups aligned with this parentClass
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentClass == %@", [parentClass objectID]];
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentGroup == %@", [parentGroup objectID]];
     [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
-    // Cache forced to 'nil' as the cache needs to be purged to modify the controller anyway (different parentClass)
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:nil];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"SetView"];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -200,34 +212,8 @@
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
-}
-
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
-{
-    NSString *backButtonTitle;
-    if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
-        // Get the selected group object and pass to next screen
-        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        GroupEntity *thisGroup = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setParentGroup:thisGroup];
-
-        // Rename back button for next screen
-        backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
-        // Pass the parentClass object to the next screen
-        [[segue destinationViewController] setParentClass:parentClass];
-        
-        // Rename back button for next screen
-        backButtonTitle = @"Cancel";
-    }	
     
-    // Add back button with custom title
-    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
-                                                                      style:UIBarButtonItemStyleBordered
-                                                                     target:nil
-                                                                     action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    cell.textLabel.text = [[object valueForKey:@"orderNumber"] description];
 }
 
 @end

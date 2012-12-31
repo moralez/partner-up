@@ -4,6 +4,7 @@
 #import "_SetEntity.h"
 
 const struct SetEntityAttributes SetEntityAttributes = {
+	.orderNumber = @"orderNumber",
 };
 
 const struct SetEntityRelationships SetEntityRelationships = {
@@ -40,9 +41,40 @@ const struct SetEntityFetchedProperties SetEntityFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"orderNumberValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"orderNumber"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 
 	return keyPaths;
 }
+
+
+
+
+@dynamic orderNumber;
+
+
+
+- (int32_t)orderNumberValue {
+	NSNumber *result = [self orderNumber];
+	return [result intValue];
+}
+
+- (void)setOrderNumberValue:(int32_t)value_ {
+	[self setOrderNumber:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveOrderNumberValue {
+	NSNumber *result = [self primitiveOrderNumber];
+	return [result intValue];
+}
+
+- (void)setPrimitiveOrderNumberValue:(int32_t)value_ {
+	[self setPrimitiveOrderNumber:[NSNumber numberWithInt:value_]];
+}
+
 
 
 

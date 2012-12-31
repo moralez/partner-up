@@ -20,13 +20,14 @@
         <userInfo/>
     </entity>
     <entity name="SetEntity" representedClassName="SetEntity" syncable="YES">
+        <attribute name="orderNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="childPersons" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="parentSet" inverseEntity="PersonEntity" syncable="YES"/>
         <relationship name="parentGroup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="childSets" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
     <elements>
         <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="90"/>
-        <element name="GroupEntity" positionX="43" positionY="294" width="128" height="120"/>
+        <element name="GroupEntity" positionX="45" positionY="171" width="128" height="120"/>
         <element name="PersonEntity" positionX="475" positionY="195" width="128" height="75"/>
-        <element name="SetEntity" positionX="223" positionY="375" width="128" height="75"/>
+        <element name="SetEntity" positionX="243" positionY="207" width="128" height="90"/>
     </elements>
 </model>
