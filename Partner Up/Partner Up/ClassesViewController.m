@@ -167,7 +167,7 @@
     }
     
     if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
-        parentClass = (ClassEntity *)[[self fetchedResultsController] objectAtIndexPath:indexPath];
+        parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen
