@@ -8,6 +8,7 @@
 
 #import "SetViewController.h"
 #import "SetEntity.h"
+#import "SetGenerator.h"
 
 @interface SetViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -211,9 +212,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    SetEntity *thisSet = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
-    cell.textLabel.text = [[object valueForKey:@"orderNumber"] description];
+    // Display the people in each set
+    cell.textLabel.text = [SetGenerator delineatedPersonsList:thisSet];
 }
 
 @end

@@ -122,6 +122,15 @@ const struct GroupEntityFetchedProperties GroupEntityFetchedProperties = {
 @dynamic childSets;
 
 	
+- (NSMutableSet*)childSetsSet {
+	[self willAccessValueForKey:@"childSets"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childSets"];
+  
+	[self didAccessValueForKey:@"childSets"];
+	return result;
+}
+	
 
 @dynamic parentClass;
 

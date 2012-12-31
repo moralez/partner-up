@@ -7,11 +7,13 @@
 //
 
 #import <Foundation/Foundation.h>
+#import "SetEntity.h"
 
 @class GroupEntity;
 
 @interface SetGenerator : NSObject
 
 + (void)generateSetsForGroup:(GroupEntity*)group;
++ (NSString *)delineatedPersonsList:(SetEntity *)currentSet;
 
 @end

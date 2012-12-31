@@ -48,9 +48,9 @@ extern const struct SetEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) PersonEntity *childPersons;
+@property (nonatomic, strong) NSSet *childPersons;
 
-//- (BOOL)validateChildPersons:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)childPersonsSet;
 
 
 
@@ -67,6 +67,11 @@ extern const struct SetEntityFetchedProperties {
 
 @interface _SetEntity (CoreDataGeneratedAccessors)
 
+- (void)addChildPersons:(NSSet*)value_;
+- (void)removeChildPersons:(NSSet*)value_;
+- (void)addChildPersonsObject:(PersonEntity*)value_;
+- (void)removeChildPersonsObject:(PersonEntity*)value_;
+
 @end
 
 @interface _SetEntity (CoreDataGeneratedPrimitiveAccessors)
@@ -82,8 +87,8 @@ extern const struct SetEntityFetchedProperties {
 
 
 
-- (PersonEntity*)primitiveChildPersons;
-- (void)setPrimitiveChildPersons:(PersonEntity*)value;
+- (NSMutableSet*)primitiveChildPersons;
+- (void)setPrimitiveChildPersons:(NSMutableSet*)value;
 
 
 

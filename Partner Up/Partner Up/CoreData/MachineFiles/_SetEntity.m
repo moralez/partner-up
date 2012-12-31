@@ -82,6 +82,15 @@ const struct SetEntityFetchedProperties SetEntityFetchedProperties = {
 @dynamic childPersons;
 
 	
+- (NSMutableSet*)childPersonsSet {
+	[self willAccessValueForKey:@"childPersons"];
+  
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childPersons"];
+  
+	[self didAccessValueForKey:@"childPersons"];
+	return result;
+}
+	
 
 @dynamic parentGroup;
 

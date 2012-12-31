@@ -76,9 +76,9 @@ extern const struct GroupEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) SetEntity *childSets;
+@property (nonatomic, strong) NSSet *childSets;
 
-//- (BOOL)validateChildSets:(id*)value_ error:(NSError**)error_;
+- (NSMutableSet*)childSetsSet;
 
 
 
@@ -94,6 +94,11 @@ extern const struct GroupEntityFetchedProperties {
 @end
 
 @interface _GroupEntity (CoreDataGeneratedAccessors)
+
+- (void)addChildSets:(NSSet*)value_;
+- (void)removeChildSets:(NSSet*)value_;
+- (void)addChildSetsObject:(SetEntity*)value_;
+- (void)removeChildSetsObject:(SetEntity*)value_;
 
 @end
 
@@ -125,8 +130,8 @@ extern const struct GroupEntityFetchedProperties {
 
 
 
-- (SetEntity*)primitiveChildSets;
-- (void)setPrimitiveChildSets:(SetEntity*)value;
+- (NSMutableSet*)primitiveChildSets;
+- (void)setPrimitiveChildSets:(NSMutableSet*)value;
 
 
 

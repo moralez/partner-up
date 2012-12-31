@@ -197,7 +197,7 @@
                                     <action selector="classSizeStepperAction:" destination="Xkz-YE-Zu8" eventType="valueChanged" id="Itz-rv-nKK"/>
                                 </connections>
                             </stepper>
-                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1" minimumValue="1" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RSQ-eU-ar2">
+                            <stepper opaque="NO" clipsSubviews="YES" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="2" minimumValue="2" maximumValue="100" translatesAutoresizingMaskIntoConstraints="NO" id="RSQ-eU-ar2">
                                 <connections>
                                     <action selector="groupSizeStepperAction:" destination="Xkz-YE-Zu8" eventType="valueChanged" id="aVy-an-Ydx"/>
                                 </connections>
