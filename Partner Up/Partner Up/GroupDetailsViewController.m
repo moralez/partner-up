@@ -18,6 +18,7 @@
 
 @synthesize parentClass;
 @synthesize thisGroup;
+@synthesize initialName;
 @synthesize groupNameField;
 @synthesize classSizeLabel;
 @synthesize classSizeStepper;
@@ -69,7 +70,12 @@
     {
         // Not passed a group entity, use class defaults where applicable
         self.navigationItem.title = @"New Group";
-        groupNameField.text = @"";
+        // If passed an initialName, set it here
+        if (nil == initialName) {
+            groupNameField.text = @"";
+        } else {
+            groupNameField.text = initialName;
+        }
         classSizeStepper.value = [parentClass.size doubleValue];
         // WATK -- Will we have per-class defaults, or just app-wide defaults?
         groupSizeStepper.value = 2;

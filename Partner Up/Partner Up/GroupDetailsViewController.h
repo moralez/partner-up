@@ -17,6 +17,7 @@
 
 @property (strong, nonatomic) ClassEntity *parentClass;
 @property (strong, nonatomic) GroupEntity *thisGroup;
+@property (strong, nonatomic) NSString *initialName;
 @property (weak, nonatomic) IBOutlet UITextField *groupNameField;
 @property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;

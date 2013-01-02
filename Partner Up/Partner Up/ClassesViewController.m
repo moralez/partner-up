@@ -122,11 +122,16 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Will select row in section: %d", [indexPath row]);
+    NSLog(@"Will select section: %d, row: %d", [indexPath section], [indexPath row]);
     if ([indexPath section] == 1) {
+        // Jump directly to new group creation under the "Quick Groups" class
         UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
         GroupDetailsViewController *groupDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"GroupDetailsViewController"];
         [groupDetailsVC setParentClass:[ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"]];
+        // Pre-populate the name of this group with the data & time
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
+        groupDetailsVC.initialName = [dateFormatter stringFromDate:[NSDate date]];
         [[self navigationController] pushViewController:groupDetailsVC animated:YES];
         return nil;
     }
@@ -137,7 +142,7 @@
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
 {
      // No special handling on selection (class entity passed through segue)
-    NSLog(@"Selected a row in section: %d", [indexPath row]);
+    NSLog(@"Did select section: %d, row: %d", [indexPath section], [indexPath row]);
     
     if ([indexPath section] == 1) {
         switch ([indexPath row]) {
