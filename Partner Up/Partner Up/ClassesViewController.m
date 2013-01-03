@@ -124,15 +124,7 @@
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
     NSLog(@"Will select section: %d, row: %d", [indexPath section], [indexPath row]);
     if ([indexPath section] == 1) {
-        // Jump directly to new group creation under the "Quick Groups" class
-        UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-        GroupDetailsViewController *groupDetailsVC = [storyboard instantiateViewControllerWithIdentifier:@"GroupDetailsViewController"];
-        [groupDetailsVC setParentClass:[ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"]];
-        // Pre-populate the name of this group with the data & time
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
-        groupDetailsVC.initialName = [dateFormatter stringFromDate:[NSDate date]];
-        [[self navigationController] pushViewController:groupDetailsVC animated:YES];
+        [self performSegueWithIdentifier:@"PresentGDVCModally" sender:self];
         return nil;
     }
     
@@ -178,7 +170,13 @@
     } else if ([[segue identifier] isEqualToString:@"ClassDetailsView"]) {
         // Rename back button for next screen
         backButtonTitle = @"Cancel";
+    } else if ([[segue identifier] isEqualToString:@"PresentGDVCModally"]) {
+        parentClass = [ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"];
+        GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
+        [groupDVC setPresentedModally:YES];
+        [groupDVC setParentClass:parentClass];
     }
+        
 
     // Add back button with custom title
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle

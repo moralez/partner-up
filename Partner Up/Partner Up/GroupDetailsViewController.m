@@ -24,6 +24,7 @@
 @synthesize classSizeStepper;
 @synthesize groupSizeLabel;
 @synthesize groupSizeStepper;
+@synthesize presentedModally;
 
 - (void) updateClassSizeLabel
 {
@@ -87,6 +88,13 @@
         groupSizeStepper.value = [thisGroup.setSize doubleValue];
     }
     
+    if ([self presentedModally]) {
+        [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                                     style:UIBarButtonSystemItemCancel
+                                                                                    target:self
+                                                                                    action:@selector(cancelGroup)]];
+    }
+    
     // Update all labels
     [self updateClassSizeLabel];
     [self updateGroupSizeLabel];
@@ -110,6 +118,10 @@
     [self updateGroupSizeLabel];
 }
 
+- (void)cancelGroup {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 // Returns YES if creation is successful
 - (BOOL)createGroup {
     // Start with failure
@@ -119,6 +131,14 @@
     if ([[[self groupNameField] text] length] <= 0) {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        return noErrors;
+    } else if ([classSizeStepper value] <= [groupSizeStepper value]) {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid Class - Group Size"
+                                                        message:@"Unable to split class into desired number of groups"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
