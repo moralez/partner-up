@@ -175,8 +175,13 @@
         GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
         [groupDVC setPresentedModally:YES];
         [groupDVC setParentClass:parentClass];
-    }
         
+        // Pre-populate the name of this group with the data & time
+        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
+        [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
+        groupDVC.initialName = [dateFormatter stringFromDate:[NSDate date]];
+    }
+    
 
     // Add back button with custom title
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
