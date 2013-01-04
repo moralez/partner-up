@@ -10,6 +10,8 @@
 #import "ClassDetailsViewController.h"
 #import "GroupsViewController.h"
 #import "GroupDetailsViewController.h"
+#import "TableSectionHeaderView.h"
+#import "StdInclude.h"
 
 #import "AppDelegate.h"
 
@@ -42,9 +44,6 @@
     
     // Get context
     singleContext = [SingleCDStack getContext];
-    
-    // For second tableview grouping
-    customOptions = [NSArray arrayWithObjects:@"Generate Quick Group", nil];
 }
 
 - (void)didReceiveMemoryWarning
@@ -68,43 +67,101 @@
 
 #pragma mark - Table View
 
+// Section header button calls this method to segue quick group creation
+- (void) createQuickGroup: (UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"GroupDetailsView" sender:self];
+}
+// Section header button calls this method to segue for class creation
+- (void) createClass: (UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"ClassDetailsView" sender:self];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //watk temp
+    // Will create a view customized to each section
+    TableSectionHeaderView *headerView;
+
+    switch (section) {
+        case TABLEVIEW_QUICKGROUPS:
+        {
+            // Create the view with a single button
+            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create quick group"];
+            
+            // Action for button press
+            [[headerView titleButton] addTarget:self action:@selector(createQuickGroup:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        case TABLEVIEW_CLASSES:
+        {
+            // Create the view with a single button
+            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create new class"];
+            
+            // Action for button press
+            [[headerView titleButton] addTarget:self action:@selector(createClass:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    return headerView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 54.0; //watk temp
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
-    return [[self.fetchedResultsController sections] count] + 1;
+    return [[self.fetchedResultsController sections] count];
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section
 {
+    NSInteger retVal = 0;
     
-    if (section == 1) {
-        return [customOptions count];
+    switch (section) {
+        default:
+        {
+            id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
+            retVal = [sectionInfo numberOfObjects];
+            break;
+        }
     }
     
-    id <NSFetchedResultsSectionInfo> sectionInfo = [self.fetchedResultsController sections][section];
-    return [sectionInfo numberOfObjects];
+    return retVal;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath
 {
     UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:@"Cell" forIndexPath:indexPath];
-     
-    if ([indexPath section] == 1) {
-        [[cell textLabel] setText:[customOptions objectAtIndex:[indexPath row]]];
-        return cell;
+
+    switch ([indexPath section]) {
+        default:
+            [self configureCell:cell atIndexPath:indexPath];
+            break;
     }
     
-    [self configureCell:cell atIndexPath:indexPath];
     return cell;
 }
 
 - (BOOL)tableView:(UITableView *)tableView canEditRowAtIndexPath:(NSIndexPath *)indexPath
 {
-    // Return NO if you do not want the specified item to be editable.
-    if ([indexPath section] == 1) {
-         return NO;
+    BOOL retVal = YES;
+    switch ([indexPath section]) {
+        case TABLEVIEW_QUICKGROUPS:
+            // Do not allow removal of the QuickGroups class
+            retVal = NO;
+            break;
+        default:
+            break;
     }
     
-    return YES;
+    return retVal;
 }
 
 - (void)tableView:(UITableView *)tableView commitEditingStyle:(UITableViewCellEditingStyle)editingStyle forRowAtIndexPath:(NSIndexPath *)indexPath
@@ -122,12 +179,6 @@
 }
 
 - (NSIndexPath *)tableView:(UITableView *)tableView willSelectRowAtIndexPath:(NSIndexPath *)indexPath {
-    NSLog(@"Will select section: %d, row: %d", [indexPath section], [indexPath row]);
-    if ([indexPath section] == 1) {
-        [self performSegueWithIdentifier:@"PresentGDVCModally" sender:self];
-        return nil;
-    }
-    
     return indexPath;
 }
 
@@ -135,55 +186,45 @@
 {
      // No special handling on selection (class entity passed through segue)
     NSLog(@"Did select section: %d, row: %d", [indexPath section], [indexPath row]);
-    
-    if ([indexPath section] == 1) {
-        switch ([indexPath row]) {
-            case 0:
-            {
-                NSLog(@"Generate Quick Group");
-            }
-                break;
-            default:
-                break;
-        }
-    }
 }
 
+// All segue prepartion (passing objects, etc...) is handled here
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSString *backButtonTitle;
-    ClassEntity *parentClass;
-    
-    // Get the selected class object and pass to next screen
-    NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-    
-    if ([indexPath section] == 1) {
-        return;
-    }
-    
+
     if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
-        parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        // All selected cells follow this segue, indexPath is the selected row
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        // Get the selected class object and pass to next screen
+        ClassEntity *parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen
         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"ClassDetailsView"]) {
-        // Rename back button for next screen
-        backButtonTitle = @"Cancel";
-    } else if ([[segue identifier] isEqualToString:@"PresentGDVCModally"]) {
-        parentClass = [ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"];
+    } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
+        // Want the class object for quick groups, always the only element of that section
+        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:TABLEVIEW_QUICKGROUPS];
+        ClassEntity *parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
         GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
-        [groupDVC setPresentedModally:YES];
         [groupDVC setParentClass:parentClass];
         
         // Pre-populate the name of this group with the data & time
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
-        groupDVC.initialName = [dateFormatter stringFromDate:[NSDate date]];
+        [groupDVC setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Cancel";
+    } else if ([[segue identifier] isEqualToString:@"ClassDetailsView"]) {
+        // Rename back button for next screen
+        backButtonTitle = @"Cancel";
+    } else {
+        NSLog(@"Error! Unhandled segue titled: %@", [segue identifier]);
+        backButtonTitle = @"Back";
     }
     
-
-    // Add back button with custom title
+    // Add back button with custom title specified above
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:nil
@@ -207,14 +248,16 @@
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = @[sortDescriptor];
+    // Sort by "protected" to get the sections themselves are ordered correctly
+    NSSortDescriptor *protectedSort = [[NSSortDescriptor alloc] initWithKey:@"protected" ascending:YES];
+    // Sort by "name" so that the results inside of each section are ordered correctly
+    NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:protectedSort, nameSort, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
-    // nil for section name key path means "no sections".
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:@"ClassesView"];
+    // Use 'protected' as sectionNameKeyPath so that group is split with only "Quick Groups" sticking to the top
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:@"protected" cacheName:@"ClassesView"];
      aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -289,10 +332,14 @@
 }
  */
 
+
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
+    NSLog(@"Configuring section: %d, row: %d", [indexPath section], [indexPath row]);
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"name"] description];
+    // WATK -- some recommend putting in cellWillAppear -- unsure of performance
+    cell.backgroundColor = UI_CELL_LIGHTGRAY;
 }
 
 @end

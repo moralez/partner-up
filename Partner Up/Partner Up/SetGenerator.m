@@ -23,7 +23,7 @@
     
     NSLog(@"Splitting group size %d by %d, split is %s", classSize, setSize, (classSize % setSize) ? "NOT EVEN" : "EVEN");
     
-    // WATK -- Uneven groups: Many ways to handle...for now, just create a group from leftovers
+    // Uneven groups: Many ways to handle...for now, just create a group from leftovers
     NSUInteger setNumber = 0;
     NSUInteger currentSetSize;
     while ([numberClass count] > 0) {

@@ -2,6 +2,7 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES">
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
+        <attribute name="protected" optional="YES" attributeType="Boolean" syncable="YES"/>
         <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="childGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="parentClass" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
@@ -25,7 +26,7 @@
         <relationship name="parentGroup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="childSets" inverseEntity="GroupEntity" syncable="YES"/>
     </entity>
     <elements>
-        <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="90"/>
+        <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="105"/>
         <element name="GroupEntity" positionX="45" positionY="171" width="128" height="120"/>
         <element name="PersonEntity" positionX="475" positionY="195" width="128" height="75"/>
         <element name="SetEntity" positionX="243" positionY="207" width="128" height="90"/>

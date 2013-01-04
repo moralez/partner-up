@@ -6,6 +6,7 @@
 
 extern const struct ClassEntityAttributes {
 	__unsafe_unretained NSString *name;
+	__unsafe_unretained NSString *protected;
 	__unsafe_unretained NSString *size;
 } ClassEntityAttributes;
 
@@ -17,6 +18,7 @@ extern const struct ClassEntityFetchedProperties {
 } ClassEntityFetchedProperties;
 
 @class GroupEntity;
+
 
 
 
@@ -39,6 +41,20 @@ extern const struct ClassEntityFetchedProperties {
 
 
 //- (BOOL)validateName:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
+@property (nonatomic, strong) NSNumber* protected;
+
+
+
+@property BOOL protectedValue;
+- (BOOL)protectedValue;
+- (void)setProtectedValue:(BOOL)value_;
+
+//- (BOOL)validateProtected:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -82,6 +98,15 @@ extern const struct ClassEntityFetchedProperties {
 
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
+
+
+
+
+- (NSNumber*)primitiveProtected;
+- (void)setPrimitiveProtected:(NSNumber*)value;
+
+- (BOOL)primitiveProtectedValue;
+- (void)setPrimitiveProtectedValue:(BOOL)value_;
 
 
 

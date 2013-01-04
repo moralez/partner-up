@@ -12,6 +12,13 @@
 
 #import <CoreData/CoreData.h>
 
+// Tableview sections
+enum  {
+    TABLEVIEW_QUICKGROUPS = 0,
+    TABLEVIEW_CLASSES, // 1
+    TABLEVIEW_SECTION_COUNT // 2
+};
+
 @interface ClassesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;

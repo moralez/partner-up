@@ -24,6 +24,7 @@
 @synthesize classSizeStepper;
 @synthesize groupSizeLabel;
 @synthesize groupSizeStepper;
+@synthesize presentedModally;
 
 - (void) updateClassSizeLabel
 {
@@ -87,12 +88,22 @@
         groupSizeStepper.value = [thisGroup.setSize doubleValue];
     }
     
+<<<<<<< HEAD
+    if ([self presentedModally]) {
+        [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                                     style:UIBarButtonSystemItemCancel
+                                                                                    target:self
+                                                                                    action:@selector(cancelGroup)]];
+    }
+    
+=======
     // As this view is presented modally, modify the left bar button action
     [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                                  style:UIBarButtonSystemItemCancel
                                                                                 target:self
                                                                                 action:@selector(cancelGroup)]];    
 
+>>>>>>> Classes Tableview Rework
     // Update all labels
     [self updateClassSizeLabel];
     [self updateGroupSizeLabel];
@@ -102,6 +113,10 @@
 {
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
+}
+
+- (void)cancelGroup {
+    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 - (IBAction)classSizeStepperAction:(id)sender {

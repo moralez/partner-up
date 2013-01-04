@@ -20,18 +20,32 @@
 {
     // TestFlight
     #ifdef TESTING
-        // WATK - question for JMO, is there a replacement for this?
         [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
     #endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
     
     // Create QuickGroups class if it doesn't exist.
-    ClassEntity *newClass;
-    newClass = [ClassEntity findFirstByAttribute:@"name" withValue:@"Quick Groups"];
-    if (nil == newClass) {
-        newClass = [ClassEntity create];
-        newClass.name = @"Quick Groups";
-        newClass.sizeValue = 10;
+    NSString *previousQuickGroups = @"Previous quick groups";
+    ClassEntity *quickGroupsClass;
+    quickGroupsClass = [ClassEntity findFirstByAttribute:@"name" withValue:previousQuickGroups];
+    if (nil == quickGroupsClass) {
+        quickGroupsClass = [ClassEntity create];
+        quickGroupsClass.name = previousQuickGroups;
+        quickGroupsClass.sizeValue = 10;
+        quickGroupsClass.protectedValue = NO;
+        [SingleCDStack saveChanges];
+    }
+
+    // WATK -- Temporary measure to ensure that header for section appears. Not sure correct method
+    // We always want at least one unprotected class (not Quick Groups)
+    //  to exist so everything looks good
+    ClassEntity *unprotectedClass = [ClassEntity findFirstByAttribute:@"protected"
+                                                            withValue:[NSNumber numberWithBool:YES]];
+    if (nil == unprotectedClass) {
+        unprotectedClass = [ClassEntity create];
+        unprotectedClass.name = @"No classes exist yet...";
+        unprotectedClass.sizeValue = 10;
+        unprotectedClass.protectedValue = YES;
         [SingleCDStack saveChanges];
     }
     
@@ -40,10 +54,7 @@
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;
         UINavigationController *navigationController = [splitViewController.viewControllers lastObject];
         splitViewController.delegate = (id)navigationController.topViewController;
-        
-        // WATK -- unused currently
     } else {
-        // WATK -- unused currently
     }
     
     return YES;

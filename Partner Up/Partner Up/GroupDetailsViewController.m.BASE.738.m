@@ -87,12 +87,6 @@
         groupSizeStepper.value = [thisGroup.setSize doubleValue];
     }
     
-    // As this view is presented modally, modify the left bar button action
-    [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                                 style:UIBarButtonSystemItemCancel
-                                                                                target:self
-                                                                                action:@selector(cancelGroup)]];    
-
     // Update all labels
     [self updateClassSizeLabel];
     [self updateGroupSizeLabel];
@@ -116,16 +110,12 @@
     [self updateGroupSizeLabel];
 }
 
-- (void)cancelGroup {
-    [self dismissViewControllerAnimated:YES completion:nil];
-}
-
 // Returns YES if creation is successful
 - (BOOL)createGroup {
     // Start with failure
     BOOL noErrors = NO;
     
-    // Error checking
+    // WATK -- Error checking goes here
     if ([[[self groupNameField] text] length] <= 0) {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
@@ -134,16 +124,7 @@
                                               otherButtonTitles:nil];
         [error show];
         return noErrors;
-    } else if ([classSizeStepper value] <= [groupSizeStepper value]) {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid Class - Group Size"
-                                                        message:@"Unable to split class into desired number of groups"
-                                                       delegate:self
-                                              cancelButtonTitle:@"OK"
-                                              otherButtonTitles:nil];
-        [error show];
-        return noErrors;
     }
-
     
     // Load data into entity
     // If an entity for this Group doesn't exist, create one

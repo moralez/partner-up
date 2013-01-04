@@ -19,20 +19,6 @@
 @synthesize parentGroup;
 @synthesize removePreviousVC;
 
-- (void)setParentGroup:(GroupEntity *)newParentGroup
-{
-    if (parentGroup != newParentGroup) {
-        parentGroup = newParentGroup;
-    }
-}
-
-- (void)removePreviousVC:(BOOL)newRemovePreviousVC
-{
-    if (removePreviousVC != newRemovePreviousVC) {
-        removePreviousVC = newRemovePreviousVC;
-    }
-}
-
 - (void)viewDidLoad
 {
     [super viewDidLoad];

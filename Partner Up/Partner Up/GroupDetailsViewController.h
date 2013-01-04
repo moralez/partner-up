@@ -23,8 +23,5 @@
 @property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *groupSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *groupSizeStepper;
-@property BOOL presentedModally;
-
-
 
 @end

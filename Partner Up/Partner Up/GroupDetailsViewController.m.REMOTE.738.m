@@ -104,6 +104,10 @@
     // Dispose of any resources that can be recreated.
 }
 
+- (void)cancelGroup {
+    [self dismissViewControllerAnimated:YES completion:nil];
+}
+
 - (IBAction)classSizeStepperAction:(id)sender {
     // Hide keyboard, update label
     [self.view endEditing:NO];
@@ -114,10 +118,6 @@
     // Hide keyboard, update label
     [self.view endEditing:NO];
     [self updateGroupSizeLabel];
-}
-
-- (void)cancelGroup {
-    [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Returns YES if creation is successful

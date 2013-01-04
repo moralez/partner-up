@@ -24,6 +24,7 @@
 @synthesize classSizeStepper;
 @synthesize groupSizeLabel;
 @synthesize groupSizeStepper;
+@synthesize presentedModally;
 
 - (void) updateClassSizeLabel
 {
@@ -87,12 +88,13 @@
         groupSizeStepper.value = [thisGroup.setSize doubleValue];
     }
     
-    // As this view is presented modally, modify the left bar button action
-    [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                                 style:UIBarButtonSystemItemCancel
-                                                                                target:self
-                                                                                action:@selector(cancelGroup)]];    
-
+    if ([self presentedModally]) {
+        [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
+                                                                                     style:UIBarButtonSystemItemCancel
+                                                                                    target:self
+                                                                                    action:@selector(cancelGroup)]];
+    }
+    
     // Update all labels
     [self updateClassSizeLabel];
     [self updateGroupSizeLabel];
@@ -125,7 +127,7 @@
     // Start with failure
     BOOL noErrors = NO;
     
-    // Error checking
+    // WATK -- Error checking goes here
     if ([[[self groupNameField] text] length] <= 0) {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
@@ -143,7 +145,6 @@
         [error show];
         return noErrors;
     }
-
     
     // Load data into entity
     // If an entity for this Group doesn't exist, create one

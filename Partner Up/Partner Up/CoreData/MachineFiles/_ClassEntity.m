@@ -5,6 +5,7 @@
 
 const struct ClassEntityAttributes ClassEntityAttributes = {
 	.name = @"name",
+	.protected = @"protected",
 	.size = @"size",
 };
 
@@ -41,6 +42,11 @@ const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {
 	NSSet *keyPaths = [super keyPathsForValuesAffectingValueForKey:key];
 	
+	if ([key isEqualToString:@"protectedValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"protected"];
+		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
+		return keyPaths;
+	}
 	if ([key isEqualToString:@"sizeValue"]) {
 		NSSet *affectingKey = [NSSet setWithObject:@"size"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
@@ -55,6 +61,32 @@ const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
 
 @dynamic name;
 
+
+
+
+
+
+@dynamic protected;
+
+
+
+- (BOOL)protectedValue {
+	NSNumber *result = [self protected];
+	return [result boolValue];
+}
+
+- (void)setProtectedValue:(BOOL)value_ {
+	[self setProtected:[NSNumber numberWithBool:value_]];
+}
+
+- (BOOL)primitiveProtectedValue {
+	NSNumber *result = [self primitiveProtected];
+	return [result boolValue];
+}
+
+- (void)setPrimitiveProtectedValue:(BOOL)value_ {
+	[self setPrimitiveProtected:[NSNumber numberWithBool:value_]];
+}
 
 
 

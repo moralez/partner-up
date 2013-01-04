@@ -21,8 +21,10 @@
 /* End PBXAggregateTarget section */
 
 /* Begin PBXBuildFile section */
+		2C49E4C1169667FF0005E29F /* TableSectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C49E4C0169667FF0005E29F /* TableSectionHeaderView.m */; };
 		2C897D00168D62AE00F66936 /* SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897CFF168D62AE00F66936 /* SetEntity.m */; };
 		2C897D03168D62B700F66936 /* _SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897D02168D62B700F66936 /* _SetEntity.m */; };
+		2C8EC7CA1695616800606224 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8EC7C91695616800606224 /* QuartzCore.framework */; };
 		2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */; };
 		2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */; };
 		2C911524168CF6FC0089768D /* ClassDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911523168CF6FB0089768D /* ClassDetailsViewController.m */; };
@@ -68,10 +70,14 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		2C49E4BD169641270005E29F /* StdInclude.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StdInclude.h; sourceTree = "<group>"; };
+		2C49E4BF169667FF0005E29F /* TableSectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TableSectionHeaderView.h; sourceTree = "<group>"; };
+		2C49E4C0169667FF0005E29F /* TableSectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = TableSectionHeaderView.m; sourceTree = "<group>"; };
 		2C897CFE168D62AE00F66936 /* SetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetEntity.h; sourceTree = "<group>"; };
 		2C897CFF168D62AE00F66936 /* SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetEntity.m; sourceTree = "<group>"; };
 		2C897D01168D62B700F66936 /* _SetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SetEntity.h; sourceTree = "<group>"; };
 		2C897D02168D62B700F66936 /* _SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SetEntity.m; sourceTree = "<group>"; };
+		2C8EC7C91695616800606224 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
 		2C8F16FF168F72B200A5F5E1 /* GroupDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailsViewController.h; sourceTree = "<group>"; };
 		2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsViewController.m; sourceTree = "<group>"; };
 		2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+WATK_Extension.h"; sourceTree = "<group>"; };
@@ -131,6 +137,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2C8EC7CA1695616800606224 /* QuartzCore.framework in Frameworks */,
 				2CEB6B87168C2E4E00D7C8B1 /* libz.dylib in Frameworks */,
 				B0A37B0F168BF54D00D35B81 /* UIKit.framework in Frameworks */,
 				B0A37B11168BF54D00D35B81 /* Foundation.framework in Frameworks */,
@@ -214,6 +221,7 @@
 		B0A37B0D168BF54D00D35B81 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				2C8EC7C91695616800606224 /* QuartzCore.framework */,
 				B0A37B0E168BF54D00D35B81 /* UIKit.framework */,
 				B0A37B10168BF54D00D35B81 /* Foundation.framework */,
 				B0A37B12168BF54D00D35B81 /* CoreGraphics.framework */,
@@ -244,6 +252,9 @@
 				2C964B741691499400896116 /* SetViewController.m */,
 				B0B6204516914BA400536F0E /* SetGenerator.h */,
 				B0B6204616914BA400536F0E /* SetGenerator.m */,
+				2C49E4BF169667FF0005E29F /* TableSectionHeaderView.h */,
+				2C49E4C0169667FF0005E29F /* TableSectionHeaderView.m */,
+				2C49E4BD169641270005E29F /* StdInclude.h */,
 				B0A37B2E168BF54E00D35B81 /* Partner_Up.xcdatamodeld */,
 				B0A37B17168BF54D00D35B81 /* Supporting Files */,
 			);
@@ -384,6 +395,7 @@
 				2C964B751691499400896116 /* SetViewController.m in Sources */,
 				B0B6204716914BA400536F0E /* SetGenerator.m in Sources */,
 				B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */,
+				2C49E4C1169667FF0005E29F /* TableSectionHeaderView.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

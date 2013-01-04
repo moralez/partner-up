@@ -83,6 +83,7 @@
     // If an entity for this parentClass doesn't exist, create one
     if (nil == thisClass) {
         thisClass = [ClassEntity create];
+        thisClass.protectedValue = YES;
     }
 
     // Assign fields
