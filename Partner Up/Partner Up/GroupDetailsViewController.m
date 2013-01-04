@@ -193,7 +193,6 @@
     if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
         // Get the selected group object and pass to next screen
         [[segue destinationViewController] setParentGroup:thisGroup];
-        [[segue destinationViewController] setRemovePreviousVC:YES];
         
         // Rename back button for next screen
         backButtonTitle = @"Back";

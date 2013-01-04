@@ -17,7 +17,6 @@
 @implementation SetViewController
 
 @synthesize parentGroup;
-@synthesize removePreviousVC;
 
 - (void)viewDidLoad
 {
@@ -34,14 +33,6 @@
     
     // Use class name as title for this view
     self.navigationItem.title = [parentGroup.name description];
-    
-    // WATK -- JMO says this is better accomplished through previous view being modal
-    // If removePreviousVC = YES, remove previous VC from stack (so that app doesn't return there)
-    if (YES == removePreviousVC) {
-        NSMutableArray *allViewControllers = [NSMutableArray arrayWithArray:self.navigationController.viewControllers];
-        [allViewControllers removeObjectAtIndex:[allViewControllers count] - 2];
-        self.navigationController.viewControllers = allViewControllers;
-    }
 }
 
 - (void)didReceiveMemoryWarning
