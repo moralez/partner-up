@@ -8,6 +8,7 @@
 
 #import "GroupsViewController.h"
 #import "SetViewController.h"
+#import "GroupDetailsViewController.h"
 
 @interface GroupsViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -216,7 +217,8 @@
         backButtonTitle = @"Back";
     } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
         // Pass the parentClass object to the next screen
-        [[segue destinationViewController] setParentClass:parentClass];
+        GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
+        [groupDVC setParentClass:parentClass];
         
         // Rename back button for next screen
         backButtonTitle = @"Cancel";

@@ -105,12 +105,13 @@
                     </tableView>
                     <toolbarItems/>
                     <navigationItem key="navigationItem" id="8oa-O2-HdI">
-                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="k8p-mh-9ir"/>
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="k8p-mh-9ir">
+                            <connections>
+                                <segue destination="VeH-O6-kxy" kind="modal" identifier="GroupDetailsView" id="3fy-7s-ixG"/>
+                            </connections>
+                        </barButtonItem>
                     </navigationItem>
                     <nil key="simulatedBottomBarMetrics"/>
-                    <connections>
-                        <segue destination="VeH-O6-kxy" kind="modal" identifier="GroupDetailsView" id="7gu-dJ-y8d"/>
-                    </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Fpv-hw-fTZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
@@ -315,7 +316,7 @@
         <simulatedScreenMetrics key="destination"/>
     </simulatedMetricsContainer>
     <inferredMetricsTieBreakers>
-        <segue reference="7gu-dJ-y8d"/>
-        <segue reference="N0c-p1-QdU"/>
+        <segue reference="3fy-7s-ixG"/>
+        <segue reference="rZN-Zp-V0d"/>
     </inferredMetricsTieBreakers>
 </document>
