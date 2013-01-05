@@ -10,14 +10,14 @@ extern const struct SetEntityAttributes {
 
 extern const struct SetEntityRelationships {
 	__unsafe_unretained NSString *childPersons;
-	__unsafe_unretained NSString *parentGroup;
+	__unsafe_unretained NSString *parentActivity;
 } SetEntityRelationships;
 
 extern const struct SetEntityFetchedProperties {
 } SetEntityFetchedProperties;
 
 @class PersonEntity;
-@class GroupEntity;
+@class ActivityEntity;
 
 
 
@@ -55,9 +55,9 @@ extern const struct SetEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) GroupEntity *parentGroup;
+@property (nonatomic, strong) ActivityEntity *parentActivity;
 
-//- (BOOL)validateParentGroup:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateParentActivity:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -92,8 +92,8 @@ extern const struct SetEntityFetchedProperties {
 
 
 
-- (GroupEntity*)primitiveParentGroup;
-- (void)setPrimitiveParentGroup:(GroupEntity*)value;
+- (ActivityEntity*)primitiveParentActivity;
+- (void)setPrimitiveParentActivity:(ActivityEntity*)value;
 
 
 @end

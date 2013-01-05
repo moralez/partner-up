@@ -16,7 +16,7 @@
 
 @implementation SetViewController
 
-@synthesize parentGroup;
+@synthesize parentActivity;
 
 - (void)viewDidLoad
 {
@@ -32,7 +32,7 @@
     [super viewWillAppear:animated];
     
     // Use class name as title for this view
-    self.navigationItem.title = [parentGroup.name description];
+    self.navigationItem.title = [parentActivity.name description];
 }
 
 - (void)didReceiveMemoryWarning
@@ -109,8 +109,8 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    // Filter results to only those groups aligned with this parentClass
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentGroup == %@", [parentGroup objectID]];
+    // Filter results to only those activities aligned with this parentClass
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentActivity == %@", [parentActivity objectID]];
     [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.

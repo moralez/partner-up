@@ -13,6 +13,7 @@
 #define UI_RGB(r,g,b,a) [UIColor colorWithRed:r/255.0 green:g/255.0 blue:b/255.0 alpha:a]
 
 // Color list: cloford.com/resources/colours/500col.htm
-#define UI_CELL_LIGHTGRAY UI_RGB(249, 249, 249, 1.0)
+#define UI_LIGHTGRAY UI_RGB(249, 249, 249, 1.0)
+#define UI_ROYALBLUE_3 UI_RGB(58, 95, 205, 1.0)
 
 #endif

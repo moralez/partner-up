@@ -1,5 +1,5 @@
 //
-//  GroupDetailsViewController.h
+//  ActivityDetailsViewController.h
 //  Partner Up
 //
 //  Created by Logen Watkins on 12/29/12.
@@ -8,20 +8,20 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassEntity.h"
-#import "GroupEntity.h"
+#import "ActivityEntity.h"
 
-@interface GroupDetailsViewController : UIViewController <UITextFieldDelegate>
+@interface ActivityDetailsViewController : UIViewController <UITextFieldDelegate>
 
 - (IBAction)classSizeStepperAction:(id)sender;
-- (IBAction)groupSizeStepperAction:(id)sender;
+- (IBAction)activitySizeStepperAction:(id)sender;
 
 @property (strong, nonatomic) ClassEntity *parentClass;
-@property (strong, nonatomic) GroupEntity *thisGroup;
+@property (strong, nonatomic) ActivityEntity *thisActivity;
 @property (strong, nonatomic) NSString *initialName;
-@property (weak, nonatomic) IBOutlet UITextField *groupNameField;
+@property (weak, nonatomic) IBOutlet UITextField *activityNameField;
 @property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
 @property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;
-@property (weak, nonatomic) IBOutlet UILabel *groupSizeLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *groupSizeStepper;
+@property (weak, nonatomic) IBOutlet UILabel *activitySizeLabel;
+@property (weak, nonatomic) IBOutlet UIStepper *activitySizeStepper;
 
 @end

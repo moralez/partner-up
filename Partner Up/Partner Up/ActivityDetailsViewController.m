@@ -1,38 +1,38 @@
 //
-//  GroupDetailsViewController.m
+//  ActivityDetailsViewController.m
 //  Partner Up
 //
 //  Created by Logen Watkins on 12/29/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "GroupDetailsViewController.h"
+#import "ActivityDetailsViewController.h"
 #import "SetGenerator.h"
 #import "SetViewController.h"
 
-@interface GroupDetailsViewController ()
+@interface ActivityDetailsViewController ()
 
 @end
 
-@implementation GroupDetailsViewController
+@implementation ActivityDetailsViewController
 
 @synthesize parentClass;
-@synthesize thisGroup;
+@synthesize thisActivity;
 @synthesize initialName;
-@synthesize groupNameField;
+@synthesize activityNameField;
 @synthesize classSizeLabel;
 @synthesize classSizeStepper;
-@synthesize groupSizeLabel;
-@synthesize groupSizeStepper;
+@synthesize activitySizeLabel;
+@synthesize activitySizeStepper;
 
 - (void) updateClassSizeLabel
 {
     classSizeLabel.text = [NSString stringWithFormat:@"%d", (int)classSizeStepper.value];
 }
 
-- (void) updateGroupSizeLabel
+- (void) updateActivitySizeLabel
 {
-    groupSizeLabel.text = [NSString stringWithFormat:@"%d", (int)groupSizeStepper.value];
+    activitySizeLabel.text = [NSString stringWithFormat:@"%d", (int)activitySizeStepper.value];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -50,10 +50,10 @@
 	// Do any additional setup after loading the view.
 
     // Use class name as title for this view
-    self.navigationItem.title = [thisGroup.name description];
+    self.navigationItem.title = [thisActivity.name description];
     
     // Assign delegate to catch keypresses
-    [groupNameField setDelegate:self];
+    [activityNameField setDelegate:self];
 }
 
 - (void)viewWillAppear:(BOOL)animated
@@ -63,39 +63,39 @@
     // If parentClass == nil, serious error has occurred
     if (nil == parentClass)
     {
-        NSLog("Error! No parent class for group");
+        NSLog("Error! No parent class for activity");
     }
     
-    if (nil == thisGroup)
+    if (nil == thisActivity)
     {
-        // Not passed a group entity, use class defaults where applicable
-        self.navigationItem.title = @"New Group";
+        // Not passed a activity entity, use class defaults where applicable
+        self.navigationItem.title = @"New Activity";
         // If passed an initialName, set it here
         if (nil == initialName) {
-            groupNameField.text = @"";
+            activityNameField.text = @"";
         } else {
-            groupNameField.text = initialName;
+            activityNameField.text = initialName;
         }
         classSizeStepper.value = [parentClass.size doubleValue];
         // WATK -- Will we have per-class defaults, or just app-wide defaults?
-        groupSizeStepper.value = 2;
+        activitySizeStepper.value = 2;
     } else {
-        // Passed a group entity, use it's information
-        self.navigationItem.title = thisGroup.name;
-        groupNameField.text = thisGroup.name;
-        classSizeStepper.value = [thisGroup.classSize doubleValue];
-        groupSizeStepper.value = [thisGroup.setSize doubleValue];
+        // Passed a activity entity, use it's information
+        self.navigationItem.title = thisActivity.name;
+        activityNameField.text = thisActivity.name;
+        classSizeStepper.value = [thisActivity.classSize doubleValue];
+        activitySizeStepper.value = [thisActivity.setSize doubleValue];
     }
     
     // As this view is presented modally, modify the left bar button action
     [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
                                                                                  style:UIBarButtonSystemItemCancel
                                                                                 target:self
-                                                                                action:@selector(cancelGroup)]];    
+                                                                                action:@selector(cancelActivity)]];    
 
     // Update all labels
     [self updateClassSizeLabel];
-    [self updateGroupSizeLabel];
+    [self updateActivitySizeLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,23 +110,23 @@
     [self updateClassSizeLabel];
 }
 
-- (IBAction)groupSizeStepperAction:(id)sender {
+- (IBAction)activitySizeStepperAction:(id)sender {
     // Hide keyboard, update label
     [self.view endEditing:NO];
-    [self updateGroupSizeLabel];
+    [self updateActivitySizeLabel];
 }
 
-- (void)cancelGroup {
+- (void)cancelActivity {
     [self dismissViewControllerAnimated:YES completion:nil];
 }
 
 // Returns YES if creation is successful
-- (BOOL)createGroup {
+- (BOOL)createActivity {
     // Start with failure
     BOOL noErrors = NO;
     
     // Error checking
-    if ([[[self groupNameField] text] length] <= 0) {
+    if ([[[self activityNameField] text] length] <= 0) {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing Field"
                                                         message:@"Some information is missing."
                                                        delegate:self
@@ -134,9 +134,9 @@
                                               otherButtonTitles:nil];
         [error show];
         return noErrors;
-    } else if ([classSizeStepper value] <= [groupSizeStepper value]) {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid Class - Group Size"
-                                                        message:@"Unable to split class into desired number of groups"
+    } else if ([classSizeStepper value] <= [activitySizeStepper value]) {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid Class - Activity Size"
+                                                        message:@"Unable to split class into desired number of activities"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -146,23 +146,23 @@
 
     
     // Load data into entity
-    // If an entity for this Group doesn't exist, create one
-    if (nil == thisGroup) {
-        thisGroup = [GroupEntity create];
-        thisGroup.parentClass = parentClass;
+    // If an entity for this Activity doesn't exist, create one
+    if (nil == thisActivity) {
+        thisActivity = [ActivityEntity create];
+        thisActivity.parentClass = parentClass;
     }
 
     // Assign fields
-    thisGroup.name = groupNameField.text;
-    thisGroup.classSizeValue = classSizeStepper.value;
-    thisGroup.setSizeValue = groupSizeStepper.value;
+    thisActivity.name = activityNameField.text;
+    thisActivity.classSizeValue = classSizeStepper.value;
+    thisActivity.setSizeValue = activitySizeStepper.value;
     
     // Save entity
-    NSLog(@"Saving group entity, name: %@, classSize: %@, groupSize: %@", thisGroup.name, thisGroup.classSize, thisGroup.setSize);
+    NSLog(@"Saving activity entity, name: %@, classSize: %@, activitySize: %@", thisActivity.name, thisActivity.classSize, thisActivity.setSize);
     [SingleCDStack saveChanges];
     
     // Actually generate the sets
-    [SetGenerator generateSetsForGroup:thisGroup];
+    [SetGenerator generateSetsForActivity:thisActivity];
     
     // Everything succeeded, return noErrors = YES
     noErrors = YES;
@@ -172,12 +172,12 @@
 // This method determines whether to let the segue proceed
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    // Ensure that a group is created successfully before performing segue
+    // Ensure that a activity is created successfully before performing segue
     if ([identifier isEqualToString:@"SetsTableView"]) {
-        // Create group and associated sets/persons
-        BOOL groupCreated = [self createGroup];
-        if (NO == groupCreated) {
-            // Group creation failed. Do not leave view
+        // Create activity and associated sets/persons
+        BOOL activityCreated = [self createActivity];
+        if (NO == activityCreated) {
+            // Activity creation failed. Do not leave view
             return NO;
         }
     }
@@ -191,8 +191,8 @@
     // Begin work for transition
     NSString *backButtonTitle;
     if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
-        // Get the selected group object and pass to next screen
-        [[segue destinationViewController] setParentGroup:thisGroup];
+        // Get the selected activity object and pass to next screen
+        [[segue destinationViewController] setParentActivity:thisActivity];
         
         // Rename back button for next screen
         backButtonTitle = @"Back";

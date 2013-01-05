@@ -10,7 +10,7 @@ const struct ClassEntityAttributes ClassEntityAttributes = {
 };
 
 const struct ClassEntityRelationships ClassEntityRelationships = {
-	.childGroups = @"childGroups",
+	.childActivities = @"childActivities",
 };
 
 const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
@@ -118,15 +118,15 @@ const struct ClassEntityFetchedProperties ClassEntityFetchedProperties = {
 
 
 
-@dynamic childGroups;
+@dynamic childActivities;
 
 	
-- (NSMutableSet*)childGroupsSet {
-	[self willAccessValueForKey:@"childGroups"];
+- (NSMutableSet*)childActivitiesSet {
+	[self willAccessValueForKey:@"childActivities"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childGroups"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childActivities"];
   
-	[self didAccessValueForKey:@"childGroups"];
+	[self didAccessValueForKey:@"childActivities"];
 	return result;
 }
 	

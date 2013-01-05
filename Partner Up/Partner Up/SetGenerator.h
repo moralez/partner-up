@@ -9,11 +9,11 @@
 #import <Foundation/Foundation.h>
 #import "SetEntity.h"
 
-@class GroupEntity;
+@class ActivityEntity;
 
 @interface SetGenerator : NSObject
 
-+ (void)generateSetsForGroup:(GroupEntity*)group;
++ (void)generateSetsForActivity:(ActivityEntity*)activity;
 + (NSString *)delineatedPersonsList:(SetEntity *)currentSet;
 
 @end

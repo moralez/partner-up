@@ -7,35 +7,33 @@
 //
 
 #import "SetGenerator.h"
-#import "GroupEntity.h"
+#import "ActivityEntity.h"
 #import "NSMutableArray+Helpers.h"
 #import "PersonEntity.h"
 
 @implementation SetGenerator
 
-
-
-+ (void)generateSetsForGroup:(GroupEntity*)group {
++ (void)generateSetsForActivity:(ActivityEntity*)activity {
     
-    NSUInteger classSize = group.classSizeValue;
-    NSUInteger setSize = group.setSizeValue;
+    NSUInteger classSize = activity.classSizeValue;
+    NSUInteger setSize = activity.setSizeValue;
     NSMutableArray *numberClass = [NSMutableArray numberedArrayWithSize:classSize];
     
-    NSLog(@"Splitting group size %d by %d, split is %s", classSize, setSize, (classSize % setSize) ? "NOT EVEN" : "EVEN");
+    NSLog(@"Splitting activity size %d by %d, split is %s", classSize, setSize, (classSize % setSize) ? "NOT EVEN" : "EVEN");
     
-    // Uneven groups: Many ways to handle...for now, just create a group from leftovers
+    // Uneven activities: Many ways to handle...for now, just create a activity from leftovers
     NSUInteger setNumber = 0;
     NSUInteger currentSetSize;
     while ([numberClass count] > 0) {
         // Determine this Set's size
-        if ([numberClass count] > group.setSizeValue) {
-            currentSetSize = group.setSizeValue;
+        if ([numberClass count] > activity.setSizeValue) {
+            currentSetSize = activity.setSizeValue;
         } else {
             currentSetSize = [numberClass count];
         }
         // Create Set entity
         SetEntity *currentSet = [SetEntity create];
-        currentSet.parentGroup = group;
+        currentSet.parentActivity = activity;
         currentSet.orderNumberValue = setNumber;
         // Create all the Persons for this Set
         for (NSUInteger i = 0; i < currentSetSize; i++) {

@@ -1,5 +1,5 @@
 //
-//  ClassesViewController.h
+//  ClassTableViewController.h
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
@@ -8,7 +8,7 @@
 
 #import <UIKit/UIKit.h>
 
-@class GroupsViewController;
+@class ClassTableViewController;
 
 #import <CoreData/CoreData.h>
 
@@ -19,13 +19,13 @@ enum  {
     TABLEVIEW_SECTION_COUNT // 2
 };
 
-@interface ClassesViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ClassTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
     NSArray                *customOptions;
 }
 
-@property (strong, nonatomic) GroupsViewController *GroupsViewController;
+//@property (strong, nonatomic) ActivityTableViewController *ActivityViewController;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

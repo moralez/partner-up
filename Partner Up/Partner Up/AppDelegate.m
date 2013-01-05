@@ -11,6 +11,7 @@
 
 #import "AppDelegate.h"
 #import "ClassEntity.h"
+#import "ActivityEntity.h" // WATK temp
 #import "PersonEntity.h"
 
 @implementation AppDelegate
@@ -24,28 +25,38 @@
     #endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
     
-    // Create QuickGroups class if it doesn't exist.
-    NSString *previousQuickGroups = @"Previous quick groups";
-    ClassEntity *quickGroupsClass;
-    quickGroupsClass = [ClassEntity findFirstByAttribute:@"name" withValue:previousQuickGroups];
-    if (nil == quickGroupsClass) {
-        quickGroupsClass = [ClassEntity create];
-        quickGroupsClass.name = previousQuickGroups;
-        quickGroupsClass.sizeValue = 10;
-        quickGroupsClass.protectedValue = NO;
+    // Create QuickActivities class if it doesn't exist.
+    NSString *previousQuickActivities = @"Previous quick activities";
+    ClassEntity *quickActivitiesClass;
+    quickActivitiesClass = [ClassEntity findFirstByAttribute:@"name" withValue:previousQuickActivities];
+    if (nil == quickActivitiesClass) {
+        quickActivitiesClass = [ClassEntity create];
+        quickActivitiesClass.name = previousQuickActivities;
+        quickActivitiesClass.sizeValue = 10;
+        quickActivitiesClass.protectedValue = YES;
         [SingleCDStack saveChanges];
     }
 
     // WATK -- Temporary measure to ensure that header for section appears. Not sure correct method
-    // We always want at least one unprotected class (not Quick Groups)
+    // We always want at least one unprotected class (not Quick Activities)
     //  to exist so everything looks good
     ClassEntity *unprotectedClass = [ClassEntity findFirstByAttribute:@"protected"
-                                                            withValue:[NSNumber numberWithBool:YES]];
+                                                            withValue:[NSNumber numberWithBool:NO]];
     if (nil == unprotectedClass) {
         unprotectedClass = [ClassEntity create];
         unprotectedClass.name = @"No classes exist yet...";
         unprotectedClass.sizeValue = 10;
-        unprotectedClass.protectedValue = YES;
+        unprotectedClass.protectedValue = NO;
+        [SingleCDStack saveChanges];
+    }
+    
+    // WATK -- Another temporary measure. Adding an empty activity just to make sure that view works
+    ActivityEntity *newActivity = [ActivityEntity findFirstByAttribute:@"name" withValue:@"test!"];
+    if (nil == newActivity) {
+        newActivity = [ActivityEntity create];
+        newActivity.name = @"test!";
+        newActivity.classSizeValue = 13;
+        newActivity.setSizeValue = 3;
         [SingleCDStack saveChanges];
     }
     

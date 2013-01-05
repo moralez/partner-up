@@ -1,20 +1,20 @@
 //
-//  GroupsViewController.m
+//  ActivityTableViewController.m
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "GroupsViewController.h"
+#import "ActivityTableViewController.h"
 #import "SetViewController.h"
-#import "GroupDetailsViewController.h"
+#import "ActivityDetailsViewController.h"
 
-@interface GroupsViewController ()
+@interface ActivityTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation GroupsViewController
+@implementation ActivityTableViewController
 
 @synthesize parentClass;
 
@@ -104,7 +104,7 @@
     
     // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [GroupEntity entityInManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [ActivityEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -116,7 +116,7 @@
     
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    // Filter results to only those groups aligned with this parentClass
+    // Filter results to only those activities aligned with this parentClass
     NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentClass == %@", [parentClass objectID]];
     [fetchRequest setPredicate:predicate];
     
@@ -208,17 +208,17 @@
 {
     NSString *backButtonTitle;
     if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
-        // Get the selected group object and pass to next screen
+        // Get the selected activity object and pass to next screen
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
-        GroupEntity *thisGroup = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        [[segue destinationViewController] setParentGroup:thisGroup];
+        ActivityEntity *thisActivity = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setParentActivity:thisActivity];
 
         // Rename back button for next screen
         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
+    } else if ([[segue identifier] isEqualToString:@"ActivityDetailsView"]) {
         // Pass the parentClass object to the next screen
-        GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
-        [groupDVC setParentClass:parentClass];
+        ActivityDetailsViewController *activityDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
+        [activityDVC setParentClass:parentClass];
         
         // Rename back button for next screen
         backButtonTitle = @"Cancel";

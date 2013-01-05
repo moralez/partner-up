@@ -7,13 +7,13 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "GroupEntity.h"
+#import "ActivityEntity.h"
 @interface SetViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
 }
 
-@property (strong, nonatomic) GroupEntity *parentGroup;
+@property (strong, nonatomic) ActivityEntity *parentActivity;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end

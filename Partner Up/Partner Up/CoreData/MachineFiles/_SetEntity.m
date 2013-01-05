@@ -9,7 +9,7 @@ const struct SetEntityAttributes SetEntityAttributes = {
 
 const struct SetEntityRelationships SetEntityRelationships = {
 	.childPersons = @"childPersons",
-	.parentGroup = @"parentGroup",
+	.parentActivity = @"parentActivity",
 };
 
 const struct SetEntityFetchedProperties SetEntityFetchedProperties = {
@@ -92,7 +92,7 @@ const struct SetEntityFetchedProperties SetEntityFetchedProperties = {
 }
 	
 
-@dynamic parentGroup;
+@dynamic parentActivity;
 
 	
 

@@ -11,13 +11,13 @@ extern const struct ClassEntityAttributes {
 } ClassEntityAttributes;
 
 extern const struct ClassEntityRelationships {
-	__unsafe_unretained NSString *childGroups;
+	__unsafe_unretained NSString *childActivities;
 } ClassEntityRelationships;
 
 extern const struct ClassEntityFetchedProperties {
 } ClassEntityFetchedProperties;
 
-@class GroupEntity;
+@class ActivityEntity;
 
 
 
@@ -74,9 +74,9 @@ extern const struct ClassEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSSet *childGroups;
+@property (nonatomic, strong) NSSet *childActivities;
 
-- (NSMutableSet*)childGroupsSet;
+- (NSMutableSet*)childActivitiesSet;
 
 
 
@@ -86,10 +86,10 @@ extern const struct ClassEntityFetchedProperties {
 
 @interface _ClassEntity (CoreDataGeneratedAccessors)
 
-- (void)addChildGroups:(NSSet*)value_;
-- (void)removeChildGroups:(NSSet*)value_;
-- (void)addChildGroupsObject:(GroupEntity*)value_;
-- (void)removeChildGroupsObject:(GroupEntity*)value_;
+- (void)addChildActivities:(NSSet*)value_;
+- (void)removeChildActivities:(NSSet*)value_;
+- (void)addChildActivitiesObject:(ActivityEntity*)value_;
+- (void)removeChildActivitiesObject:(ActivityEntity*)value_;
 
 @end
 
@@ -121,8 +121,8 @@ extern const struct ClassEntityFetchedProperties {
 
 
 
-- (NSMutableSet*)primitiveChildGroups;
-- (void)setPrimitiveChildGroups:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveChildActivities;
+- (void)setPrimitiveChildActivities:(NSMutableSet*)value;
 
 
 @end

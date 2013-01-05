@@ -25,14 +25,15 @@
 		2C897D00168D62AE00F66936 /* SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897CFF168D62AE00F66936 /* SetEntity.m */; };
 		2C897D03168D62B700F66936 /* _SetEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C897D02168D62B700F66936 /* _SetEntity.m */; };
 		2C8EC7CA1695616800606224 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 2C8EC7C91695616800606224 /* QuartzCore.framework */; };
-		2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */; };
 		2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */; };
 		2C911524168CF6FC0089768D /* ClassDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911523168CF6FB0089768D /* ClassDetailsViewController.m */; };
 		2C911529168D084F0089768D /* ClassEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911526168D084F0089768D /* ClassEntity.m */; };
-		2C91152A168D084F0089768D /* GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C911528168D084F0089768D /* GroupEntity.m */; };
 		2C91152F168D08730089768D /* _ClassEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C91152C168D08720089768D /* _ClassEntity.m */; };
-		2C911530168D08730089768D /* _GroupEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C91152E168D08730089768D /* _GroupEntity.m */; };
+		2C9339C61697C552004D9508 /* RootViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9339C51697C552004D9508 /* RootViewController.m */; };
 		2C964B751691499400896116 /* SetViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C964B741691499400896116 /* SetViewController.m */; };
+		2C9A3BC216980E6100DF7D6A /* ActivityDetailsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A3BC116980E6100DF7D6A /* ActivityDetailsViewController.m */; };
+		2C9A3BC516980F8000DF7D6A /* ActivityEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A3BC416980F8000DF7D6A /* ActivityEntity.m */; };
+		2C9A3BC816980F8800DF7D6A /* _ActivityEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2C9A3BC716980F8800DF7D6A /* _ActivityEntity.m */; };
 		2CEB6B57168C015800D7C8B1 /* SingleCDStack.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */; };
 		2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B74168C263500D7C8B1 /* PersonEntity.m */; };
 		2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */ = {isa = PBXBuildFile; fileRef = 2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */; };
@@ -41,7 +42,7 @@
 		2CEB6B84168C2E1D00D7C8B1 /* README.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CEB6B80168C2E1D00D7C8B1 /* README.md */; };
 		2CEB6B85168C2E1D00D7C8B1 /* release_notes.md in Resources */ = {isa = PBXBuildFile; fileRef = 2CEB6B81168C2E1D00D7C8B1 /* release_notes.md */; };
 		2CEB6B87168C2E4E00D7C8B1 /* libz.dylib in Frameworks */ = {isa = PBXBuildFile; fileRef = 2CEB6B86168C2E4E00D7C8B1 /* libz.dylib */; };
-		B00A09481690164700614363 /* ClassesViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00A09471690164700614363 /* ClassesViewController.m */; };
+		B00A09481690164700614363 /* ClassTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B00A09471690164700614363 /* ClassTableViewController.m */; };
 		B0A37B0F168BF54D00D35B81 /* UIKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B0E168BF54D00D35B81 /* UIKit.framework */; };
 		B0A37B11168BF54D00D35B81 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B10168BF54D00D35B81 /* Foundation.framework */; };
 		B0A37B13168BF54D00D35B81 /* CoreGraphics.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B0A37B12168BF54D00D35B81 /* CoreGraphics.framework */; };
@@ -54,7 +55,7 @@
 		B0A37B2A168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B28168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard */; };
 		B0A37B2D168BF54E00D35B81 /* MainStoryboard_iPad.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */; };
 		B0A37B30168BF54E00D35B81 /* Partner_Up.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B2E168BF54E00D35B81 /* Partner_Up.xcdatamodeld */; };
-		B0A37B36168BF54E00D35B81 /* GroupsViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B35168BF54E00D35B81 /* GroupsViewController.m */; };
+		B0A37B36168BF54E00D35B81 /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B35168BF54E00D35B81 /* ActivityTableViewController.m */; };
 		B0B6204716914BA400536F0E /* SetGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204616914BA400536F0E /* SetGenerator.m */; };
 		B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */; };
 /* End PBXBuildFile section */
@@ -78,22 +79,24 @@
 		2C897D01168D62B700F66936 /* _SetEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _SetEntity.h; sourceTree = "<group>"; };
 		2C897D02168D62B700F66936 /* _SetEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _SetEntity.m; sourceTree = "<group>"; };
 		2C8EC7C91695616800606224 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		2C8F16FF168F72B200A5F5E1 /* GroupDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupDetailsViewController.h; sourceTree = "<group>"; };
-		2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupDetailsViewController.m; sourceTree = "<group>"; };
+		2C8F16FF168F72B200A5F5E1 /* ActivityDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityDetailsViewController.h; sourceTree = "<group>"; };
 		2C8FCB421690B051009982D3 /* NSManagedObject+WATK_Extension.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSManagedObject+WATK_Extension.h"; sourceTree = "<group>"; };
 		2C8FCB431690B051009982D3 /* NSManagedObject+WATK_Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSManagedObject+WATK_Extension.m"; sourceTree = "<group>"; };
 		2C911522168CF6FB0089768D /* ClassDetailsViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassDetailsViewController.h; sourceTree = "<group>"; };
 		2C911523168CF6FB0089768D /* ClassDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassDetailsViewController.m; sourceTree = "<group>"; };
 		2C911525168D084F0089768D /* ClassEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ClassEntity.h; sourceTree = "<group>"; };
 		2C911526168D084F0089768D /* ClassEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassEntity.m; sourceTree = "<group>"; };
-		2C911527168D084F0089768D /* GroupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = GroupEntity.h; sourceTree = "<group>"; };
-		2C911528168D084F0089768D /* GroupEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupEntity.m; sourceTree = "<group>"; };
 		2C91152B168D08720089768D /* _ClassEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ClassEntity.h; sourceTree = "<group>"; };
 		2C91152C168D08720089768D /* _ClassEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ClassEntity.m; sourceTree = "<group>"; };
-		2C91152D168D08730089768D /* _GroupEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _GroupEntity.h; sourceTree = "<group>"; };
-		2C91152E168D08730089768D /* _GroupEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _GroupEntity.m; sourceTree = "<group>"; };
+		2C9339C41697C552004D9508 /* RootViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = RootViewController.h; sourceTree = "<group>"; };
+		2C9339C51697C552004D9508 /* RootViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = RootViewController.m; sourceTree = "<group>"; };
 		2C964B731691499400896116 /* SetViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetViewController.h; sourceTree = "<group>"; };
 		2C964B741691499400896116 /* SetViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetViewController.m; sourceTree = "<group>"; };
+		2C9A3BC116980E6100DF7D6A /* ActivityDetailsViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityDetailsViewController.m; sourceTree = "<group>"; };
+		2C9A3BC316980F8000DF7D6A /* ActivityEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ActivityEntity.h; sourceTree = "<group>"; };
+		2C9A3BC416980F8000DF7D6A /* ActivityEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ActivityEntity.m; sourceTree = "<group>"; };
+		2C9A3BC616980F8800DF7D6A /* _ActivityEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = _ActivityEntity.h; sourceTree = "<group>"; };
+		2C9A3BC716980F8800DF7D6A /* _ActivityEntity.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = _ActivityEntity.m; sourceTree = "<group>"; };
 		2CEB6B55168C015800D7C8B1 /* SingleCDStack.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SingleCDStack.h; sourceTree = "<group>"; };
 		2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SingleCDStack.m; sourceTree = "<group>"; };
 		2CEB6B73168C263500D7C8B1 /* PersonEntity.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = PersonEntity.h; sourceTree = "<group>"; };
@@ -106,7 +109,7 @@
 		2CEB6B81168C2E1D00D7C8B1 /* release_notes.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = release_notes.md; sourceTree = "<group>"; };
 		2CEB6B82168C2E1D00D7C8B1 /* TestFlight.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = TestFlight.h; sourceTree = "<group>"; };
 		2CEB6B86168C2E4E00D7C8B1 /* libz.dylib */ = {isa = PBXFileReference; lastKnownFileType = "compiled.mach-o.dylib"; name = libz.dylib; path = usr/lib/libz.dylib; sourceTree = SDKROOT; };
-		B00A09471690164700614363 /* ClassesViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassesViewController.m; sourceTree = "<group>"; };
+		B00A09471690164700614363 /* ClassTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ClassTableViewController.m; sourceTree = "<group>"; };
 		B0A37B0A168BF54D00D35B81 /* Partner Up.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Partner Up.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		B0A37B0E168BF54D00D35B81 /* UIKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = UIKit.framework; path = System/Library/Frameworks/UIKit.framework; sourceTree = SDKROOT; };
 		B0A37B10168BF54D00D35B81 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
@@ -123,9 +126,9 @@
 		B0A37B29168BF54E00D35B81 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPhone.storyboard; sourceTree = "<group>"; };
 		B0A37B2C168BF54E00D35B81 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = en; path = en.lproj/MainStoryboard_iPad.storyboard; sourceTree = "<group>"; };
 		B0A37B2F168BF54E00D35B81 /* Partner_Up.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Partner_Up.xcdatamodel; sourceTree = "<group>"; };
-		B0A37B31168BF54E00D35B81 /* ClassesViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassesViewController.h; sourceTree = "<group>"; };
-		B0A37B34168BF54E00D35B81 /* GroupsViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = GroupsViewController.h; sourceTree = "<group>"; };
-		B0A37B35168BF54E00D35B81 /* GroupsViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = GroupsViewController.m; sourceTree = "<group>"; };
+		B0A37B31168BF54E00D35B81 /* ClassTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ClassTableViewController.h; sourceTree = "<group>"; };
+		B0A37B34168BF54E00D35B81 /* ActivityTableViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ActivityTableViewController.h; sourceTree = "<group>"; };
+		B0A37B35168BF54E00D35B81 /* ActivityTableViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ActivityTableViewController.m; sourceTree = "<group>"; };
 		B0B6204516914BA400536F0E /* SetGenerator.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SetGenerator.h; sourceTree = "<group>"; };
 		B0B6204616914BA400536F0E /* SetGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SetGenerator.m; sourceTree = "<group>"; };
 		B0B6204A169155C900536F0E /* NSMutableArray+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helpers.h"; sourceTree = "<group>"; };
@@ -162,12 +165,12 @@
 		2CEB6B72168C263500D7C8B1 /* HumanFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2C9A3BC316980F8000DF7D6A /* ActivityEntity.h */,
+				2C9A3BC416980F8000DF7D6A /* ActivityEntity.m */,
 				2C897CFE168D62AE00F66936 /* SetEntity.h */,
 				2C897CFF168D62AE00F66936 /* SetEntity.m */,
 				2C911525168D084F0089768D /* ClassEntity.h */,
 				2C911526168D084F0089768D /* ClassEntity.m */,
-				2C911527168D084F0089768D /* GroupEntity.h */,
-				2C911528168D084F0089768D /* GroupEntity.m */,
 				2CEB6B73168C263500D7C8B1 /* PersonEntity.h */,
 				2CEB6B74168C263500D7C8B1 /* PersonEntity.m */,
 			);
@@ -177,12 +180,12 @@
 		2CEB6B75168C263500D7C8B1 /* MachineFiles */ = {
 			isa = PBXGroup;
 			children = (
+				2C9A3BC616980F8800DF7D6A /* _ActivityEntity.h */,
+				2C9A3BC716980F8800DF7D6A /* _ActivityEntity.m */,
 				2C897D01168D62B700F66936 /* _SetEntity.h */,
 				2C897D02168D62B700F66936 /* _SetEntity.m */,
 				2C91152B168D08720089768D /* _ClassEntity.h */,
 				2C91152C168D08720089768D /* _ClassEntity.m */,
-				2C91152D168D08730089768D /* _GroupEntity.h */,
-				2C91152E168D08730089768D /* _GroupEntity.m */,
 				2CEB6B76168C263500D7C8B1 /* _PersonEntity.h */,
 				2CEB6B77168C263500D7C8B1 /* _PersonEntity.m */,
 			);
@@ -240,14 +243,16 @@
 				2CEB6B7C168C284D00D7C8B1 /* AppDelegate.m */,
 				B0A37B28168BF54E00D35B81 /* MainStoryboard_iPhone.storyboard */,
 				B0A37B2B168BF54E00D35B81 /* MainStoryboard_iPad.storyboard */,
-				B0A37B31168BF54E00D35B81 /* ClassesViewController.h */,
-				B00A09471690164700614363 /* ClassesViewController.m */,
+				2C9339C41697C552004D9508 /* RootViewController.h */,
+				2C9339C51697C552004D9508 /* RootViewController.m */,
+				B0A37B31168BF54E00D35B81 /* ClassTableViewController.h */,
+				B00A09471690164700614363 /* ClassTableViewController.m */,
 				2C911522168CF6FB0089768D /* ClassDetailsViewController.h */,
 				2C911523168CF6FB0089768D /* ClassDetailsViewController.m */,
-				B0A37B34168BF54E00D35B81 /* GroupsViewController.h */,
-				B0A37B35168BF54E00D35B81 /* GroupsViewController.m */,
-				2C8F16FF168F72B200A5F5E1 /* GroupDetailsViewController.h */,
-				2C8F1700168F72B200A5F5E1 /* GroupDetailsViewController.m */,
+				B0A37B34168BF54E00D35B81 /* ActivityTableViewController.h */,
+				B0A37B35168BF54E00D35B81 /* ActivityTableViewController.m */,
+				2C8F16FF168F72B200A5F5E1 /* ActivityDetailsViewController.h */,
+				2C9A3BC116980E6100DF7D6A /* ActivityDetailsViewController.m */,
 				2C964B731691499400896116 /* SetViewController.h */,
 				2C964B741691499400896116 /* SetViewController.m */,
 				B0B6204516914BA400536F0E /* SetGenerator.h */,
@@ -377,25 +382,26 @@
 			files = (
 				B0A37B1D168BF54D00D35B81 /* main.m in Sources */,
 				B0A37B30168BF54E00D35B81 /* Partner_Up.xcdatamodeld in Sources */,
-				B0A37B36168BF54E00D35B81 /* GroupsViewController.m in Sources */,
+				B0A37B36168BF54E00D35B81 /* ActivityTableViewController.m in Sources */,
 				2CEB6B57168C015800D7C8B1 /* SingleCDStack.m in Sources */,
 				2CEB6B78168C263500D7C8B1 /* PersonEntity.m in Sources */,
 				2CEB6B79168C263500D7C8B1 /* _PersonEntity.m in Sources */,
 				2CEB6B7D168C284E00D7C8B1 /* AppDelegate.m in Sources */,
 				2C911524168CF6FC0089768D /* ClassDetailsViewController.m in Sources */,
 				2C911529168D084F0089768D /* ClassEntity.m in Sources */,
-				2C91152A168D084F0089768D /* GroupEntity.m in Sources */,
 				2C91152F168D08730089768D /* _ClassEntity.m in Sources */,
-				2C911530168D08730089768D /* _GroupEntity.m in Sources */,
 				2C897D00168D62AE00F66936 /* SetEntity.m in Sources */,
 				2C897D03168D62B700F66936 /* _SetEntity.m in Sources */,
-				2C8F1701168F72B200A5F5E1 /* GroupDetailsViewController.m in Sources */,
 				2C8FCB441690B051009982D3 /* NSManagedObject+WATK_Extension.m in Sources */,
-				B00A09481690164700614363 /* ClassesViewController.m in Sources */,
+				B00A09481690164700614363 /* ClassTableViewController.m in Sources */,
 				2C964B751691499400896116 /* SetViewController.m in Sources */,
 				B0B6204716914BA400536F0E /* SetGenerator.m in Sources */,
 				B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */,
 				2C49E4C1169667FF0005E29F /* TableSectionHeaderView.m in Sources */,
+				2C9339C61697C552004D9508 /* RootViewController.m in Sources */,
+				2C9A3BC216980E6100DF7D6A /* ActivityDetailsViewController.m in Sources */,
+				2C9A3BC516980F8000DF7D6A /* ActivityEntity.m in Sources */,
+				2C9A3BC816980F8800DF7D6A /* _ActivityEntity.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

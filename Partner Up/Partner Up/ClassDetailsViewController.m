@@ -19,13 +19,6 @@
 @synthesize classSizeLabel;
 @synthesize thisClass;
 
-- (void)setThisClass:(ClassEntity *)newThisClass
-{
-    if (thisClass != newThisClass) {
-        thisClass = newThisClass;
-    }
-}
-
 - (void) updateClassSizeLabel
 {
     classSizeLabel.text = [NSString stringWithFormat:@"%d", (int)classSizeStepper.value];

@@ -1,5 +1,5 @@
 //
-//  GroupsViewController.h
+//  ActivityTableViewController.h
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
@@ -8,9 +8,9 @@
 
 #import <UIKit/UIKit.h>
 #import "ClassEntity.h"
-#import "GroupEntity.h"
+#import "ActivityEntity.h"
 
-@interface GroupsViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface ActivityTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;    
 }

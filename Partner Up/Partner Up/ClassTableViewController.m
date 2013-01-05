@@ -1,25 +1,26 @@
 //
-//  ClassesViewController.m
+//  ClassTableViewController.m
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "ClassesViewController.h"
+#import "RootViewController.h"
+#import "ClassTableViewController.h"
 #import "ClassDetailsViewController.h"
-#import "GroupsViewController.h"
-#import "GroupDetailsViewController.h"
+#import "ActivityTableViewController.h"
+#import "ActivityDetailsViewController.h"
 #import "TableSectionHeaderView.h"
 #import "StdInclude.h"
 
 #import "AppDelegate.h"
 
-@interface ClassesViewController ()
+@interface ClassTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation ClassesViewController
+@implementation ClassTableViewController
 
 - (void)awakeFromNib
 {
@@ -67,10 +68,12 @@
 
 #pragma mark - Table View
 
-// Section header button calls this method to segue quick group creation
-- (void) createQuickGroup: (UIButton *)sender
+// Section header button calls this method to segue quick activity creation
+- (void) createQuickActivity: (UIButton *)sender
 {
-    [self performSegueWithIdentifier:@"GroupDetailsView" sender:self];
+    RootViewController *parentVC = (RootViewController *)[self parentViewController];
+    [parentVC pushToActivityDetailsView];
+//    [self performSegueWithIdentifier:@"ActivityDetailsView" sender:self];
 }
 // Section header button calls this method to segue for class creation
 - (void) createClass: (UIButton *)sender
@@ -88,10 +91,10 @@
         case TABLEVIEW_QUICKGROUPS:
         {
             // Create the view with a single button
-            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create quick group"];
+            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create quick activity"];
             
             // Action for button press
-            [[headerView titleButton] addTarget:self action:@selector(createQuickGroup:) forControlEvents:UIControlEventTouchUpInside];
+            [[headerView titleButton] addTarget:self action:@selector(createQuickActivity:) forControlEvents:UIControlEventTouchUpInside];
             break;
         }
         case TABLEVIEW_CLASSES:
@@ -154,7 +157,7 @@
     BOOL retVal = YES;
     switch ([indexPath section]) {
         case TABLEVIEW_QUICKGROUPS:
-            // Do not allow removal of the QuickGroups class
+            // Do not allow removal of the QuickActivities class
             retVal = NO;
             break;
         default:
@@ -193,7 +196,7 @@
 {
     NSString *backButtonTitle;
 
-    if ([[segue identifier] isEqualToString:@"GroupsTableView"]) {
+    if ([[segue identifier] isEqualToString:@"ActivityTableView"]) {
         // All selected cells follow this segue, indexPath is the selected row
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         // Get the selected class object and pass to next screen
@@ -202,17 +205,19 @@
         
         // Rename back button for next screen
         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"GroupDetailsView"]) {
-        // Want the class object for quick groups, always the only element of that section
+    } else if ([[segue identifier] isEqualToString:@"ActivityDetailsView"]) {
+        // Want the class object for quick activities, always the only element of that section
         NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:TABLEVIEW_QUICKGROUPS];
         ClassEntity *parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-        GroupDetailsViewController *groupDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
-        [groupDVC setParentClass:parentClass];
+//        ActivityDetailsViewController *activityDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
+//        [activityDVC setParentClass:parentClass];
+        [[segue destinationViewController] setParentClass:parentClass];
         
-        // Pre-populate the name of this group with the data & time
+        // Pre-populate the name of this activity with the data & time
         NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
         [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
-        [groupDVC setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
+//        [activityDVC setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
+        [[segue destinationViewController] setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
         
         // Rename back button for next screen
         backButtonTitle = @"Cancel";
@@ -256,7 +261,7 @@
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Edit the section name key path and cache name if appropriate.
-    // Use 'protected' as sectionNameKeyPath so that group is split with only "Quick Groups" sticking to the top
+    // Use 'protected' as sectionNameKeyPath so that activity is split with only "Quick Activities" sticking to the top
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:@"protected" cacheName:@"ClassesView"];
      aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
@@ -339,7 +344,7 @@
     NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = [[object valueForKey:@"name"] description];
     // WATK -- some recommend putting in cellWillAppear -- unsure of performance
-    cell.backgroundColor = UI_CELL_LIGHTGRAY;
+    cell.backgroundColor = UI_LIGHTGRAY;
 }
 
 @end
