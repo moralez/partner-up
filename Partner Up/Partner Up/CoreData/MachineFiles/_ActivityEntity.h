@@ -6,19 +6,19 @@
 
 extern const struct ActivityEntityAttributes {
 	__unsafe_unretained NSString *classSize;
+	__unsafe_unretained NSString *groupSize;
 	__unsafe_unretained NSString *name;
-	__unsafe_unretained NSString *setSize;
 } ActivityEntityAttributes;
 
 extern const struct ActivityEntityRelationships {
-	__unsafe_unretained NSString *childSets;
+	__unsafe_unretained NSString *childGroups;
 	__unsafe_unretained NSString *parentClass;
 } ActivityEntityRelationships;
 
 extern const struct ActivityEntityFetchedProperties {
 } ActivityEntityFetchedProperties;
 
-@class SetEntity;
+@class GroupEntity;
 @class ClassEntity;
 
 
@@ -52,6 +52,20 @@ extern const struct ActivityEntityFetchedProperties {
 
 
 
+@property (nonatomic, strong) NSNumber* groupSize;
+
+
+
+@property int32_t groupSizeValue;
+- (int32_t)groupSizeValue;
+- (void)setGroupSizeValue:(int32_t)value_;
+
+//- (BOOL)validateGroupSize:(id*)value_ error:(NSError**)error_;
+
+
+
+
+
 @property (nonatomic, strong) NSString* name;
 
 
@@ -62,23 +76,9 @@ extern const struct ActivityEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) NSNumber* setSize;
+@property (nonatomic, strong) NSSet *childGroups;
 
-
-
-@property int32_t setSizeValue;
-- (int32_t)setSizeValue;
-- (void)setSetSizeValue:(int32_t)value_;
-
-//- (BOOL)validateSetSize:(id*)value_ error:(NSError**)error_;
-
-
-
-
-
-@property (nonatomic, strong) NSSet *childSets;
-
-- (NSMutableSet*)childSetsSet;
+- (NSMutableSet*)childGroupsSet;
 
 
 
@@ -95,10 +95,10 @@ extern const struct ActivityEntityFetchedProperties {
 
 @interface _ActivityEntity (CoreDataGeneratedAccessors)
 
-- (void)addChildSets:(NSSet*)value_;
-- (void)removeChildSets:(NSSet*)value_;
-- (void)addChildSetsObject:(SetEntity*)value_;
-- (void)removeChildSetsObject:(SetEntity*)value_;
+- (void)addChildGroups:(NSSet*)value_;
+- (void)removeChildGroups:(NSSet*)value_;
+- (void)addChildGroupsObject:(GroupEntity*)value_;
+- (void)removeChildGroupsObject:(GroupEntity*)value_;
 
 @end
 
@@ -114,24 +114,24 @@ extern const struct ActivityEntityFetchedProperties {
 
 
 
+- (NSNumber*)primitiveGroupSize;
+- (void)setPrimitiveGroupSize:(NSNumber*)value;
+
+- (int32_t)primitiveGroupSizeValue;
+- (void)setPrimitiveGroupSizeValue:(int32_t)value_;
+
+
+
+
 - (NSString*)primitiveName;
 - (void)setPrimitiveName:(NSString*)value;
 
 
 
 
-- (NSNumber*)primitiveSetSize;
-- (void)setPrimitiveSetSize:(NSNumber*)value;
 
-- (int32_t)primitiveSetSizeValue;
-- (void)setPrimitiveSetSizeValue:(int32_t)value_;
-
-
-
-
-
-- (NSMutableSet*)primitiveChildSets;
-- (void)setPrimitiveChildSets:(NSMutableSet*)value;
+- (NSMutableSet*)primitiveChildGroups;
+- (void)setPrimitiveChildGroups:(NSMutableSet*)value;
 
 
 

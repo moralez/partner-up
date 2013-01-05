@@ -9,13 +9,13 @@ extern const struct PersonEntityAttributes {
 } PersonEntityAttributes;
 
 extern const struct PersonEntityRelationships {
-	__unsafe_unretained NSString *parentSet;
+	__unsafe_unretained NSString *parentGroup;
 } PersonEntityRelationships;
 
 extern const struct PersonEntityFetchedProperties {
 } PersonEntityFetchedProperties;
 
-@class SetEntity;
+@class GroupEntity;
 
 
 
@@ -46,9 +46,9 @@ extern const struct PersonEntityFetchedProperties {
 
 
 
-@property (nonatomic, strong) SetEntity *parentSet;
+@property (nonatomic, strong) GroupEntity *parentGroup;
 
-//- (BOOL)validateParentSet:(id*)value_ error:(NSError**)error_;
+//- (BOOL)validateParentGroup:(id*)value_ error:(NSError**)error_;
 
 
 
@@ -73,8 +73,8 @@ extern const struct PersonEntityFetchedProperties {
 
 
 
-- (SetEntity*)primitiveParentSet;
-- (void)setPrimitiveParentSet:(SetEntity*)value;
+- (GroupEntity*)primitiveParentGroup;
+- (void)setPrimitiveParentGroup:(GroupEntity*)value;
 
 
 @end

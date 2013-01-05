@@ -8,7 +8,7 @@ const struct PersonEntityAttributes PersonEntityAttributes = {
 };
 
 const struct PersonEntityRelationships PersonEntityRelationships = {
-	.parentSet = @"parentSet",
+	.parentGroup = @"parentGroup",
 };
 
 const struct PersonEntityFetchedProperties PersonEntityFetchedProperties = {
@@ -78,7 +78,7 @@ const struct PersonEntityFetchedProperties PersonEntityFetchedProperties = {
 
 
 
-@dynamic parentSet;
+@dynamic parentGroup;
 
 	
 

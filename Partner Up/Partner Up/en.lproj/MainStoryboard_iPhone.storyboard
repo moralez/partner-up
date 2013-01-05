@@ -145,10 +145,10 @@
             </objects>
             <point key="canvasLocation" x="865" y="421"/>
         </scene>
-        <!--Set View Controller-->
+        <!--Group Table View Controller-->
         <scene sceneID="yD1-l3-jb9">
             <objects>
-                <tableViewController storyboardIdentifier="SetViewController" id="rjO-4r-wRH" customClass="SetViewController" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="GroupTableViewController" id="rjO-4r-wRH" customClass="GroupTableViewController" sceneMemberID="viewController">
                     <tableView key="view" opaque="NO" clipsSubviews="YES" clearsContextBeforeDrawing="NO" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" rowHeight="44" sectionHeaderHeight="22" sectionFooterHeight="22" id="baH-jE-DAW">
                         <rect key="frame" x="0.0" y="20" width="320" height="396"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -317,45 +317,6 @@
             <point key="canvasLocation" x="865" y="-314"/>
         </scene>
     </scenes>
-    <classes>
-        <class className="ActivityDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="activitySizeStepperAction:"/>
-                <relationship kind="action" name="classSizeStepperAction:"/>
-                <relationship kind="outlet" name="activityNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="activitySizeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="activitySizeStepper" candidateClass="UIStepper"/>
-                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
-            </relationships>
-        </class>
-        <class className="ActivityTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ActivityTableViewController.h"/>
-        </class>
-        <class className="ClassDetailsViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassDetailsViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="classSizeStepperAction:"/>
-                <relationship kind="action" name="saveButton:"/>
-                <relationship kind="outlet" name="classNameField" candidateClass="UITextField"/>
-                <relationship kind="outlet" name="classSizeLabel" candidateClass="UILabel"/>
-                <relationship kind="outlet" name="classSizeStepper" candidateClass="UIStepper"/>
-            </relationships>
-        </class>
-        <class className="ClassTableViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/ClassTableViewController.h"/>
-        </class>
-        <class className="RootViewController" superclassName="UIViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/RootViewController.h"/>
-            <relationships>
-                <relationship kind="action" name="segmentedControlAction:"/>
-            </relationships>
-        </class>
-        <class className="SetViewController" superclassName="UITableViewController">
-            <source key="sourceIdentifier" type="project" relativePath="./Classes/SetViewController.h"/>
-        </class>
-    </classes>
     <simulatedMetricsContainer key="defaultSimulatedMetrics">
         <simulatedStatusBarMetrics key="statusBar"/>
         <simulatedOrientationMetrics key="orientation"/>

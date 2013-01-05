@@ -5,12 +5,12 @@
 
 const struct ActivityEntityAttributes ActivityEntityAttributes = {
 	.classSize = @"classSize",
+	.groupSize = @"groupSize",
 	.name = @"name",
-	.setSize = @"setSize",
 };
 
 const struct ActivityEntityRelationships ActivityEntityRelationships = {
-	.childSets = @"childSets",
+	.childGroups = @"childGroups",
 	.parentClass = @"parentClass",
 };
 
@@ -48,8 +48,8 @@ const struct ActivityEntityFetchedProperties ActivityEntityFetchedProperties = {
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
-	if ([key isEqualToString:@"setSizeValue"]) {
-		NSSet *affectingKey = [NSSet setWithObject:@"setSize"];
+	if ([key isEqualToString:@"groupSizeValue"]) {
+		NSSet *affectingKey = [NSSet setWithObject:@"groupSize"];
 		keyPaths = [keyPaths setByAddingObjectsFromSet:affectingKey];
 		return keyPaths;
 	}
@@ -86,6 +86,32 @@ const struct ActivityEntityFetchedProperties ActivityEntityFetchedProperties = {
 
 
 
+@dynamic groupSize;
+
+
+
+- (int32_t)groupSizeValue {
+	NSNumber *result = [self groupSize];
+	return [result intValue];
+}
+
+- (void)setGroupSizeValue:(int32_t)value_ {
+	[self setGroupSize:[NSNumber numberWithInt:value_]];
+}
+
+- (int32_t)primitiveGroupSizeValue {
+	NSNumber *result = [self primitiveGroupSize];
+	return [result intValue];
+}
+
+- (void)setPrimitiveGroupSizeValue:(int32_t)value_ {
+	[self setPrimitiveGroupSize:[NSNumber numberWithInt:value_]];
+}
+
+
+
+
+
 @dynamic name;
 
 
@@ -93,41 +119,15 @@ const struct ActivityEntityFetchedProperties ActivityEntityFetchedProperties = {
 
 
 
-@dynamic setSize;
-
-
-
-- (int32_t)setSizeValue {
-	NSNumber *result = [self setSize];
-	return [result intValue];
-}
-
-- (void)setSetSizeValue:(int32_t)value_ {
-	[self setSetSize:[NSNumber numberWithInt:value_]];
-}
-
-- (int32_t)primitiveSetSizeValue {
-	NSNumber *result = [self primitiveSetSize];
-	return [result intValue];
-}
-
-- (void)setPrimitiveSetSizeValue:(int32_t)value_ {
-	[self setPrimitiveSetSize:[NSNumber numberWithInt:value_]];
-}
-
-
-
-
-
-@dynamic childSets;
+@dynamic childGroups;
 
 	
-- (NSMutableSet*)childSetsSet {
-	[self willAccessValueForKey:@"childSets"];
+- (NSMutableSet*)childGroupsSet {
+	[self willAccessValueForKey:@"childGroups"];
   
-	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childSets"];
+	NSMutableSet *result = (NSMutableSet*)[self mutableSetValueForKey:@"childGroups"];
   
-	[self didAccessValueForKey:@"childSets"];
+	[self didAccessValueForKey:@"childGroups"];
 	return result;
 }
 	

@@ -1,34 +1,34 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to SetEntity.h instead.
+// Make changes to GroupEntity.h instead.
 
 #import <CoreData/CoreData.h>
 
 
-extern const struct SetEntityAttributes {
+extern const struct GroupEntityAttributes {
 	__unsafe_unretained NSString *orderNumber;
-} SetEntityAttributes;
+} GroupEntityAttributes;
 
-extern const struct SetEntityRelationships {
+extern const struct GroupEntityRelationships {
 	__unsafe_unretained NSString *childPersons;
 	__unsafe_unretained NSString *parentActivity;
-} SetEntityRelationships;
+} GroupEntityRelationships;
 
-extern const struct SetEntityFetchedProperties {
-} SetEntityFetchedProperties;
+extern const struct GroupEntityFetchedProperties {
+} GroupEntityFetchedProperties;
 
 @class PersonEntity;
 @class ActivityEntity;
 
 
 
-@interface SetEntityID : NSManagedObjectID {}
+@interface GroupEntityID : NSManagedObjectID {}
 @end
 
-@interface _SetEntity : NSManagedObject {}
+@interface _GroupEntity : NSManagedObject {}
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_;
 + (NSString*)entityName;
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_;
-- (SetEntityID*)objectID;
+- (GroupEntityID*)objectID;
 
 
 
@@ -65,7 +65,7 @@ extern const struct SetEntityFetchedProperties {
 
 @end
 
-@interface _SetEntity (CoreDataGeneratedAccessors)
+@interface _GroupEntity (CoreDataGeneratedAccessors)
 
 - (void)addChildPersons:(NSSet*)value_;
 - (void)removeChildPersons:(NSSet*)value_;
@@ -74,7 +74,7 @@ extern const struct SetEntityFetchedProperties {
 
 @end
 
-@interface _SetEntity (CoreDataGeneratedPrimitiveAccessors)
+@interface _GroupEntity (CoreDataGeneratedPrimitiveAccessors)
 
 
 - (NSNumber*)primitiveOrderNumber;

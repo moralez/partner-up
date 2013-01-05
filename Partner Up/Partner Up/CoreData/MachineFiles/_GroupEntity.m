@@ -1,41 +1,41 @@
 // DO NOT EDIT. This file is machine-generated and constantly overwritten.
-// Make changes to SetEntity.m instead.
+// Make changes to GroupEntity.m instead.
 
-#import "_SetEntity.h"
+#import "_GroupEntity.h"
 
-const struct SetEntityAttributes SetEntityAttributes = {
+const struct GroupEntityAttributes GroupEntityAttributes = {
 	.orderNumber = @"orderNumber",
 };
 
-const struct SetEntityRelationships SetEntityRelationships = {
+const struct GroupEntityRelationships GroupEntityRelationships = {
 	.childPersons = @"childPersons",
 	.parentActivity = @"parentActivity",
 };
 
-const struct SetEntityFetchedProperties SetEntityFetchedProperties = {
+const struct GroupEntityFetchedProperties GroupEntityFetchedProperties = {
 };
 
-@implementation SetEntityID
+@implementation GroupEntityID
 @end
 
-@implementation _SetEntity
+@implementation _GroupEntity
 
 + (id)insertInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription insertNewObjectForEntityForName:@"SetEntity" inManagedObjectContext:moc_];
+	return [NSEntityDescription insertNewObjectForEntityForName:@"GroupEntity" inManagedObjectContext:moc_];
 }
 
 + (NSString*)entityName {
-	return @"SetEntity";
+	return @"GroupEntity";
 }
 
 + (NSEntityDescription*)entityInManagedObjectContext:(NSManagedObjectContext*)moc_ {
 	NSParameterAssert(moc_);
-	return [NSEntityDescription entityForName:@"SetEntity" inManagedObjectContext:moc_];
+	return [NSEntityDescription entityForName:@"GroupEntity" inManagedObjectContext:moc_];
 }
 
-- (SetEntityID*)objectID {
-	return (SetEntityID*)[super objectID];
+- (GroupEntityID*)objectID {
+	return (GroupEntityID*)[super objectID];
 }
 
 + (NSSet*)keyPathsForValuesAffectingValueForKey:(NSString*)key {

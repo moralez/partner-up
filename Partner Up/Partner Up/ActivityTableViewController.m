@@ -7,7 +7,7 @@
 //
 
 #import "ActivityTableViewController.h"
-#import "SetViewController.h"
+#import "GroupTableViewController.h"
 #import "ActivityDetailsViewController.h"
 
 @interface ActivityTableViewController ()
@@ -207,7 +207,7 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
 {
     NSString *backButtonTitle;
-    if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
+    if ([[segue identifier] isEqualToString:@"GroupTableView"]) {
         // Get the selected activity object and pass to next screen
         NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
         ActivityEntity *thisActivity = [[self fetchedResultsController] objectAtIndexPath:indexPath];

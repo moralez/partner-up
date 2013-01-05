@@ -1,5 +1,5 @@
 //
-//  SetViewController.h
+//  GroupTableViewController.h
 //  Partner Up
 //
 //  Created by Logen Watkins on 12/30/12.
@@ -8,7 +8,8 @@
 
 #import <UIKit/UIKit.h>
 #import "ActivityEntity.h"
-@interface SetViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+
+@interface GroupTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
 }

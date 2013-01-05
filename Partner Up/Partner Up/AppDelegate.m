@@ -56,7 +56,7 @@
         newActivity = [ActivityEntity create];
         newActivity.name = @"test!";
         newActivity.classSizeValue = 13;
-        newActivity.setSizeValue = 3;
+        newActivity.groupSizeValue = 3;
         [SingleCDStack saveChanges];
     }
     

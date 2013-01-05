@@ -6,61 +6,61 @@
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "SetGenerator.h"
+#import "GroupGenerator.h"
 #import "ActivityEntity.h"
 #import "NSMutableArray+Helpers.h"
 #import "PersonEntity.h"
 
-@implementation SetGenerator
+@implementation GroupGenerator
 
-+ (void)generateSetsForActivity:(ActivityEntity*)activity {
++ (void)generateGroupsForActivity:(ActivityEntity*)activity {
     
     NSUInteger classSize = activity.classSizeValue;
-    NSUInteger setSize = activity.setSizeValue;
+    NSUInteger groupSize = activity.groupSizeValue;
     NSMutableArray *numberClass = [NSMutableArray numberedArrayWithSize:classSize];
     
-    NSLog(@"Splitting activity size %d by %d, split is %s", classSize, setSize, (classSize % setSize) ? "NOT EVEN" : "EVEN");
+    NSLog(@"Splitting activity size %d by %d, split is %s", classSize, groupSize, (classSize % groupSize) ? "NOT EVEN" : "EVEN");
     
     // Uneven activities: Many ways to handle...for now, just create a activity from leftovers
-    NSUInteger setNumber = 0;
-    NSUInteger currentSetSize;
+    NSUInteger groupNumber = 0;
+    NSUInteger currentGroupSize;
     while ([numberClass count] > 0) {
         // Determine this Set's size
-        if ([numberClass count] > activity.setSizeValue) {
-            currentSetSize = activity.setSizeValue;
+        if ([numberClass count] > activity.groupSizeValue) {
+            currentGroupSize = activity.groupSizeValue;
         } else {
-            currentSetSize = [numberClass count];
+            currentGroupSize = [numberClass count];
         }
         // Create Set entity
-        SetEntity *currentSet = [SetEntity create];
-        currentSet.parentActivity = activity;
-        currentSet.orderNumberValue = setNumber;
+        GroupEntity *currentGroup = [GroupEntity create];
+        currentGroup.parentActivity = activity;
+        currentGroup.orderNumberValue = groupNumber;
         // Create all the Persons for this Set
-        for (NSUInteger i = 0; i < currentSetSize; i++) {
+        for (NSUInteger i = 0; i < currentGroupSize; i++) {
             // Choose which Person to create next
             NSUInteger randomSpot = arc4random() % [numberClass count];
             PersonEntity *randomPerson = [PersonEntity create];
             randomPerson.number = [numberClass objectAtIndex:randomSpot];
-            randomPerson.parentSet = currentSet;
+            randomPerson.parentGroup = currentGroup;
             // Remove object from array so that it isn't reused.
             [numberClass removeObjectAtIndex:randomSpot];
         }
         // Loop for next Set
-        setNumber++;
+        groupNumber++;
     }
     
-    // Save all sets
+    // Save all groups
     [SingleCDStack saveChanges];
 }
 
-+ (NSString *)delineatedPersonsList:(SetEntity *)currentSet
++ (NSString *)delineatedPersonsList:(GroupEntity *)currentGroup
 {
     // Get list of Persons associated with this set
-    NSArray *childPersons = [PersonEntity findByAttribute:@"parentSet" withValue:[currentSet objectID] withLimit:NO_FETCH_LIMIT];
+    NSArray *childPersons = [PersonEntity findByAttribute:@"parentGroup" withValue:[currentGroup objectID] withLimit:NO_FETCH_LIMIT];
     NSUInteger childrenCount = [childPersons count];
 
     // Begin displayed string with set#
-    NSString *retStr = [NSString stringWithFormat:@"%@) ", currentSet.orderNumber];
+    NSString *retStr = [NSString stringWithFormat:@"%@) ", currentGroup.orderNumber];
     
     // Concatenate children numbers to this string
     PersonEntity *curPerson;

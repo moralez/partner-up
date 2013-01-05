@@ -2,9 +2,9 @@
 <model name="" userDefinedModelVersionIdentifier="" type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="1811" systemVersion="11G63" minimumToolsVersion="Automatic" macOSVersion="Automatic" iOSVersion="Automatic">
     <entity name="ActivityEntity" representedClassName="ActivityEntity" syncable="YES">
         <attribute name="classSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <attribute name="groupSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <attribute name="name" optional="YES" attributeType="String" syncable="YES"/>
-        <attribute name="setSize" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="childSets" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="parentActivity" inverseEntity="SetEntity" syncable="YES"/>
+        <relationship name="childGroups" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="parentActivity" inverseEntity="GroupEntity" syncable="YES"/>
         <relationship name="parentClass" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ClassEntity" inverseName="childActivities" inverseEntity="ClassEntity" syncable="YES"/>
     </entity>
     <entity name="ClassEntity" representedClassName="ClassEntity" syncable="YES">
@@ -13,22 +13,22 @@
         <attribute name="size" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
         <relationship name="childActivities" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="ActivityEntity" inverseName="parentClass" inverseEntity="ActivityEntity" syncable="YES"/>
     </entity>
+    <entity name="GroupEntity" representedClassName="GroupEntity" syncable="YES">
+        <attribute name="orderNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
+        <relationship name="childPersons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="parentGroup" inverseEntity="PersonEntity" syncable="YES"/>
+        <relationship name="parentActivity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityEntity" inverseName="childGroups" inverseEntity="ActivityEntity" syncable="YES"/>
+    </entity>
     <entity name="PersonEntity" representedClassName="PersonEntity">
         <attribute name="number" optional="YES" attributeType="Integer 32" defaultValueString="0">
             <userInfo/>
         </attribute>
-        <relationship name="parentSet" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="SetEntity" inverseName="childPersons" inverseEntity="SetEntity" syncable="YES"/>
+        <relationship name="parentGroup" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="GroupEntity" inverseName="childPersons" inverseEntity="GroupEntity" syncable="YES"/>
         <userInfo/>
     </entity>
-    <entity name="SetEntity" representedClassName="SetEntity" syncable="YES">
-        <attribute name="orderNumber" optional="YES" attributeType="Integer 32" defaultValueString="0" syncable="YES"/>
-        <relationship name="childPersons" optional="YES" toMany="YES" deletionRule="Nullify" destinationEntity="PersonEntity" inverseName="parentSet" inverseEntity="PersonEntity" syncable="YES"/>
-        <relationship name="parentActivity" optional="YES" minCount="1" maxCount="1" deletionRule="Nullify" destinationEntity="ActivityEntity" inverseName="childSets" inverseEntity="ActivityEntity" syncable="YES"/>
-    </entity>
     <elements>
-        <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="105"/>
         <element name="ActivityEntity" positionX="160" positionY="192" width="128" height="120"/>
+        <element name="ClassEntity" positionX="-144" positionY="171" width="128" height="105"/>
         <element name="PersonEntity" positionX="475" positionY="195" width="128" height="75"/>
-        <element name="SetEntity" positionX="243" positionY="207" width="128" height="90"/>
+        <element name="GroupEntity" positionX="243" positionY="207" width="128" height="90"/>
     </elements>
 </model>

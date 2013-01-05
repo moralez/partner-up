@@ -7,8 +7,8 @@
 //
 
 #import "ActivityDetailsViewController.h"
-#import "SetGenerator.h"
-#import "SetViewController.h"
+#import "GroupGenerator.h"
+#import "GroupTableViewController.h"
 
 @interface ActivityDetailsViewController ()
 
@@ -84,7 +84,7 @@
         self.navigationItem.title = thisActivity.name;
         activityNameField.text = thisActivity.name;
         classSizeStepper.value = [thisActivity.classSize doubleValue];
-        activitySizeStepper.value = [thisActivity.setSize doubleValue];
+        activitySizeStepper.value = [thisActivity.groupSize doubleValue];
     }
     
     // As this view is presented modally, modify the left bar button action
@@ -155,14 +155,14 @@
     // Assign fields
     thisActivity.name = activityNameField.text;
     thisActivity.classSizeValue = classSizeStepper.value;
-    thisActivity.setSizeValue = activitySizeStepper.value;
+    thisActivity.groupSizeValue = activitySizeStepper.value;
     
     // Save entity
-    NSLog(@"Saving activity entity, name: %@, classSize: %@, activitySize: %@", thisActivity.name, thisActivity.classSize, thisActivity.setSize);
+    NSLog(@"Saving activity entity, name: %@, classSize: %@, activitySize: %@", thisActivity.name, thisActivity.classSize, thisActivity.groupSize);
     [SingleCDStack saveChanges];
     
-    // Actually generate the sets
-    [SetGenerator generateSetsForActivity:thisActivity];
+    // Actually generate the groups
+    [GroupGenerator generateGroupsForActivity:thisActivity];
     
     // Everything succeeded, return noErrors = YES
     noErrors = YES;
@@ -173,7 +173,7 @@
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
     // Ensure that a activity is created successfully before performing segue
-    if ([identifier isEqualToString:@"SetsTableView"]) {
+    if ([identifier isEqualToString:@"GroupTableView"]) {
         // Create activity and associated sets/persons
         BOOL activityCreated = [self createActivity];
         if (NO == activityCreated) {
@@ -190,7 +190,7 @@
 {
     // Begin work for transition
     NSString *backButtonTitle;
-    if ([[segue identifier] isEqualToString:@"SetsTableView"]) {
+    if ([[segue identifier] isEqualToString:@"GroupTableView"]) {
         // Get the selected activity object and pass to next screen
         [[segue destinationViewController] setParentActivity:thisActivity];
         

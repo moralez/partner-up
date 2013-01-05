@@ -1,20 +1,20 @@
 //
-//  SetViewController.m
+//  GroupTableViewController.m
 //  Partner Up
 //
 //  Created by Logen Watkins on 12/30/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
-#import "SetViewController.h"
-#import "SetEntity.h"
-#import "SetGenerator.h"
+#import "GroupTableViewController.h"
+#import "GroupEntity.h"
+#import "GroupGenerator.h"
 
-@interface SetViewController ()
+@interface GroupTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation SetViewController
+@implementation GroupTableViewController
 
 @synthesize parentActivity;
 
@@ -97,7 +97,7 @@
     
     // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [SetEntity entityInManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [GroupEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
@@ -192,10 +192,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    SetEntity *thisSet = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    GroupEntity *thisGroup = [self.fetchedResultsController objectAtIndexPath:indexPath];
     
     // Display the people in each set
-    cell.textLabel.text = [SetGenerator delineatedPersonsList:thisSet];
+    cell.textLabel.text = [GroupGenerator delineatedPersonsList:thisGroup];
 }
 
 @end
