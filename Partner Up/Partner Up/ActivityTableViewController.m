@@ -9,6 +9,7 @@
 #import "ActivityTableViewController.h"
 #import "GroupTableViewController.h"
 #import "ActivityDetailsViewController.h"
+#import "TableSectionHeaderView.h"
 
 @interface ActivityTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -49,6 +50,40 @@
 }
 
 #pragma mark - Table View
+
+// Section header button calls this method to segue quick activity creation
+- (void) createActivity: (UIButton *)sender
+{
+    [self performSegueWithIdentifier:@"ActivityDetailsView" sender:self];
+}
+
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //watk temp
+    // Will create a view customized to each section
+    TableSectionHeaderView *headerView;
+    
+    switch (section) {
+        case TABLEVIEW_ACTIVITIES:
+        {
+            // Create the view with a single button
+            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create new activity"];
+            
+            // Action for button press
+            [[headerView titleButton] addTarget:self action:@selector(createActivity:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    return headerView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 54.0; //watk temp
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -113,7 +148,6 @@
     // Edit the sort key as appropriate.
     NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
-    
     [fetchRequest setSortDescriptors:sortDescriptors];
     
     // Filter results to only those activities aligned with this parentClass
@@ -217,12 +251,13 @@
         backButtonTitle = @"Back";
     } else if ([[segue identifier] isEqualToString:@"ActivityDetailsView"]) {
         // Pass the parentClass object to the next screen
-        ActivityDetailsViewController *activityDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
-        [activityDVC setParentClass:parentClass];
+        [[segue destinationViewController] setParentClass:parentClass];
         
         // Rename back button for next screen
         backButtonTitle = @"Cancel";
-    }	
+    } else {
+        NSLog(@"Unhandled segue!");
+    }
     
     // Add back button with custom title
     UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle

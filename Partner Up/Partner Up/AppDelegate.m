@@ -26,7 +26,7 @@
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
     
     // Create QuickActivities class if it doesn't exist.
-    NSString *previousQuickActivities = @"Previous quick activities";
+    NSString *previousQuickActivities = @"'Class'-less groups";
     ClassEntity *quickActivitiesClass;
     quickActivitiesClass = [ClassEntity findFirstByAttribute:@"name" withValue:previousQuickActivities];
     if (nil == quickActivitiesClass) {
@@ -55,6 +55,7 @@
     if (nil == newActivity) {
         newActivity = [ActivityEntity create];
         newActivity.name = @"test!";
+        newActivity.parentClass = unprotectedClass;
         newActivity.classSizeValue = 13;
         newActivity.groupSizeValue = 3;
         [SingleCDStack saveChanges];

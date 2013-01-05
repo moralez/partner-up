@@ -70,13 +70,23 @@
 }
 
 - (IBAction)saveButton:(id)sender {
-    // WATK -- no error checking of any kind
+    // Error checking -- WATK should check for duplicates
+    if ([[classNameField text] length] <= 0) {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Missing information."
+                                                        message:@"Class name is too short!"
+                                                       delegate:self
+                                              cancelButtonTitle:@"OK"
+                                              otherButtonTitles:nil];
+        [error show];
+        // Don't continue saving.
+        return;
+    }
 
     // Load data into entity
     // If an entity for this parentClass doesn't exist, create one
     if (nil == thisClass) {
         thisClass = [ClassEntity create];
-        thisClass.protectedValue = YES;
+        thisClass.protectedValue = NO;
     }
 
     // Assign fields

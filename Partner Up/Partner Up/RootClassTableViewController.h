@@ -7,19 +7,16 @@
 //
 
 #import <UIKit/UIKit.h>
-
-@class ClassTableViewController;
-
 #import <CoreData/CoreData.h>
+
+@class RootClassTableViewController;
 
 // Tableview sections
 enum  {
-    TABLEVIEW_QUICKGROUPS = 0,
-    TABLEVIEW_CLASSES, // 1
-    TABLEVIEW_SECTION_COUNT // 2
+    TABLEVIEW_CLASSES = 0, // 0
 };
 
-@interface ClassTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface RootClassTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;
     NSArray                *customOptions;

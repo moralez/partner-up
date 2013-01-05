@@ -22,17 +22,17 @@
 @synthesize activityNameField;
 @synthesize classSizeLabel;
 @synthesize classSizeStepper;
-@synthesize activitySizeLabel;
-@synthesize activitySizeStepper;
+@synthesize groupSizeLabel;
+@synthesize groupSizeStepper;
 
 - (void) updateClassSizeLabel
 {
     classSizeLabel.text = [NSString stringWithFormat:@"%d", (int)classSizeStepper.value];
 }
 
-- (void) updateActivitySizeLabel
+- (void) updateGroupSizeLabel
 {
-    activitySizeLabel.text = [NSString stringWithFormat:@"%d", (int)activitySizeStepper.value];
+    groupSizeLabel.text = [NSString stringWithFormat:@"%d", (int)groupSizeStepper.value];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -63,7 +63,14 @@
     // If parentClass == nil, serious error has occurred
     if (nil == parentClass)
     {
-        NSLog("Error! No parent class for activity");
+        // No parentClass passed in, assign it the default (protected) class
+        parentClass = [ClassEntity findFirstByAttribute:@"protected" withValue:[NSNumber numberWithBool:YES]];
+        // Double-check that it worked
+        if (nil == parentClass) {
+            NSLog(@"Error!!! Protected class not found!");
+        } else {
+            NSLog(@"No parentClass provided, used default.");
+        }
     }
     
     if (nil == thisActivity)
@@ -78,24 +85,18 @@
         }
         classSizeStepper.value = [parentClass.size doubleValue];
         // WATK -- Will we have per-class defaults, or just app-wide defaults?
-        activitySizeStepper.value = 2;
+        groupSizeStepper.value = 2;
     } else {
         // Passed a activity entity, use it's information
         self.navigationItem.title = thisActivity.name;
         activityNameField.text = thisActivity.name;
         classSizeStepper.value = [thisActivity.classSize doubleValue];
-        activitySizeStepper.value = [thisActivity.groupSize doubleValue];
+        groupSizeStepper.value = [thisActivity.groupSize doubleValue];
     }
     
-    // As this view is presented modally, modify the left bar button action
-    [[self navigationItem] setLeftBarButtonItem:[[UIBarButtonItem alloc] initWithTitle:@"Cancel"
-                                                                                 style:UIBarButtonSystemItemCancel
-                                                                                target:self
-                                                                                action:@selector(cancelActivity)]];    
-
     // Update all labels
     [self updateClassSizeLabel];
-    [self updateActivitySizeLabel];
+    [self updateGroupSizeLabel];
 }
 
 - (void)didReceiveMemoryWarning
@@ -110,14 +111,10 @@
     [self updateClassSizeLabel];
 }
 
-- (IBAction)activitySizeStepperAction:(id)sender {
+- (IBAction)groupSizeStepperAction:(id)sender {
     // Hide keyboard, update label
     [self.view endEditing:NO];
-    [self updateActivitySizeLabel];
-}
-
-- (void)cancelActivity {
-    [self dismissViewControllerAnimated:YES completion:nil];
+    [self updateGroupSizeLabel];
 }
 
 // Returns YES if creation is successful
@@ -134,9 +131,9 @@
                                               otherButtonTitles:nil];
         [error show];
         return noErrors;
-    } else if ([classSizeStepper value] <= [activitySizeStepper value]) {
-        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid Class - Activity Size"
-                                                        message:@"Unable to split class into desired number of activities"
+    } else if ([classSizeStepper value] <= [groupSizeStepper value]) {
+        UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid: Class <= Group Size"
+                                                        message:@"Unable to split class into desired number of groups"
                                                        delegate:self
                                               cancelButtonTitle:@"OK"
                                               otherButtonTitles:nil];
@@ -155,10 +152,10 @@
     // Assign fields
     thisActivity.name = activityNameField.text;
     thisActivity.classSizeValue = classSizeStepper.value;
-    thisActivity.groupSizeValue = activitySizeStepper.value;
+    thisActivity.groupSizeValue = groupSizeStepper.value;
     
     // Save entity
-    NSLog(@"Saving activity entity, name: %@, classSize: %@, activitySize: %@", thisActivity.name, thisActivity.classSize, thisActivity.groupSize);
+    NSLog(@"Saving activity entity, name: %@, classSize: %@, groupSize: %@", thisActivity.name, thisActivity.classSize, thisActivity.groupSize);
     [SingleCDStack saveChanges];
     
     // Actually generate the groups
@@ -172,7 +169,7 @@
 // This method determines whether to let the segue proceed
 - (BOOL) shouldPerformSegueWithIdentifier:(NSString *)identifier sender:(id)sender
 {
-    // Ensure that a activity is created successfully before performing segue
+    // Ensure that an activity is created successfully before performing segue
     if ([identifier isEqualToString:@"GroupTableView"]) {
         // Create activity and associated sets/persons
         BOOL activityCreated = [self createActivity];

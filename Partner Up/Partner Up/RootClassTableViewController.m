@@ -7,7 +7,7 @@
 //
 
 #import "RootViewController.h"
-#import "ClassTableViewController.h"
+#import "RootClassTableViewController.h"
 #import "ClassDetailsViewController.h"
 #import "ActivityTableViewController.h"
 #import "ActivityDetailsViewController.h"
@@ -16,11 +16,11 @@
 
 #import "AppDelegate.h"
 
-@interface ClassTableViewController ()
+@interface RootClassTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation ClassTableViewController
+@implementation RootClassTableViewController
 
 - (void)awakeFromNib
 {
@@ -60,14 +60,6 @@
 }
 
 #pragma mark - Table View
-
-// Section header button calls this method to segue quick activity creation
-- (void) createQuickActivity: (UIButton *)sender
-{
-    RootViewController *parentVC = (RootViewController *)[self parentViewController];
-    [parentVC pushToActivityDetailsView];
-//    [self performSegueWithIdentifier:@"ActivityDetailsView" sender:self];
-}
 // Section header button calls this method to segue for class creation
 - (void) createClass: (UIButton *)sender
 {
@@ -81,15 +73,6 @@
     TableSectionHeaderView *headerView;
 
     switch (section) {
-        case TABLEVIEW_QUICKGROUPS:
-        {
-            // Create the view with a single button
-            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create quick activity"];
-            
-            // Action for button press
-            [[headerView titleButton] addTarget:self action:@selector(createQuickActivity:) forControlEvents:UIControlEventTouchUpInside];
-            break;
-        }
         case TABLEVIEW_CLASSES:
         {
             // Create the view with a single button
@@ -149,10 +132,6 @@
 {
     BOOL retVal = YES;
     switch ([indexPath section]) {
-        case TABLEVIEW_QUICKGROUPS:
-            // Do not allow removal of the QuickActivities class
-            retVal = NO;
-            break;
         default:
             break;
     }
@@ -198,22 +177,6 @@
         
         // Rename back button for next screen
         backButtonTitle = @"Back";
-    } else if ([[segue identifier] isEqualToString:@"ActivityDetailsView"]) {
-        // Want the class object for quick activities, always the only element of that section
-        NSIndexPath *indexPath = [NSIndexPath indexPathForRow:0 inSection:TABLEVIEW_QUICKGROUPS];
-        ClassEntity *parentClass = [[self fetchedResultsController] objectAtIndexPath:indexPath];
-//        ActivityDetailsViewController *activityDVC = [[(UINavigationController*)[segue destinationViewController] viewControllers] lastObject];
-//        [activityDVC setParentClass:parentClass];
-        [[segue destinationViewController] setParentClass:parentClass];
-        
-        // Pre-populate the name of this activity with the data & time
-        NSDateFormatter *dateFormatter = [[NSDateFormatter alloc] init];
-        [dateFormatter setDateFormat:@"MMMM DD, YYYY - hh:mm a"];
-//        [activityDVC setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
-        [[segue destinationViewController] setInitialName:[dateFormatter stringFromDate:[NSDate date]]];
-        
-        // Rename back button for next screen
-        backButtonTitle = @"Cancel";
     } else if ([[segue identifier] isEqualToString:@"ClassDetailsView"]) {
         // Rename back button for next screen
         backButtonTitle = @"Cancel";
@@ -227,7 +190,7 @@
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:nil
                                                                      action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    [[[self parentViewController] navigationItem] setBackBarButtonItem:newBackButton];
 }
 
 #pragma mark - Fetched results controller
@@ -246,16 +209,19 @@
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
-    // Sort by "protected" to get the sections themselves are ordered correctly
-    NSSortDescriptor *protectedSort = [[NSSortDescriptor alloc] initWithKey:@"protected" ascending:YES];
     // Sort by "name" so that the results inside of each section are ordered correctly
     NSSortDescriptor *nameSort = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
-    NSArray *sortDescriptors = [NSArray arrayWithObjects:protectedSort, nameSort, nil];
+    NSArray *sortDescriptors = [NSArray arrayWithObjects:nameSort, nil];
     [fetchRequest setSortDescriptors:sortDescriptors];
+    
+    // Filter results to only those activities aligned with this parentClass
+    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"protected == %@", [NSNumber numberWithBool:NO]];
+    [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // Use 'protected' as sectionNameKeyPath so that activity is split with only "Quick Activities" sticking to the top
-    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:@"protected" cacheName:@"ClassesView"];
+    NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:nil];
+
      aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
     
@@ -333,10 +299,10 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    NSLog(@"Configuring section: %d, row: %d", [indexPath section], [indexPath row]);
-    NSManagedObject *object = [self.fetchedResultsController objectAtIndexPath:indexPath];
-    cell.textLabel.text = [[object valueForKey:@"name"] description];
-    // WATK -- some recommend putting in cellWillAppear -- unsure of performance
+    ClassEntity *curClass = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = curClass.name;
+
+    // Color the cell
     cell.backgroundColor = UI_LIGHTGRAY;
 }
 

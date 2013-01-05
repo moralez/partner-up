@@ -19,12 +19,10 @@ enum  {
     NSUInteger rootViewHeight;
 }
 
-@property (nonatomic,retain) UIViewController *currentViewController;
+@property (nonatomic, retain) UIViewController *currentViewController;
+@property NSInteger startingSegment;
 
 - (IBAction)segmentedControlAction:(id)sender;
-
-//watk revisit
--(void)pushToActivityDetailsView;
 
 
 @end

@@ -7,9 +7,8 @@
 //
 
 #import "RootViewController.h"
-#import "ClassTableViewController.h"
-#import "ActivityTableViewController.h"
-#import "ActivityDetailsViewController.h"
+#import "RootClassTableViewController.h"
+#import "RootActivityTableViewController.h"
 #import "StdInclude.h"
 
 @interface RootViewController ()
@@ -19,6 +18,7 @@
 @implementation RootViewController
 
 @synthesize currentViewController;
+@synthesize startingSegment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -38,10 +38,30 @@
     self.navigationController.navigationBar.tintColor = UI_ROYALBLUE_3;
     
     // Set up initial view (WATK should consolidate this code w/ other method)
-    rootViewHeight = 45.0;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    ClassTableViewController *classVC = [storyboard instantiateViewControllerWithIdentifier:@"ClassTableViewController"];
-    self.currentViewController = classVC;
+    switch (startingSegment) {
+        case SEGMENT_CLASSES:
+        {
+            RootClassTableViewController *classVC = [storyboard instantiateViewControllerWithIdentifier:@"RootClassTableViewController"];
+            // Do any necessary VC setup
+            self.currentViewController = classVC;
+            break;
+        }
+        case SEGMENT_ACTIVITIES:
+        {
+            RootActivityTableViewController *activityVC = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
+            // Do any necessary VC setup
+            self.currentViewController = activityVC;
+            break;
+        }
+        default:
+            NSLog(@"Unhandled segment #%d, can't load view!", startingSegment);
+            break;
+    }
+    
+    // Position this view
+    // WATK - any way to make dynamic?
+    rootViewHeight = 45.0;
     self.currentViewController.view.frame = CGRectMake(0.0, rootViewHeight, self.view.frame.size.width, self.view.frame.size.height);
     [self addChildViewController:self.currentViewController];
     [self.view addSubview:self.currentViewController.view];
@@ -51,11 +71,11 @@
     switch ([sender selectedSegmentIndex]) {
         case SEGMENT_CLASSES:
             // Push to classes tableview
-            [self swapToClassTableView];
+            [self swapToRootClassTableView];
             break;
         case SEGMENT_ACTIVITIES:
             // Push to activities tableview
-            [self swapToActivityTableView];
+            [self swapToRootActivityTableView];
             break;
         default:
             NSLog(@"Error! Unhandled segment %d", [sender selectedSegmentIndex]);
@@ -64,37 +84,38 @@
 }
 
 // Swap vs. Push and navigation concerns TBD
-- (void)swapToClassTableView {
-    NSLog(@"Creating ClassTableViewController");
+- (void)swapToRootClassTableView {
+    NSLog(@"Creating RootClassTableViewController");
     // Creat the view controller
-    ClassTableViewController *newViewController;
+    RootClassTableViewController *newViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"ClassTableViewController"];
-    
+    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"RootClassTableViewController"];
+
     // Swap to this view controller
     [self swapToViewController:newViewController];
 }
 
-- (void)swapToActivityTableView {
-    NSLog(@"Creating ActivityTableViewController");
+- (void)swapToRootActivityTableView {
+    NSLog(@"Creating RootActivityTableViewController");
     // Creat the view controller
-    ActivityTableViewController *newViewController;
+    RootActivityTableViewController *newViewController;
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"ActivityTableViewController"];
-    
+    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
+
     // Swap to this view controller
     [self swapToViewController:newViewController];
 }
 
-- (void)pushToActivityDetailsView {
-    NSLog(@"Creating ActivityDetailsViewController");
-    // Creat the view controller
-    ActivityDetailsViewController *newViewController;
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailsViewController"];
-    // Swap to this view controller
-    [self swapToViewController:newViewController];
-}
+//- (void)pushToActivityDetailsView {
+//    NSLog(@"Creating ActivityDetailsViewController");
+//    // Creat the view controller
+//    ActivityDetailsViewController *newViewController;
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+//    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailsViewController"];
+//    // Swap to this view controller
+//    [self swapToViewController:newViewController];
+//}
+
 
 - (void)swapToViewController:(UIViewController *)newViewController {
     NSLog(@"Beginning transition");

@@ -1,39 +1,35 @@
 //
-//  GroupTableViewController.m
+//  RootActivityTableViewController.m
 //  Partner Up
 //
-//  Created by Logen Watkins on 12/30/12.
+//  Created by Johnny Moralez on 12/26/12.
 //  Copyright (c) 2012 Bathroom Gaming. All rights reserved.
 //
 
+#import "RootActivityTableViewController.h"
 #import "GroupTableViewController.h"
-#import "GroupEntity.h"
-#import "GroupGenerator.h"
+#import "ActivityDetailsViewController.h"
+#import "TableSectionHeaderView.h"
+#import "StdInclude.h"
 
-@interface GroupTableViewController ()
+@interface RootActivityTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
 @end
 
-@implementation GroupTableViewController
-
-@synthesize parentActivity;
+@implementation RootActivityTableViewController
 
 - (void)viewDidLoad
 {
     [super viewDidLoad];
-	// Do any additional setup after loading the view.
-
+    // Do any additional setup after loading the view, typically from a nib.
+    
     // Get context
-    singleContext = [SingleCDStack getContext];    
+    singleContext = [SingleCDStack getContext];
 }
 
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
-    
-    // Use class name as title for this view
-    self.navigationItem.title = [parentActivity.name description];
-    
 }
 
 - (void)didReceiveMemoryWarning
@@ -42,17 +38,40 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (void)viewWillDisappear:(BOOL)animated
+#pragma mark - Table View
+// Section header button calls this method to segue quick activity creation
+- (void) createQuickActivity: (UIButton *)sender
 {
-    NSLog(@"view will disappear!");
-    if (NSNotFound == [self.navigationController.viewControllers indexOfObject:self]) {
-        NSLog(@"Found %d views", [[[self navigationController] viewControllers] count]);
-    }
-    
-    [super viewWillDisappear:YES];
+    [self performSegueWithIdentifier:@"ActivityDetailsView" sender:self];
 }
 
-#pragma mark - Table View
+- (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
+{
+    //watk temp
+    // Will create a view customized to each section
+    TableSectionHeaderView *headerView;
+    
+    switch (section) {
+        case TABLEVIEW_ACTIVITIES:
+        {
+            // Create the view with a single button
+            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create new activity"];
+            
+            // Action for button press
+            [[headerView titleButton] addTarget:self action:@selector(createQuickActivity:) forControlEvents:UIControlEventTouchUpInside];
+            break;
+        }
+        default:
+            break;
+    }
+    
+    return headerView;
+}
+
+- (CGFloat) tableView:(UITableView *)tableView heightForHeaderInSection:(NSInteger)section
+{
+    return 54.0; //watk temp
+}
 
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView
 {
@@ -92,10 +111,11 @@
     return NO;
 }
 
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-{
-    // No special handling on selection (class entity passed through segue)
-}
+//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+//{
+//    // No special handling on selection (class entity passed through segue)
+//    NSLog(@"Did select section: %d, row: %d", [indexPath section], [indexPath row]);
+//}
 
 
 #pragma mark - Fetched results controller
@@ -108,24 +128,24 @@
     
     // Create fetch request for Entity
     NSFetchRequest *fetchRequest = [[NSFetchRequest alloc] init];
-    NSEntityDescription *entity = [GroupEntity entityInManagedObjectContext:singleContext];
+    NSEntityDescription *entity = [ActivityEntity entityInManagedObjectContext:singleContext];
     [fetchRequest setEntity:entity];
     
     // Set the batch size to a suitable number.
     [fetchRequest setFetchBatchSize:20];
     
     // Edit the sort key as appropriate.
-    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"orderNumber" ascending:YES];
+    NSSortDescriptor *sortDescriptor = [[NSSortDescriptor alloc] initWithKey:@"name" ascending:YES];
     NSArray *sortDescriptors = @[sortDescriptor];
-    
     [fetchRequest setSortDescriptors:sortDescriptors];
     
-    // Filter results to only those activities aligned with this parentClass
-    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentActivity == %@", [parentActivity objectID]];
-    [fetchRequest setPredicate:predicate];
+    // WATK any predicate?
+//    NSPredicate *predicate = [NSPredicate predicateWithFormat:@"parentClass == %@", [parentClass objectID]];
+//    [fetchRequest setPredicate:predicate];
     
     // Edit the section name key path and cache name if appropriate.
     // nil for section name key path means "no sections".
+    // Cache forced to 'nil' as the cache needs to be purged to modify the controller anyway (different parentClass)
     NSFetchedResultsController *aFetchedResultsController = [[NSFetchedResultsController alloc] initWithFetchRequest:fetchRequest managedObjectContext:singleContext sectionNameKeyPath:nil cacheName:nil];
     aFetchedResultsController.delegate = self;
     self.fetchedResultsController = aFetchedResultsController;
@@ -203,10 +223,41 @@
 
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath
 {
-    GroupEntity *thisGroup = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    // Set title and subtitle
+    ActivityEntity *curActivity = [self.fetchedResultsController objectAtIndexPath:indexPath];
+    cell.textLabel.text = curActivity.name;
+    cell.detailTextLabel.text = curActivity.parentClass.name;
     
-    // Display the people in each set
-    cell.textLabel.text = [GroupGenerator delineatedPersonsList:thisGroup];
+    // Color the cell
+    cell.backgroundColor = UI_LIGHTGRAY;
+}
+
+- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender
+{
+    NSString *backButtonTitle;
+    if ([[segue identifier] isEqualToString:@"GroupTableView"]) {
+        // Get the selected activity object and pass to next screen
+        NSIndexPath *indexPath = [self.tableView indexPathForSelectedRow];
+        ActivityEntity *thisActivity = [[self fetchedResultsController] objectAtIndexPath:indexPath];
+        [[segue destinationViewController] setParentActivity:thisActivity];
+
+        // Rename back button for next screen
+        backButtonTitle = @"Back";
+    } else if ([[segue identifier] isEqualToString:@"ActivityDetailsView"]) {
+        // There is no Parent Class for this view, handle the nil case inside that view
+        
+        // Rename back button for next screen
+        backButtonTitle = @"Cancel";
+    } else {
+        NSLog(@"Unhandled segue...");
+    }
+    
+    // Add back button with custom title
+    UIBarButtonItem *newBackButton = [[UIBarButtonItem alloc] initWithTitle:backButtonTitle
+                                                                      style:UIBarButtonItemStyleBordered
+                                                                     target:nil
+                                                                     action:nil];
+    [[self navigationItem] setBackBarButtonItem:newBackButton];
 }
 
 @end

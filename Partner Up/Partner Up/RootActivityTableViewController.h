@@ -1,5 +1,5 @@
 //
-//  ActivityTableViewController.h
+//  RootActivityTableViewController.h
 //  Partner Up
 //
 //  Created by Johnny Moralez on 12/26/12.
@@ -10,18 +10,18 @@
 #import "ClassEntity.h"
 #import "ActivityEntity.h"
 
+@class RootActivityTableViewController;
+
 // Tableview sections
 enum  {
     TABLEVIEW_ACTIVITIES = 0, // 0
 };
 
-@interface ActivityTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
+@interface RootActivityTableViewController : UITableViewController <NSFetchedResultsControllerDelegate>
 {
     NSManagedObjectContext *singleContext;    
 }
 
-
-@property (strong, nonatomic) ClassEntity *parentClass;
 @property (strong, nonatomic) NSFetchedResultsController *fetchedResultsController;
 
 @end
