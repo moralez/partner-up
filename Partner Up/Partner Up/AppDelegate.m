@@ -11,8 +11,9 @@
 
 #import "AppDelegate.h"
 #import "ClassEntity.h"
-#import "ActivityEntity.h" // WATK temp
 #import "PersonEntity.h"
+#import "StdInclude.h"
+#import "ActivityEntity.h" // WATK remove after not creating fake activities
 
 @implementation AppDelegate
 
@@ -32,7 +33,7 @@
     if (nil == quickActivitiesClass) {
         quickActivitiesClass = [ClassEntity create];
         quickActivitiesClass.name = previousQuickActivities;
-        quickActivitiesClass.sizeValue = 10;
+        quickActivitiesClass.sizeValue = DEFAULT_CLASS_SIZE;
         quickActivitiesClass.protectedValue = YES;
         [SingleCDStack saveChanges];
     }
@@ -45,7 +46,7 @@
     if (nil == unprotectedClass) {
         unprotectedClass = [ClassEntity create];
         unprotectedClass.name = @"No classes exist yet...";
-        unprotectedClass.sizeValue = 10;
+        unprotectedClass.sizeValue = DEFAULT_CLASS_SIZE;
         unprotectedClass.protectedValue = NO;
         [SingleCDStack saveChanges];
     }
@@ -56,8 +57,8 @@
         newActivity = [ActivityEntity create];
         newActivity.name = @"test!";
         newActivity.parentClass = unprotectedClass;
-        newActivity.classSizeValue = 13;
-        newActivity.groupSizeValue = 3;
+        newActivity.classSizeValue = DEFAULT_CLASS_SIZE;
+        newActivity.groupSizeValue = DEFAULT_GROUP_SIZE;
         [SingleCDStack saveChanges];
     }
     

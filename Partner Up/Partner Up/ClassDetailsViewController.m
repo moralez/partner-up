@@ -7,6 +7,7 @@
 //
 
 #import "ClassDetailsViewController.h"
+#import "StdInclude.h"
 
 @interface ClassDetailsViewController ()
 
@@ -42,7 +43,7 @@
         // Not passed a class entity, use defaults
         self.navigationItem.title = @"New Class";
         classNameField.text = @"";
-        classSizeStepper.value = 10;
+        classSizeStepper.value = DEFAULT_CLASS_SIZE;
     } else {
         // Passed a class entity, use it's information
         self.navigationItem.title = thisClass.name;
@@ -52,6 +53,18 @@
 
     // Set all labels appropriately
     [self updateClassSizeLabel];
+    
+    // This gesture recognizer is used to dismiss the keyboard if another part of the screen is touched
+    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)]];
+    
+    // Set range for stepper
+    [classSizeStepper setMinimumValue:(double)MIN_CLASS_SIZE];
+    [classSizeStepper setMaximumValue:(double)MAX_CLASS_SIZE];
+}
+
+- (void)hideKeyboard:(id)sender {
+    // Hide keyboard
+    [self.view endEditing:NO];
 }
 
 - (void)viewDidLoad
@@ -102,8 +115,6 @@
 }
 
 - (IBAction)classSizeStepperAction:(id)sender {
-    // Hide keyboard, update label
-    [self.view endEditing:NO];
     [self updateClassSizeLabel];
 }
 
@@ -111,7 +122,7 @@
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
     // Hide keyboard
-    [self.view endEditing:NO];
+    [self hideKeyboard:nil];
     return YES;
 }
 

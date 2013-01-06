@@ -11,8 +11,14 @@
 @implementation NSMutableArray (Helpers)
 
 + (NSMutableArray*)numberedArrayWithSize:(NSUInteger)size {
+    return [self numberedArrayWithMin:0 withMax:(size - 1)];
+}
+
++ (NSMutableArray *)numberedArrayWithMin:(NSUInteger)min withMax:(NSUInteger)max {
+    // An object numbered "max" is desired, so rather than adjust for loop, do so here
+    max++;
     NSMutableArray *tbr = [NSMutableArray array];
-    for (NSUInteger i = 0; i < size; i++) {
+    for (NSUInteger i = min; i < max; i++) {
         [tbr addObject:[NSNumber numberWithInteger:i]];
     }
     

@@ -60,16 +60,19 @@
     NSUInteger childrenCount = [childPersons count];
 
     // Begin displayed string with set#
-    NSString *retStr = [NSString stringWithFormat:@"%@) ", currentGroup.orderNumber];
+    NSString *retStr = [NSString stringWithFormat:@"Group %d) ", [currentGroup.orderNumber intValue] + 1];
     
     // Concatenate children numbers to this string
     PersonEntity *curPerson;
     for (NSUInteger i = 0; i < childrenCount; i++) {
         curPerson = [childPersons objectAtIndex:i];
         // WATK -- this leaves a trailing ", " - is there a clean way to fix or have to modify this loop?
-        retStr = [retStr stringByAppendingFormat:@"%@, ", curPerson.number];
+        retStr = [retStr stringByAppendingFormat:@"%d, ", [curPerson.number intValue] + 1];
     }
-    return retStr;
+    
+    // With above generator, every string will end with ", "
+    // Remove before returing
+    return [retStr substringToIndex:[retStr length] - 2];
 }
 
 @end

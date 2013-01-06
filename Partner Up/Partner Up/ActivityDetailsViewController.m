@@ -9,6 +9,8 @@
 #import "ActivityDetailsViewController.h"
 #import "GroupGenerator.h"
 #import "GroupTableViewController.h"
+#import "NSMutableArray+Helpers.h"
+#import "StdInclude.h"
 
 @interface ActivityDetailsViewController ()
 
@@ -21,18 +23,25 @@
 @synthesize initialName;
 @synthesize activityNameField;
 @synthesize classSizeLabel;
-@synthesize classSizeStepper;
 @synthesize groupSizeLabel;
-@synthesize groupSizeStepper;
+@synthesize numberPicker;
 
-- (void) updateClassSizeLabel
+- (void) updateClassSizeLabel:(NSNumber *)newSize
 {
-    classSizeLabel.text = [NSString stringWithFormat:@"%d", (int)classSizeStepper.value];
+    // Update the local variable with value in picker view
+    newClassSize = newSize;
+    
+    // WATK remove below
+    classSizeLabel.text = [NSString stringWithFormat:@"%@", newSize];
 }
 
-- (void) updateGroupSizeLabel
+- (void) updateGroupSizeLabel:(NSNumber *)newSize
 {
-    groupSizeLabel.text = [NSString stringWithFormat:@"%d", (int)groupSizeStepper.value];
+    // Update the local variable with value in picker view
+    newGroupSize = newSize;
+
+    // WATK remove below
+    groupSizeLabel.text = [NSString stringWithFormat:@"%@", newSize];
 }
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
@@ -83,20 +92,46 @@
         } else {
             activityNameField.text = initialName;
         }
-        classSizeStepper.value = [parentClass.size doubleValue];
-        // WATK -- Will we have per-class defaults, or just app-wide defaults?
-        groupSizeStepper.value = 2;
+
+        newClassSize = parentClass.size;
+        newGroupSize = [NSNumber numberWithInt:DEFAULT_GROUP_SIZE];
     } else {
         // Passed a activity entity, use it's information
         self.navigationItem.title = thisActivity.name;
         activityNameField.text = thisActivity.name;
-        classSizeStepper.value = [thisActivity.classSize doubleValue];
-        groupSizeStepper.value = [thisActivity.groupSize doubleValue];
+        newClassSize = thisActivity.classSize;
+        newGroupSize = thisActivity.groupSize;
     }
     
     // Update all labels
-    [self updateClassSizeLabel];
-    [self updateGroupSizeLabel];
+    [self updateClassSizeLabel:newClassSize];
+    [self updateGroupSizeLabel:newGroupSize];
+    
+    // Create arrays for use by PickerView
+    classSizeArray = [NSMutableArray numberedArrayWithMin:MIN_CLASS_SIZE withMax:MAX_CLASS_SIZE];
+    groupSizeArray = [NSMutableArray numberedArrayWithMin:MIN_GROUP_SIZE withMax:MAX_GROUP_SIZE];
+    
+    // WATK -- idea. Tie the array for group sizes to class sizes by reloading when a class selection
+    //  is made, and adjust group size if greater than classSize / 2.
+    // Set up the PickerView -- all values are hardcoded here but need to be enforced app-wide
+    CGFloat pickerWidth = 125.0;
+    CGFloat pickerHeight = 155.0;
+    CGRect pickerFrame = CGRectMake((self.view.frame.size.width / 2) - (pickerWidth / 2), 110.0, pickerWidth, pickerHeight); // hardcoded...
+    UIPickerView *multiPicker = [[UIPickerView alloc] initWithFrame:pickerFrame];
+    multiPicker.delegate = self;
+    // Set the initial values for each component
+    [multiPicker selectRow:([newClassSize intValue] - MIN_CLASS_SIZE) inComponent:PICKER_CLASSSIZE animated:YES];
+    [multiPicker selectRow:([newGroupSize intValue] - MIN_GROUP_SIZE) inComponent:PICKER_GROUPSIZE animated:YES];
+    [self.view addSubview:multiPicker];
+    
+    // This gesture recognizer is used to dismiss the keyboard if another part of the screen is touched
+//    [self.view addGestureRecognizer:[[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)]];
+    [self.view addGestureRecognizer:[[UIGestureRecognizer alloc] initWithTarget:self action:@selector(hideKeyboard:)]];
+}
+
+- (void)hideKeyboard:(id)sender {
+    // Hide keyboard
+    [self.view endEditing:NO];
 }
 
 - (void)didReceiveMemoryWarning
@@ -105,17 +140,64 @@
     // Dispose of any resources that can be recreated.
 }
 
-- (IBAction)classSizeStepperAction:(id)sender {
-    // Hide keyboard, update label
-    [self.view endEditing:NO];
-    [self updateClassSizeLabel];
+#pragma mark - number picker
+- (NSInteger) numberOfComponentsInPickerView:(UIPickerView *)pickerView
+{
+    // hard-coded, oops
+    return 2;
 }
 
-- (IBAction)groupSizeStepperAction:(id)sender {
-    // Hide keyboard, update label
-    [self.view endEditing:NO];
-    [self updateGroupSizeLabel];
+- (NSInteger) pickerView:(UIPickerView *)pickerView numberOfRowsInComponent:(NSInteger)component
+{
+    NSInteger retVal = 0;
+    switch (component) {
+        case PICKER_CLASSSIZE:
+            retVal = [classSizeArray count];
+            break;
+        case PICKER_GROUPSIZE:
+            retVal = [groupSizeArray count];
+            break;
+        default:
+            NSLog(@"Error! Unhandled component #%d", component);
+            break;
+    }
+    return retVal;
 }
+
+- (NSString *) pickerView:(UIPickerView *)pickerView titleForRow:(NSInteger)row forComponent:(NSInteger)component
+{
+    NSString *retVal;
+    switch (component) {
+        case PICKER_CLASSSIZE:
+            retVal = [NSString stringWithFormat:@"%@", [classSizeArray objectAtIndex:row]];
+            break;
+        case PICKER_GROUPSIZE:
+            retVal = [NSString stringWithFormat:@"%@", [groupSizeArray objectAtIndex:row]];
+            break;
+        default:
+            NSLog(@"Error! Unhandled component #%d", component);
+            break;
+    }
+    return retVal;
+}
+
+- (void) pickerView:(UIPickerView *)pickerView didSelectRow:(NSInteger)row inComponent:(NSInteger)component
+{
+    switch (component) {
+        case PICKER_CLASSSIZE:
+            [self updateClassSizeLabel:[classSizeArray objectAtIndex:row]];
+            break;
+        case PICKER_GROUPSIZE:
+            [self updateGroupSizeLabel:[groupSizeArray objectAtIndex:row]];
+            break;
+        default:
+            NSLog(@"Error! Unhandled component #%d", component);
+            break;
+    }
+}
+
+
+#pragma mark - other stuff
 
 // Returns YES if creation is successful
 - (BOOL)createActivity {
@@ -131,7 +213,7 @@
                                               otherButtonTitles:nil];
         [error show];
         return noErrors;
-    } else if ([classSizeStepper value] <= [groupSizeStepper value]) {
+    } else if ([newClassSize intValue] <= [newGroupSize intValue]) {
         UIAlertView *error = [[UIAlertView alloc] initWithTitle:@"Invalid: Class <= Group Size"
                                                         message:@"Unable to split class into desired number of groups"
                                                        delegate:self
@@ -151,8 +233,8 @@
 
     // Assign fields
     thisActivity.name = activityNameField.text;
-    thisActivity.classSizeValue = classSizeStepper.value;
-    thisActivity.groupSizeValue = groupSizeStepper.value;
+    thisActivity.classSize = newClassSize;
+    thisActivity.groupSize = newGroupSize;
     
     // Save entity
     NSLog(@"Saving activity entity, name: %@, classSize: %@, groupSize: %@", thisActivity.name, thisActivity.classSize, thisActivity.groupSize);
@@ -206,7 +288,7 @@
 // When user presses "Done", hide the keyboard
 - (BOOL) textFieldShouldReturn:(UITextField *)textField
 {
-    [self.view endEditing:NO];
+    [self hideKeyboard:nil];
     return YES;
 }
 

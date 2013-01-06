@@ -10,18 +10,26 @@
 #import "ClassEntity.h"
 #import "ActivityEntity.h"
 
-@interface ActivityDetailsViewController : UIViewController <UITextFieldDelegate>
+// PickerView components
+enum {
+    PICKER_CLASSSIZE = 0,
+    PICKER_GROUPSIZE // 1
+};
 
-- (IBAction)classSizeStepperAction:(id)sender;
-- (IBAction)groupSizeStepperAction:(id)sender;
+@interface ActivityDetailsViewController : UIViewController <UITextFieldDelegate, UIPickerViewDataSource, UIPickerViewDelegate> {
+    NSMutableArray *classSizeArray;
+    NSMutableArray *groupSizeArray;
+    NSNumber *newClassSize;
+    NSNumber *newGroupSize;
+}
+
 
 @property (strong, nonatomic) ClassEntity *parentClass;
 @property (strong, nonatomic) ActivityEntity *thisActivity;
 @property (strong, nonatomic) NSString *initialName;
 @property (weak, nonatomic) IBOutlet UITextField *activityNameField;
 @property (weak, nonatomic) IBOutlet UILabel *classSizeLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *classSizeStepper;
 @property (weak, nonatomic) IBOutlet UILabel *groupSizeLabel;
-@property (weak, nonatomic) IBOutlet UIStepper *groupSizeStepper;
+@property (weak, nonatomic) IBOutlet UIPickerView *numberPicker;
 
 @end

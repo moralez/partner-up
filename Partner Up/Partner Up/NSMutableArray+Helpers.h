@@ -11,5 +11,6 @@
 @interface NSMutableArray (Helpers)
 
 + (NSMutableArray*)numberedArrayWithSize:(NSUInteger)size;
++ (NSMutableArray *)numberedArrayWithMin:(NSUInteger)min withMax:(NSUInteger)max;
 
 @end

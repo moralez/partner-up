@@ -106,17 +106,6 @@
     [self swapToViewController:newViewController];
 }
 
-//- (void)pushToActivityDetailsView {
-//    NSLog(@"Creating ActivityDetailsViewController");
-//    // Creat the view controller
-//    ActivityDetailsViewController *newViewController;
-//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-//    newViewController = [storyboard instantiateViewControllerWithIdentifier:@"ActivityDetailsViewController"];
-//    // Swap to this view controller
-//    [self swapToViewController:newViewController];
-//}
-
-
 - (void)swapToViewController:(UIViewController *)newViewController {
     NSLog(@"Beginning transition");
     // Add as child to root view controller
