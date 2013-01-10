@@ -18,7 +18,6 @@
 @implementation RootViewController
 
 @synthesize currentViewController;
-@synthesize startingSegment;
 
 - (id)initWithNibName:(NSString *)nibNameOrNil bundle:(NSBundle *)nibBundleOrNil
 {
@@ -39,30 +38,12 @@
     
     // Set up initial view (WATK should consolidate this code w/ other method)
     UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    switch (startingSegment) {
-        case SEGMENT_CLASSES:
-        {
-            RootClassTableViewController *classVC = [storyboard instantiateViewControllerWithIdentifier:@"RootClassTableViewController"];
-            // Do any necessary VC setup
-            self.currentViewController = classVC;
-            break;
-        }
-        case SEGMENT_ACTIVITIES:
-        {
-            RootActivityTableViewController *activityVC = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
-            // Do any necessary VC setup
-            self.currentViewController = activityVC;
-            break;
-        }
-        default:
-            NSLog(@"Unhandled segment #%d, can't load view!", startingSegment);
-            break;
-    }
+    RootActivityTableViewController *activityVC = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
+    // Do any necessary VC setup
+    self.currentViewController = activityVC;
     
     // Position this view
-    // WATK - any way to make dynamic?
-    rootViewHeight = 45.0;
-    self.currentViewController.view.frame = CGRectMake(0.0, rootViewHeight, self.view.frame.size.width, self.view.frame.size.height);
+    self.currentViewController.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
     [self addChildViewController:self.currentViewController];
     [self.view addSubview:self.currentViewController.view];
 }

@@ -226,6 +226,8 @@
     // Set title and subtitle
     ActivityEntity *curActivity = [self.fetchedResultsController objectAtIndexPath:indexPath];
     cell.textLabel.text = curActivity.name;
+    
+    // Now unused without classes
     cell.detailTextLabel.text = curActivity.parentClass.name;
     
     // Color the cell

@@ -20,9 +20,5 @@ enum  {
 }
 
 @property (nonatomic, retain) UIViewController *currentViewController;
-@property NSInteger startingSegment;
-
-- (IBAction)segmentedControlAction:(id)sender;
-
 
 @end
