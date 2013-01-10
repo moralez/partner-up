@@ -11,6 +11,7 @@
 #import "ActivityDetailsViewController.h"
 #import "TableSectionHeaderView.h"
 #import "StdInclude.h"
+#import "MainStylesheet.h"
 
 @interface RootActivityTableViewController ()
 - (void)configureCell:(UITableViewCell *)cell atIndexPath:(NSIndexPath *)indexPath;
@@ -30,6 +31,9 @@
 - (void)viewWillAppear:(BOOL)animated
 {
     [super viewWillAppear:animated];
+    
+    NSLog(@"Test");
+    [self.tableView setBackgroundColor:[MainStylesheet tableViewBackground]];
 }
 
 - (void)didReceiveMemoryWarning
@@ -45,6 +49,21 @@
     [self performSegueWithIdentifier:@"ActivityDetailsView" sender:self];
 }
 
+//- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+//    NSLog(@"Titling Section");
+//    switch (section) {
+//        case 0:
+//            NSLog(@"Group Activities");
+//            return @"Group Activities";
+//            break;
+//            
+//        default:
+//            break;
+//    }
+//    
+//    return @"";
+//}
+
 - (UIView *) tableView:(UITableView *)tableView viewForHeaderInSection:(NSInteger)section
 {
     //watk temp
@@ -54,12 +73,9 @@
     switch (section) {
         case TABLEVIEW_ACTIVITIES:
         {
-            // Create the view with a single button
-            headerView = [[TableSectionHeaderView alloc] initSingleButtonTitled:@"Create new activity"];
-            
-            // Action for button press
-            [[headerView titleButton] addTarget:self action:@selector(createQuickActivity:) forControlEvents:UIControlEventTouchUpInside];
-            break;
+            UILabel *headerLabel = [MainStylesheet tableViewSectionHeaderLabel];
+            [headerLabel setText:@"Group Activities"];
+            return headerLabel;
         }
         default:
             break;
@@ -111,11 +127,11 @@
     return NO;
 }
 
-//- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
-//{
-//    // No special handling on selection (class entity passed through segue)
-//    NSLog(@"Did select section: %d, row: %d", [indexPath section], [indexPath row]);
-//}
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath
+{
+    // No special handling on selection (class entity passed through segue)
+    NSLog(@"Did select section: %d, row: %d", [indexPath section], [indexPath row]);
+}
 
 
 #pragma mark - Fetched results controller

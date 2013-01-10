@@ -14,6 +14,7 @@
 #import "PersonEntity.h"
 #import "StdInclude.h"
 #import "ActivityEntity.h" // WATK remove after not creating fake activities
+#import "MainStylesheet.h"
 
 @implementation AppDelegate
 
@@ -21,9 +22,24 @@
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
     // TestFlight
-    #ifdef TESTING
-        [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
-    #endif
+#ifdef TESTING
+    /*
+     Disable deprecated-declarations warning.
+     See http://clang.llvm.org/docs/UsersManual.html#diagnostics_pragmas
+     
+     Basic workflow:
+     
+     1. push current warnings onto stack
+     2. ignore warning we know will get thrown
+     3. do dodgy thing that causes warning
+     4. pop warnings - go back to what we had before we started fiddling with them
+     
+     */
+#pragma clang diagnostic push
+#pragma clang diagnostic ignored "-Wdeprecated-declarations"
+    [TestFlight setDeviceIdentifier:[[UIDevice currentDevice] uniqueIdentifier]];
+#pragma clang diagnostic pop
+#endif
     [TestFlight takeOff:@"3f90302d-50ac-4ed9-ac0b-ff5854f5cd68"];
     
     // Create QuickActivities class if it doesn't exist.
@@ -58,6 +74,9 @@
         splitViewController.delegate = (id)navigationController.topViewController;
     } else {
     }
+
+    // Set the default styles
+    [MainStylesheet setDefaultStyle];
     
     return YES;
 }

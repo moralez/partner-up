@@ -59,6 +59,9 @@
 		B0A37B36168BF54E00D35B81 /* ActivityTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = B0A37B35168BF54E00D35B81 /* ActivityTableViewController.m */; };
 		B0B6204716914BA400536F0E /* GroupGenerator.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204616914BA400536F0E /* GroupGenerator.m */; };
 		B0B6204C169155C900536F0E /* NSMutableArray+Helpers.m in Sources */ = {isa = PBXBuildFile; fileRef = B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */; };
+		B0BE636F169E4CF500A15228 /* MainStylesheet.m in Sources */ = {isa = PBXBuildFile; fileRef = B0BE636E169E4CF500A15228 /* MainStylesheet.m */; };
+		B0F78FCF169E5D59004F7800 /* IndentedLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = B0F78FCE169E5D59004F7800 /* IndentedLabel.m */; };
+		B0F78FD5169E5FFD004F7800 /* table-view-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = B0F78FD4169E5FFD004F7800 /* table-view-bg.png */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -136,6 +139,11 @@
 		B0B6204616914BA400536F0E /* GroupGenerator.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = GroupGenerator.m; sourceTree = "<group>"; };
 		B0B6204A169155C900536F0E /* NSMutableArray+Helpers.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSMutableArray+Helpers.h"; sourceTree = "<group>"; };
 		B0B6204B169155C900536F0E /* NSMutableArray+Helpers.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSMutableArray+Helpers.m"; sourceTree = "<group>"; };
+		B0BE636D169E4CF500A15228 /* MainStylesheet.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MainStylesheet.h; sourceTree = "<group>"; };
+		B0BE636E169E4CF500A15228 /* MainStylesheet.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MainStylesheet.m; sourceTree = "<group>"; };
+		B0F78FCD169E5D59004F7800 /* IndentedLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IndentedLabel.h; sourceTree = "<group>"; };
+		B0F78FCE169E5D59004F7800 /* IndentedLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IndentedLabel.m; sourceTree = "<group>"; };
+		B0F78FD4169E5FFD004F7800 /* table-view-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "table-view-bg.png"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -239,6 +247,9 @@
 		B0A37B16168BF54D00D35B81 /* Partner Up */ = {
 			isa = PBXGroup;
 			children = (
+				B0F78FD0169E5F4F004F7800 /* Resources */,
+				B0F78FCB169E5D3A004F7800 /* Custom Classes */,
+				B0BE6353169E4C8B00A15228 /* Styles */,
 				B0B62049169155AC00536F0E /* Helpers */,
 				2CEB6B7E168C2E1C00D7C8B1 /* TestFlightSDK1.2 */,
 				2CEB6B71168C263500D7C8B1 /* CoreData */,
@@ -296,6 +307,40 @@
 				2CEB6B56168C015800D7C8B1 /* SingleCDStack.m */,
 			);
 			name = Helpers;
+			sourceTree = "<group>";
+		};
+		B0BE6353169E4C8B00A15228 /* Styles */ = {
+			isa = PBXGroup;
+			children = (
+				B0BE636D169E4CF500A15228 /* MainStylesheet.h */,
+				B0BE636E169E4CF500A15228 /* MainStylesheet.m */,
+			);
+			name = Styles;
+			sourceTree = "<group>";
+		};
+		B0F78FCB169E5D3A004F7800 /* Custom Classes */ = {
+			isa = PBXGroup;
+			children = (
+				B0F78FCD169E5D59004F7800 /* IndentedLabel.h */,
+				B0F78FCE169E5D59004F7800 /* IndentedLabel.m */,
+			);
+			name = "Custom Classes";
+			sourceTree = "<group>";
+		};
+		B0F78FD0169E5F4F004F7800 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				B0F78FD1169E5F56004F7800 /* Backgrounds */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		B0F78FD1169E5F56004F7800 /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				B0F78FD4169E5FFD004F7800 /* table-view-bg.png */,
+			);
+			name = Backgrounds;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -359,6 +404,7 @@
 				B0A37B2D168BF54E00D35B81 /* MainStoryboard_iPad.storyboard in Resources */,
 				2CEB6B84168C2E1D00D7C8B1 /* README.md in Resources */,
 				2CEB6B85168C2E1D00D7C8B1 /* release_notes.md in Resources */,
+				B0F78FD5169E5FFD004F7800 /* table-view-bg.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -408,6 +454,8 @@
 				2C98D9E51698BCC200F5049A /* _GroupEntity.m in Sources */,
 				2C98D9E81698BCCB00F5049A /* GroupEntity.m in Sources */,
 				2C98D9F21698E9C300F5049A /* RootActivityTableViewController.m in Sources */,
+				B0BE636F169E4CF500A15228 /* MainStylesheet.m in Sources */,
+				B0F78FCF169E5D59004F7800 /* IndentedLabel.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

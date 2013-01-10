@@ -33,19 +33,16 @@
     [super viewDidLoad];
     NSLog(@"Loading root view controller");
     
-    // Customize the navigation bar
-    self.navigationController.navigationBar.tintColor = UI_ROYALBLUE_3;
-    
-    // Set up initial view (WATK should consolidate this code w/ other method)
-    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
-    RootActivityTableViewController *activityVC = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
-    // Do any necessary VC setup
-    self.currentViewController = activityVC;
-    
-    // Position this view
-    self.currentViewController.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
-    [self addChildViewController:self.currentViewController];
-    [self.view addSubview:self.currentViewController.view];
+//    // Set up initial view (WATK should consolidate this code w/ other method)
+//    UIStoryboard *storyboard = [UIStoryboard storyboardWithName:@"MainStoryboard_iPhone" bundle:nil];
+//    RootActivityTableViewController *activityVC = [storyboard instantiateViewControllerWithIdentifier:@"RootActivityTableViewController"];
+//    // Do any necessary VC setup
+//    self.currentViewController = activityVC;
+//    
+//    // Position this view
+//    self.currentViewController.view.frame = CGRectMake(0.0, 0.0, self.view.frame.size.width, self.view.frame.size.height);
+//    [self addChildViewController:self.currentViewController];
+//    [self.view addSubview:self.currentViewController.view];
 }
 
 - (IBAction)segmentedControlAction:(id)sender {
