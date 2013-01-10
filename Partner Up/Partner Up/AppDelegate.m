@@ -51,17 +51,6 @@
         [SingleCDStack saveChanges];
     }
     
-    // WATK -- Another temporary measure. Adding an empty activity just to make sure that view works
-    ActivityEntity *newActivity = [ActivityEntity findFirstByAttribute:@"name" withValue:@"test!"];
-    if (nil == newActivity) {
-        newActivity = [ActivityEntity create];
-        newActivity.name = @"test!";
-        newActivity.parentClass = unprotectedClass;
-        newActivity.classSizeValue = DEFAULT_CLASS_SIZE;
-        newActivity.groupSizeValue = DEFAULT_GROUP_SIZE;
-        [SingleCDStack saveChanges];
-    }
-    
     // Override point for customization after application launch.
     if ([[UIDevice currentDevice] userInterfaceIdiom] == UIUserInterfaceIdiomPad) {
         UISplitViewController *splitViewController = (UISplitViewController *)self.window.rootViewController;

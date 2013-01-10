@@ -228,7 +228,7 @@
     cell.textLabel.text = curActivity.name;
     
     // Now unused without classes
-    cell.detailTextLabel.text = curActivity.parentClass.name;
+    //cell.detailTextLabel.text = curActivity.parentClass.name;
     
     // Color the cell
     cell.backgroundColor = UI_LIGHTGRAY;
@@ -259,7 +259,7 @@
                                                                       style:UIBarButtonItemStyleBordered
                                                                      target:nil
                                                                      action:nil];
-    [[self navigationItem] setBackBarButtonItem:newBackButton];
+    [[[self parentViewController] navigationItem] setBackBarButtonItem:newBackButton];
 }
 
 @end
